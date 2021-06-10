@@ -16,8 +16,8 @@
 body {
   display: flex;
   justify-content: center;
-  height: 100vh;
   align-items: center;
+  height: 100vh;
   background-color: var(--main-background-color);
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
@@ -79,12 +79,12 @@ input {
   background-color: var(--dark-white-color);
 }
 
-.singup-link {
+.sing-up-link {
   margin-top: 3rem;
   font-size: 1.1rem;
   color: var(--light-orange-color);
 }
 
-.singup-link:hover {
+.sing-up-link:hover {
   cursor: pointer;
 }
