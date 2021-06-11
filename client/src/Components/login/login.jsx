@@ -1,16 +1,36 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Login extends Component {
   formRef = React.createRef();
   inputEmailRef = React.createRef();
   inputPawRef = React.createRef();
 
+  handleLogin = (email, password) => {
+    console.log(email, password);
+    this.props.onUserInfo({ userId: 7 });
+    // axios
+    //   .post(`http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/login`, {
+    //     email,
+    //     password,
+    //   })
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     if (response.data.success === true) {
+    //       console.log('성공 ');
+    //       this.props.onUserInfo({ userInfo: response.data.userId });
+    //     } else {
+    //       console.log('login fail');
+    //     }
+    //   });
+  };
+
   onSubmit = (e) => {
     e.preventDefault();
     const email = this.inputEmailRef.current.value;
     const password = this.inputPawRef.current.value;
 
-    email && password && this.props.onLogin(email, password);
+    email && password && this.handleLogin(email, password);
     this.formRef.current.reset();
   };
 
