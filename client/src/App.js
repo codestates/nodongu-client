@@ -28,9 +28,20 @@ class App extends Component {
       });
   };
 
-  handleUserInfo = (userInfo) => {
-    console.log(userInfo);
-    this.setState({ userInfo });
+  handleUserInfo = (userId) => {
+    console.log(userId);
+    axios
+      .post(
+        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/userinfo`,
+        { userId }
+      )
+      .then((response) => {
+        if (response.data.success === 'true') {
+          this.setState({ userInfo: { ...response.data.data } });
+        } else {
+          this.setState({ userInfo: null });
+        }
+      });
   };
   render() {
     // return <Signup onSignUp={this.handleSignUp} />;
