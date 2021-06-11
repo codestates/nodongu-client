@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-import Login from './Components/login/login';
-import './Components/login/login.css';
+// import Login from './Components/login/login';
+import Signup from './Components/signup/signup';
+// import './Components/login/login.css';
+import './Components/signup/signup.css';
 
 class App extends Component {
   state = {
@@ -11,14 +13,16 @@ class App extends Component {
   };
 
   handleLogin = (email, password) => {
-    // console.log(email, password);
+    console.log(email, password);
     axios
-      .post(`${process.env.REACT_APP_API_KEY}/nod/user/login`, {
+      .post(`http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/login`, {
         email,
         password,
       })
       .then((response) => {
+        console.log(response);
         if (response.data.success === true) {
+          console.log('성공 ');
           this.setState({ userInfo: response.data.userId });
         } else {
           console.log('login fail');
@@ -26,8 +30,25 @@ class App extends Component {
       });
   };
 
+  handleSignUp = (userInfo) => {
+    console.log(userInfo);
+    axios
+      .post(`http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/signup`, {
+        ...userInfo,
+      })
+      .then((response) => {
+        // console.log(response.data);
+        if (response.data.success === true) {
+          console.log('signup success');
+        } else {
+          console.log('signup fail');
+        }
+      });
+  };
+
   render() {
-    return <Login onLogin={this.handleLogin} />;
+    return <Signup onSignUp={this.handleSignUp} />;
+    // return <Login onLogin={this.handleLogin} />;
   }
 }
 
