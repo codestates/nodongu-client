@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Keyword from './Components/keyword/keyword';
+import '@fortawesome/fontawesome-free/js/all.js';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Keyword />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
