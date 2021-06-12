@@ -40,15 +40,19 @@ ul {
 ul li {
   display: flex;
   justify-content: right;
-  padding-right: 2rem;
+  margin-right: 2rem;
+  padding: 0rem 0.2rem;
   color: whitesmoke;
   font-size: 1.4rem;
-}
-
-ul li:hover {
   cursor: pointer;
+  transition: all 200ms linear;
 }
 
-.user-img:hover {
+ul li:not(:first-child):hover {
+  color: var(--light-orange-color);
+  border-bottom: solid 1px var(--light-orange-color);
+}
+
+.user-img {
   cursor: pointer;
 }
