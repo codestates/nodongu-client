@@ -81,7 +81,7 @@ h1 {
 
 .sign-up-btn:hover {
   transform: scale(1.1);
-  color: #f9a11b;
+  color: var(--light-orange-color);
   background-color: var(--middle-yellow-color);
 }
 
