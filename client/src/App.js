@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 // import Login from './Components/login/login';
-import Signup from './Components/signup/signup';
-import './Components/login/login.css';
+// import Signup from './Components/signup/signup';
+// import './Components/login/login.css';
 // import './Components/signup/signup.css';
-// import Navbar from './Components/navbar/navbar';
-// import './Components/navbar/navbar.css';
+import Navbar from './Components/navbar/navbar';
+import './Components/navbar/navbar.css';
 
 class App extends Component {
   state = {
@@ -49,9 +49,9 @@ class App extends Component {
   };
 
   render() {
-    // return <Navbar userInfo={this.state.userInfo} />;
+    return <Navbar userInfo={this.state.userInfo} />;
     // return <Signup onSignUp={this.handleSignUp} />;
-    return <Login onLogin={this.handleLogin} />;
+    // return <Login onLogin={this.handleLogin} />;
   }
 }
 
