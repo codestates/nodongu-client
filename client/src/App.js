@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import Signup from './Components/signup/signup';
 import Login from './Components/login/login';
-// import Signup from './Components/signup/signup';
-import './Components/login/login.css';
-// import './Components/signup/signup.css';
 
 class App extends Component {
   state = {
@@ -44,7 +42,6 @@ class App extends Component {
       });
   };
   render() {
-    // return <Signup onSignUp={this.handleSignUp} />;
     return <Login onUserInfo={this.handleUserInfo} />;
   }
 }
