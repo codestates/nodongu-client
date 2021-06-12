@@ -175,57 +175,59 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="sign-up">
-        <h1>Sign Up</h1>
-        <form
-          ref={this.formRef}
-          className="sign-up-form"
-          onSubmit={this.onSubmit}
-        >
-          <div className="sign-up-input">
-            <label htmlFor="email">Email</label>
-            <input
-              ref={this.inputEmailRef}
-              id="email"
-              type="text"
-              onChange={this.onExistEmailCheck}
-            />
-          </div>
-          <div className="sign-up-input">
-            <label htmlFor="ninkname">Nick Name</label>
-            <input
-              ref={this.inputNickNameRef}
-              id="ninkname"
-              type="text"
-              onChange={this.onExistNickNameCheck}
-            />
-          </div>
-          <div className="sign-up-input">
-            <label htmlFor="pwd">Password</label>
-            <input
-              ref={this.inputPwdRef}
-              id="pwd"
-              type="password"
-              onChange={this.onPasswordCheck}
-            />
-            <p className="pwd-rule">
-              최소 8자 이상, 알파벳과 숫자 및 특수문자(@$!%*#?&) 는 하나 이상
-              포함해주세요 :)
-            </p>
-          </div>
-          <div className="sign-up-input">
-            <label htmlFor="pwdConfirm">Pwd Confirm</label>
-            <input
-              ref={this.inputPwdConfirmRef}
-              id="pwdConfirm"
-              type="password"
-              onChange={this.onPasswordConfirm}
-            />
-          </div>
-          <>
-            <button className="sign-up-btn">Sign in</button>
-          </>
-        </form>
+      <div className="sign-up-container">
+        <div className="sign-up">
+          <h1>Sign Up</h1>
+          <form
+            ref={this.formRef}
+            className="sign-up-form"
+            onSubmit={this.onSubmit}
+          >
+            <div className="sign-up-input">
+              <label htmlFor="email">Email</label>
+              <input
+                ref={this.inputEmailRef}
+                id="email"
+                type="text"
+                onChange={this.onExistEmailCheck}
+              />
+            </div>
+            <div className="sign-up-input">
+              <label htmlFor="ninkname">Nick Name</label>
+              <input
+                ref={this.inputNickNameRef}
+                id="ninkname"
+                type="text"
+                onChange={this.onExistNickNameCheck}
+              />
+            </div>
+            <div className="sign-up-input">
+              <label htmlFor="pwd">Password</label>
+              <input
+                ref={this.inputPwdRef}
+                id="pwd"
+                type="password"
+                onChange={this.onPasswordCheck}
+              />
+              <p className="pwd-rule">
+                최소 8자 이상, 알파벳과 숫자 및 특수문자(@$!%*#?&) 는 하나 이상
+                포함해주세요 :)
+              </p>
+            </div>
+            <div className="sign-up-input">
+              <label htmlFor="pwdConfirm">Pwd Confirm</label>
+              <input
+                ref={this.inputPwdConfirmRef}
+                id="pwdConfirm"
+                type="password"
+                onChange={this.onPasswordConfirm}
+              />
+            </div>
+            <>
+              <button className="sign-up-btn">Sign in</button>
+            </>
+          </form>
+        </div>
       </div>
     );
   }

@@ -14,7 +14,7 @@
   --light-orange-color: #f9a11b;
 }
 
-body {
+.sign-up-container {
   display: flex;
   justify-content: center;
   align-items: center;
