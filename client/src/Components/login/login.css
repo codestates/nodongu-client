@@ -74,11 +74,14 @@ input {
   border-radius: 0.5rem;
   font-size: var(--font-size--middle);
   background-color: var(--light-white-color);
+  transition: all 300ms linear;
+  cursor: pointer;
 }
 
 .login-btn:hover {
-  cursor: pointer;
-  background-color: var(--dark-white-color);
+  transform: scale(1.1);
+  color: var(--light-orange-color);
+  background-color: var(--middle-yellow-color);
 }
 
 .sing-up-link {

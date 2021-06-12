@@ -46,11 +46,10 @@ class App extends Component {
     return (
       <>
         <Nav userInfo={this.state.userInfo} />
-        {/* <Login onUserInfo={this.handleUserInfo} /> */}
-        <Signup onSignUp={this.handleSignUp} />
+        <Login onUserInfo={this.handleUserInfo} />
+        {/* <Signup onSignUp={this.handleSignUp} /> */}
       </>
     );
-    // return <Login onUserInfo={this.handleUserInfo} />;
   }
 }
 
