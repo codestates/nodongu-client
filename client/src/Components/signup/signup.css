@@ -12,6 +12,7 @@
   --dark-yellow-color: #ffda8e;
   --middle-beige-color: #fdd692;
   --light-orange-color: #f9a11b;
+  --font-size--middle: 1.2rem;
 }
 
 .sign-up-container {
@@ -32,7 +33,6 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 700px;
   font-size: 2rem;
   padding: 3rem;
   border-radius: 1rem;
@@ -43,7 +43,6 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
   margin: 1rem;
 }
 
@@ -63,15 +62,16 @@ h1 {
 }
 
 .sign-up-input label {
-  font-size: 1.3rem;
+  font-size: var(--font-size--middle);
   width: 9rem;
   display: inline-block;
 }
 
 .sign-up-btn {
   width: 11rem;
+  height: 2.2rem;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: var(--font-size--middle);
   border: none;
   border-radius: 0.5rem;
   margin: 6rem 0rem 2rem 0rem;
@@ -82,8 +82,10 @@ h1 {
   background-color: var(--dark-white-color);
 }
 
-.pwd-rule {
-  font-size: 0.7rem;
+.pwd-rule,
+.nickname-rule {
+  font-size: 0.8rem;
   color: var(--light-black-color);
   text-align: right;
+  margin-top: -0.3rem;
 }

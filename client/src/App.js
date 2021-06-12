@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Signup from './Components/signup/signup';
 import Login from './Components/login/login';
+import Nav from './Components/navbar/navbar';
 
 class App extends Component {
   state = {
@@ -42,7 +43,14 @@ class App extends Component {
       });
   };
   render() {
-    return <Login onUserInfo={this.handleUserInfo} />;
+    return (
+      <>
+        <Nav userInfo={this.state.userInfo} />
+        {/* <Login onUserInfo={this.handleUserInfo} /> */}
+        <Signup onSignUp={this.handleSignUp} />
+      </>
+    );
+    // return <Login onUserInfo={this.handleUserInfo} />;
   }
 }
 
