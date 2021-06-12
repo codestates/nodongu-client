@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './navbar.css';
 import logo from '../../Utils/images/logo_3.png';
+import quokka from '../../Utils/images/quokka.jpg';
 
 class Navbar extends Component {
   render() {
@@ -18,10 +19,10 @@ class Navbar extends Component {
             className="user-img"
             src={
               this.props.userInfo === null
-                ? `https://cdn.crowdpic.net/list-thumb/thumb_l_DA90FFC2106321ECE0F4F818C03CC01D.jpg`
+                ? `${quokka}`
                 : `${this.props.userInfo.image}`
             }
-            style={({ width: 75 }, { height: 75 })}
+            style={({ width: 60 }, { height: 60 })}
           ></img>
         </nav>
       </div>

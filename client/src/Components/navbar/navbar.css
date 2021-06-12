@@ -24,7 +24,7 @@
 
 nav {
   display: flex;
-  padding: 0rem 2rem;
+  padding: 1rem 2rem;
   justify-content: space-between;
   background-color: var(--nav-background-color);
 }
@@ -55,4 +55,5 @@ ul li:not(:first-child):hover {
 
 .user-img {
   cursor: pointer;
+  border-radius: 50%;
 }
