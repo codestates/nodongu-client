@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../../Utils/images/logo_3.png';
 
 class Navbar extends Component {
   render() {
@@ -6,19 +7,21 @@ class Navbar extends Component {
       <div className="navigation-container">
         <nav>
           <ul>
+            <li>
+              <img src={logo} style={({ width: 55 }, { height: 55 })} />
+            </li>
             <li>PlayList</li>
             <li>My List</li>
-            <li>
-              <img
-                className="user-img"
-                src={
-                  this.props.userInfo
-                    ? `https://blogfiles.pstatic.net/MjAxNzA1MjNfMTA1/MDAxNDk1NTQxMjY2ODY0.0pCWaDaIhTLs3TlZAgnx73ossilphBYxgzAWnc577bgg.-bEfv7csnuZUGtq5-NmplDjYYXEWvzWNdvklQE9sE8Qg.PNG.yej1686/Untitled-1-01.png`
-                    : ``
-                }
-              ></img>
-            </li>
           </ul>
+          <img
+            className="user-img"
+            src={
+              this.props.userInfo === null
+                ? `https://cdn.crowdpic.net/list-thumb/thumb_l_DA90FFC2106321ECE0F4F818C03CC01D.jpg`
+                : `${this.props.userInfo.image}`
+            }
+            style={({ width: 75 }, { height: 75 })}
+          ></img>
         </nav>
       </div>
     );
