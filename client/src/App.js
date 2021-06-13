@@ -48,18 +48,7 @@ class App extends Component {
       });
   };
   render() {
-    return (
-      <Suspense fallback={<Loading />}>
-        <Navbar />
-        <Switch>
-          <Route exact path='/' component={Login} />
-          <Route exact path='/signup' component={Signup} />
-          <Route exact path='/keyword' component={Keyword} />
-          <Route exact path='/editUserInfo' component={EditUserInfo} />
-        </Switch>
-        <Footer />
-      </Suspense>
-    );
+    return <EditUserInfo />;
   }
 }
 
