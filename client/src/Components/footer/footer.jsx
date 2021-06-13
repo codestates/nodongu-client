@@ -43,7 +43,11 @@ class Footer extends Component {
                   className="txtb"
                   placeholder="Enter Your Email :)"
                 />
-                <input type="submit" className="btn" value="submit" />
+                <input
+                  type="submit"
+                  className="newsletter-form-btn"
+                  value="submit"
+                />
               </form>
             </div>
           </div>
