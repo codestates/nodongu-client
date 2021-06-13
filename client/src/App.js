@@ -48,8 +48,8 @@ class App extends Component {
       <>
         <Nav userInfo={this.state.userInfo} />
         <Login onUserInfo={this.handleUserInfo} />
-        <Footer />
         {/* <Signup onSignUp={this.handleSignUp} /> */}
+        <Footer />
       </>
     );
   }

@@ -7,13 +7,13 @@ class Navbar extends Component {
   render() {
     return (
       <div className="navigation-container">
-        <nav>
-          <ul>
-            <li>
+        <nav className="navigation-container-nav">
+          <ul className="nav__ul">
+            <li className="li_logo">
               <img src={logo} style={({ width: 55 }, { height: 55 })} />
             </li>
-            <li>PlayList</li>
-            <li>My List</li>
+            <li className="li_playlist">PlayList</li>
+            <li className="li_mylist">My List</li>
           </ul>
           <img
             className="user-img"

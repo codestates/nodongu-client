@@ -39,8 +39,8 @@ class Login extends Component {
     return (
       <div className="login-container">
         <div className="login-form">
-          <h1>Login</h1>
-          <form ref={this.formRef} onSubmit={this.onSubmit}>
+          <h1 className="login-form-title">Login</h1>
+          <form className="form" ref={this.formRef} onSubmit={this.onSubmit}>
             <div className="input-form">
               <label htmlFor="email">
                 <i className="fas fa-envelope login-icon"></i>
@@ -50,6 +50,7 @@ class Login extends Component {
                 id="email"
                 type="email"
                 placeholder="E-mail address"
+                className="login-form-email-input"
               />
             </div>
             <div className="input-form">
@@ -61,6 +62,7 @@ class Login extends Component {
                 id="password"
                 type="password"
                 placeholder="Password"
+                className="login-form-pwd-input"
               />
             </div>
             <button className="login-btn">Login</button>

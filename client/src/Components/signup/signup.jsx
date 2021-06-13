@@ -177,7 +177,7 @@ class Signup extends Component {
     return (
       <div className="sign-up-container">
         <div className="sign-up">
-          <h1>Sign Up</h1>
+          <h1 className="sign-up-title">Sign Up</h1>
           <form
             ref={this.formRef}
             className="sign-up-form"
@@ -220,6 +220,7 @@ class Signup extends Component {
             <div className="sign-up-input">
               <label htmlFor="pwdConfirm">Pwd Confirm</label>
               <input
+                className="sign-up-input-tag"
                 ref={this.inputPwdConfirmRef}
                 id="pwdConfirm"
                 type="password"

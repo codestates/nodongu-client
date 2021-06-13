@@ -34,7 +34,7 @@ class Footer extends Component {
               <p className="rights-text">Copyright © NodongU 2021</p>
             </div>
             <div className="right-col">
-              <h1>Our Newsletter</h1>
+              <h1 className="right-col-h1">Our Newsletter</h1>
               <div className="border"></div>
               <p>Enter Your Email to get our news and updates.</p>
               <form action="" className="newsletter-form">
