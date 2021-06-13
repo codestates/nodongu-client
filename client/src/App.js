@@ -4,6 +4,7 @@ import './App.css';
 import Signup from './Components/signup/signup';
 import Login from './Components/login/login';
 import Nav from './Components/navbar/navbar';
+import Footer from './Components/footer/footer';
 
 class App extends Component {
   state = {
@@ -47,6 +48,7 @@ class App extends Component {
       <>
         <Nav userInfo={this.state.userInfo} />
         <Login onUserInfo={this.handleUserInfo} />
+        <Footer />
         {/* <Signup onSignUp={this.handleSignUp} /> */}
       </>
     );
