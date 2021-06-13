@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 :root {
   --main-background-color: #fffff5;
+  --nav-background-color: #f4d195;
+  --footer-font-color: #573924;
   --light-white-color: #ffffff;
   --dark-white-color: #f5f5f5;
   --light-yellow-color: #fffff5;
@@ -9,19 +11,13 @@
   --dark-yellow-color: #ffda8e;
   --middle-beige-color: #fdd692;
   --light-orange-color: #f9a11b;
+  --light-tomato-color: #ff6b6b;
+  --dark-pink-color: #ec7357;
+  --light-pink-color: #ffece9;
+  --font-size--middle: 1.2rem;
 }
 
-* {
-  font-family: 'Nanum Pen Script', cursive;
-}
-
-body {
-  /* background-color: #2e2e2e; */
-  margin: 0;
-  padding: 0;
-}
-
-.container {
+.keyword-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,18 +27,19 @@ body {
   background-image: url(../../Utils/images/bg_keyword.jpg);
   background-size: cover;
   z-index: -1;
+  font-family: 'Jua', sans-serif;
 }
 
-.title {
+.keyword__title {
   font-size: 4em;
   color: wheat;
 }
 
-.row {
+.keyword__row {
   text-align: center;
 }
 
-.btn {
+.keyword__btn {
   border: 1px solid wheat;
   background: none;
   padding: 10px 20px;
@@ -56,27 +53,27 @@ body {
   z-index: 1;
 }
 
-.btn1,
-.btn3 {
+.keyword__btn1,
+.keyword__btn3 {
   color: var(--light-orange-color);
 }
 
-.btn2,
-.btn4 {
+.keyword__btn2,
+.keyword__btn4 {
   color: #fff;
 }
 
-.btn1:hover,
-.btn3:hover {
+.keyword__btn1:hover,
+.keyword__btn3:hover {
   color: #fff;
 }
 
-.btn2:hover,
-.btn4:hover {
+.keyword__btn2:hover,
+.keyword__btn4:hover {
   color: var(--light-orange-color);
 }
 
-.btn::before {
+.keyword__btn::before {
   content: '';
   position: absolute;
   left: 0;
@@ -88,29 +85,29 @@ body {
   transition: 0.7s;
 }
 
-.btn1::before,
-.btn3::before {
+.keyword__btn1::before,
+.keyword__btn3::before {
   top: 0;
   border-radius: 0 0 50% 50%;
 }
 
-.btn2::before,
-.btn4::before {
+.keyword__btn2::before,
+.keyword__btn4::before {
   bottom: 0;
   border-radius: 50% 50% 0 0;
 }
 
-.btn2::before,
-.btn4::before {
+.keyword__btn2::before,
+.keyword__btn4::before {
   height: 180%;
 }
 
-.btn1:hover::before,
-.btn3:hover::before {
+.keyword__btn1:hover::before,
+.keyword__btn3:hover::before {
   height: 180%;
 }
 
-.btn2:hover::before,
-.btn4:hover::before {
+.keyword__btn2:hover::before,
+.keyword__btn4:hover::before {
   height: 0%;
 }
