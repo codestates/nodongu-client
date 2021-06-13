@@ -15,9 +15,13 @@
   --dark-yellow-color: #ffda8e;
   --middle-beige-color: #fdd692;
   --light-orange-color: #f9a11b;
+  --light-tomato-color: #ff6b6b;
   --dark-pink-color: #ec7357;
   --light-pink-color: #ffece9;
   --font-size--middle: 1.2rem;
+  --font-size-regular: 300;
+  --font-size-bold: 700;
+  --font-family: 'JUA';
 }
 
 body {
