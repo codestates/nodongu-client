@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
-* {
-  box-sizing: border-box;
-}
-
 :root {
   --main-background-color: #fffff5;
   --nav-background-color: #f4d195;
