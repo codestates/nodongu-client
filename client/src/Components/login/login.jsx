@@ -10,20 +10,20 @@ class Login extends Component {
   handleLogin = (email, password) => {
     console.log(email, password);
     // this.props.onUserInfo({ userId: 7 });
-    axios
-      .post(`http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/login`, {
-        email,
-        password,
-      })
-      .then((response) => {
-        console.log(response.data);
-        if (response.data.success === true) {
-          console.log('성공 ');
-          this.props.onUserInfo(response.data.userId);
-        } else {
-          console.log('login fail');
-        }
-      });
+    // axios
+    //   .post(`http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/login`, {
+    //     email,
+    //     password,
+    //   })
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     if (response.data.success === true) {
+    //       console.log('성공 ');
+    //       this.props.onUserInfo(response.data.userId);
+    //     } else {
+    //       console.log('login fail');
+    //     }
+    //   });
   };
 
   onSubmit = (e) => {
