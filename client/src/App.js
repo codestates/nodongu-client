@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import Signup from './Components/signup/signup';
 import Login from './Components/login/login';
-import Nav from './Components/navbar/navbar';
+import Navbar from './Components/navbar/navbar';
 import Footer from './Components/footer/footer';
+import EditUserInfo from './Components/editUserInfo/editUserInfo';
+import Loading from './Components/loading/loading';
+import Keyword from './Components/keyword/keyword';
 
 class App extends Component {
   state = {
@@ -45,14 +49,18 @@ class App extends Component {
   };
   render() {
     return (
-      <>
-        <Nav userInfo={this.state.userInfo} />
-        <Login onUserInfo={this.handleUserInfo} />
-        {/* <Signup onSignUp={this.handleSignUp} /> */}
+      <Suspense fallback={<Loading />}>
+        <Navbar />
+        <Switch>
+          <Route exact path='/' component={Login} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/keyword' component={Keyword} />
+          <Route exact path='/editUserInfo' component={EditUserInfo} />
+        </Switch>
         <Footer />
-      </>
+      </Suspense>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
