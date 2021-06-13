@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
 * {
   box-sizing: border-box;
 }
 
 :root {
   --main-background-color: #fffff5;
+  --nav-background-color: #f4d195;
+  --footer-font-color: #573924;
   --light-white-color: #ffffff;
   --dark-white-color: #f5f5f5;
   --light-yellow-color: #fffff5;
@@ -11,6 +15,8 @@
   --dark-yellow-color: #ffda8e;
   --middle-beige-color: #fdd692;
   --light-orange-color: #f9a11b;
+  --dark-pink-color: #ec7357;
+  --light-pink-color: #ffece9;
   --font-size--middle: 1.2rem;
 }
 
@@ -19,13 +25,12 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-family: 'Jua', sans-serif;
   background-color: var(--main-background-color);
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
 }
 
-h1 {
-  color: white;
+.login-form-title {
+  color: var(--footer-font-color);
   margin-bottom: 7rem;
 }
 
@@ -36,27 +41,33 @@ h1 {
   height: 700px;
   font-size: 2rem;
   padding: 3rem;
+  margin-top: 95px;
   border-radius: 1rem;
   background: var(--dark-yellow-color);
 }
 
-form {
+.form {
   text-align: center;
   width: 520px;
 }
 
-input {
+.login-form-email-input,
+.login-form-pwd-input {
   width: 20rem;
   height: 2.2rem;
   border: none;
   border-radius: 0.3rem;
-  margin: 1rem 0rem 0.3rem 0.5rem;
   padding-left: 0.5rem;
+  font-size: 0.9rem;
+  font-family: 'Jua', sans-serif;
 }
 
 .input-form {
   height: 3rem;
   line-height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-icon {
@@ -72,7 +83,8 @@ input {
   height: 2.2rem;
   border: none;
   border-radius: 0.5rem;
-  font-size: var(--font-size--middle);
+  font-size: 1.5rem;
+  font-family: 'Jua', sans-serif;
   background-color: var(--light-white-color);
   transition: all 300ms linear;
   cursor: pointer;
@@ -88,8 +100,17 @@ input {
   margin-top: 3rem;
   font-size: 1.1rem;
   color: var(--light-orange-color);
+  transition: all 0.3s linear;
 }
 
 .sing-up-link:hover {
   cursor: pointer;
+  transform: scale(1.1);
+  color: var(--main-background-color);
+}
+
+.input-form label {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
 }
