@@ -21,25 +21,25 @@ class Keyword extends Component {
 
   render() {
     return (
-      <div className='container' onClick={this.handleClickKeyword}>
-        <h1 className='title'>내가 이끌리는 느낌은?</h1>
-        <section className='row'>
-          <button className='btn btn1'>행복</button>
-          <button className='btn btn2'>우울</button>
-          <button className='btn btn3'>사랑</button>
-          <button className='btn btn4'>이별</button>
+      <div className='keyword-container' onClick={this.handleClickKeyword}>
+        <h1 className='keyword__title'>내가 이끌리는 느낌은?</h1>
+        <section className='keyword__row'>
+          <button className='keyword__btn keyword__btn1'>행복</button>
+          <button className='keyword__btn keyword__btn2'>우울</button>
+          <button className='keyword__btn keyword__btn3'>사랑</button>
+          <button className='keyword__btn keyword__btn4'>이별</button>
         </section>
-        <section className='row'>
-          <button className='btn btn1'>맑음</button>
-          <button className='btn btn2'>흐림</button>
-          <button className='btn btn3'>비</button>
-          <button className='btn btn4'>눈</button>
+        <section className='keyword__row'>
+          <button className='keyword__btn keyword__btn1'>맑음</button>
+          <button className='keyword__btn keyword__btn2'>흐림</button>
+          <button className='keyword__btn keyword__btn3'>비</button>
+          <button className='keyword__btn keyword__btn4'>눈</button>
         </section>
-        <section className='row'>
-          <button className='btn btn1'>봄</button>
-          <button className='btn btn2'>여름</button>
-          <button className='btn btn3'>가을</button>
-          <button className='btn btn4'>겨울</button>
+        <section className='keyword__row'>
+          <button className='keyword__btn keyword__btn1'>봄</button>
+          <button className='keyword__btn keyword__btn2'>여름</button>
+          <button className='keyword__btn keyword__btn3'>가을</button>
+          <button className='keyword__btn keyword__btn4'>겨울</button>
         </section>
       </div>
     );
