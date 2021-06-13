@@ -1,9 +1,13 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
   --main-background-color: #fffff5;
+  --nav-background-color: #f4d195;
+  --footer-font-color: #573924;
   --light-white-color: #ffffff;
   --dark-white-color: #f5f5f5;
   --light-yellow-color: #fffff5;
@@ -11,6 +15,9 @@
   --dark-yellow-color: #ffda8e;
   --middle-beige-color: #fdd692;
   --light-orange-color: #f9a11b;
+  --dark-pink-color: #ec7357;
+  --light-pink-color: #ffece9;
+  --font-size--middle: 1.2rem;
 }
 
 body {
