@@ -24,6 +24,7 @@ class Login extends Component {
     //       console.log('login fail');
     //     }
     //   });
+    // this.state.history.push('이동할 엔드포인트');
   };
 
   onSubmit = (e) => {
@@ -37,37 +38,37 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="login-container">
-        <div className="login-form">
-          <h1 className="login-form-title">Login</h1>
-          <form className="form" ref={this.formRef} onSubmit={this.onSubmit}>
-            <div className="input-form">
-              <label htmlFor="email">
-                <i className="fas fa-envelope login-icon"></i>
+      <div className='login-container'>
+        <div className='login-form'>
+          <h1 className='login-form-title'>Login</h1>
+          <form className='form' ref={this.formRef} onSubmit={this.onSubmit}>
+            <div className='input-form'>
+              <label htmlFor='email'>
+                <i className='fas fa-envelope login-icon'></i>
               </label>
               <input
                 ref={this.inputEmailRef}
-                id="email"
-                type="email"
-                placeholder="E-mail address"
-                className="login-form-email-input"
+                id='email'
+                type='email'
+                placeholder='E-mail address'
+                className='login-form-email-input'
               />
             </div>
-            <div className="input-form">
-              <label htmlFor="password">
-                <i className="fas fa-key login-icon"></i>
+            <div className='input-form'>
+              <label htmlFor='password'>
+                <i className='fas fa-key login-icon'></i>
               </label>
               <input
                 ref={this.inputPawRef}
-                id="password"
-                type="password"
-                placeholder="Password"
-                className="login-form-pwd-input"
+                id='password'
+                type='password'
+                placeholder='Password'
+                className='login-form-pwd-input'
               />
             </div>
-            <button className="login-btn">Login</button>
+            <button className='login-btn'>Login</button>
           </form>
-          <span className="sing-up-link">아직 회원이 아니신가요?</span>
+          <span className='sing-up-link'>아직 회원이 아니신가요?</span>
         </div>
       </div>
     );
