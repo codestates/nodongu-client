@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-background-color: #fffff5;
+  --light-white-color: #ffffff;
+  --dark-white-color: #f5f5f5;
+  --light-yellow-color: #fffff5;
+  --middle-yellow-color: #fff1b9;
+  --dark-yellow-color: #ffda8e;
+  --middle-beige-color: #fdd692;
+  --light-orange-color: #f9a11b;
+  --light-tomato-color: #ff6b6b;
+  --font-size-regular: 300;
+  --font-size-bold: 700;
+  --font-family: 'JUA';
+}
+
+hr {
+  margin-top: 2.5rem;
+  height: 1px;
+  background-color: var(--middle-beige-color);
+  border: none;
+}
+
+.edit-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 15rem;
+  font-family: 'Jua', sans-serif;
+}
+
+.edit-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 55rem;
+}
+
+/* Header */
+
+.edit-card__header {
+  display: flex;
+  width: 100%;
+}
+
+/* Header-picture */
+
+.header__picture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.header__picture img {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+}
+
+.header__picture input {
+  display: none;
+}
+
+.header__picture label {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  background-color: var(--light-orange-color);
+  border-radius: 0.5rem;
+  color: white;
+  transition: transform 0.1s linear;
+}
+
+.header__picture label:active {
+  transform: scale(1.05);
+}
+
+.header__picture button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  color: var(--light-orange-color);
+  border-bottom: 1px solid var(--light-orange-color);
+  transition: color 0.1s linear;
+}
+
+.header__picture button:hover {
+  color: var(--light-tomato-color);
+}
+
+.header__divided-line {
+  background-color: var(--middle-beige-color);
+  opacity: 0.6;
+  width: 1px;
+  height: 100%;
+}
+
+/* Header-nickname */
+.header__nickname {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nickname__nickname {
+  color: var(--middle-beige-color);
+  font-size: 2.5em;
+  margin: 1rem;
+}
+
+.nickname__input {
+  border: 1px solid var(--light-orange-color);
+  margin: 0;
+  outline: none;
+  color: var(--dark-yellow-color);
+}
+
+.nickname__button-container {
+  margin: 0 1rem;
+}
+
+.nickname__button {
+  cursor: pointer;
+  font-size: 1.2rem;
+  border: none;
+  background: none;
+  font-family: var(--font-family);
+  color: var(--light-orange-color);
+  opacity: 0.8;
+  transition: color 0.15s linear;
+}
+
+.nickname__button:hover {
+  color: var(--light-tomato-color);
+}
+
+/* edit-card__body */
+
+.edit-card__body {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.edit-card__info {
+  /* background-color: teal; */
+  list-style: none;
+  padding: 2rem;
+}
+
+.edit-card__info li {
+  color: var(--light-orange-color);
+  margin-bottom: 2.5rem;
+}
+
+.edit-card__info li div {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.edit-card__info li div h2 {
+  font-size: 2rem;
+  width: 9rem;
+  text-align: center;
+}
+
+.edit-card__info li div span {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  color: var(--middle-beige-color);
+}
+
+.edit-card__info li div button {
+  position: absolute;
+  right: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--light-orange-color);
+  border-bottom: 1px solid var(--light-orange-color);
+  font-weight: var(--font-size-bold);
+  transition: color 0.1s linear;
+}
+
+.edit-card__info li div button:hover {
+  color: var(--light-tomato-color);
+}
+
+.info__password__input {
+  border: 1px solid var(--light-orange-color);
+  margin: 0;
+  outline: none;
+  color: var(--dark-yellow-color);
+}
+
+.info__deleteUser {
+  display: flex;
+  align-items: center;
+}
+
+.info__deleteUser div {
+  margin-right: 1rem;
+}
+
+.info__deleteUser button {
+  font-size: 1.1rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.3rem;
+  border: none;
+  background: var(--light-tomato-color);
+  font-family: var(--font-family);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.1s linear;
+}
+
+.info__deleteUser button:active {
+  transform: scale(1.05);
+}
+
+.hidden {
+  display: none;
+}
