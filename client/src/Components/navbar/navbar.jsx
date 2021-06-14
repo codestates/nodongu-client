@@ -51,7 +51,10 @@ class Navbar extends Component {
             }
             onClick={this.handleProfileClick}
           />
-          <Popup profileClick={this.state.isProfileClick} />
+          <Popup
+            profileClick={this.state.isProfileClick}
+            userData={this.props.userData}
+          />
         </nav>
       </div>
     );
