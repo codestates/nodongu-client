@@ -11,9 +11,14 @@ class Popup extends Component {
       image: '',
     },
   };
+
   render() {
     return (
-      <section className="popup-container">
+      <section
+        className={`popup-container ${
+          this.props.profileClick ? '' : 'popup-hidden'
+        }`}
+      >
         <div className="popup-profile">
           <img
             className="popup-user-img"

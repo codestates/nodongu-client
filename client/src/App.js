@@ -52,10 +52,10 @@ class App extends Component {
       <Suspense fallback={<Loading />}>
         <Navbar />
         <Switch>
-          <Route exact path='/' component={Login} />
-          <Route exact path='/signup' component={Signup} />
-          <Route exact path='/keyword' component={Keyword} />
-          <Route exact path='/editUserInfo' component={EditUserInfo} />
+          <Route exact path="/" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/keyword" component={Keyword} />
+          <Route exact path="/editUserInfo" component={EditUserInfo} />
         </Switch>
         <Footer />
       </Suspense>
