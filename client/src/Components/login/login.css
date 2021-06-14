@@ -69,7 +69,7 @@
   cursor: pointer;
 }
 
-.login-btn:hover {
+.login-btn:active {
   transform: scale(1.1);
   color: var(--light-orange-color);
   background-color: var(--middle-yellow-color);

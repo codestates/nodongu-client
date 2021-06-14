@@ -47,12 +47,13 @@
   border: none;
   outline: none;
   background: none;
+  display: flex;
+  align-items: center;
   transition: all 0.3s linear;
 }
 
-.popup-user-handling button:hover,
-.popup-user-handling span:hover {
-  transform: scale(1.1);
+.popup-user-handling button:active {
+  transform: scale(1.05);
 }
 
 .popup-user-update,
