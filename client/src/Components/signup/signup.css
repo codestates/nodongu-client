@@ -6,7 +6,7 @@
   align-items: center;
   height: 100vh;
   background-color: var(--main-background-color);
-  font-family: 'Jua', sans-serif;
+  font-family: var(--font-family);
 }
 
 .sign-up-title {
@@ -49,7 +49,7 @@
   padding-left: 0.5rem;
   border: none;
   border-radius: 0.5rem;
-  font-family: 'Jua', sans-serif;
+  font-family: var(--font-family);
 }
 
 .sign-up-input label {
@@ -63,7 +63,7 @@
   height: 2.2rem;
   cursor: pointer;
   font-size: var(--font-size--middle);
-  font-family: 'Jua', sans-serif;
+  font-family: var(--font-family);
   border: none;
   border-radius: 0.5rem;
   margin: 3rem 0;

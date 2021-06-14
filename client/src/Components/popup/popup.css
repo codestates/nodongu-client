@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.popup-container {
+  background-color: var(--middle-pink-color);
+  width: 290px;
+  position: absolute;
+  top: 70px;
+  right: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.popup-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0rem 2rem 0rem;
+}
+
+.popup-profile > * {
+  margin-bottom: 0.8rem;
+}
+
+.popup-user-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.popup-profile-h3 {
+  padding-bottom: 2rem;
+  margin-bottom: 0;
+  border-bottom: 2px solid var(--dark-pink-color);
+}
+
+.popup-user-handling {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 3rem;
+}
+
+.popup-user-handling button {
+  border: none;
+  outline: none;
+  background: none;
+  transition: all 0.3s linear;
+}
+
+.popup-user-handling button:hover,
+.popup-user-handling span:hover {
+  transform: scale(1.1);
+}
+
+.popup-user-update,
+.popup-user-logout,
+.popup-user-handling span {
+  cursor: pointer;
+}
+
+.popup-user-handling span {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  margin-left: 0.3rem;
+}
+.popup-user-handling span:hover {
+  color: var(--light-tomato-color);
+}
+
+.fa-user-cog,
+.fa-sign-out-alt {
+  color: var(--light-tomato-color);
+  font-size: var(--font-size--middle);
+  transition: all 0.3s linear;
+}
+
+.fa-user-cog:hover,
+.fa-sign-out-alt:hover {
+  color: var(--smoke-pink-color);
+}

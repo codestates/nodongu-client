@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-family: 'Jua', sans-serif;
+  font-family: var(--font-family);
   background-color: var(--main-background-color);
 }
 
@@ -38,7 +38,7 @@
   border-radius: 0.3rem;
   padding-left: 0.5rem;
   font-size: 0.9rem;
-  font-family: 'Jua', sans-serif;
+  font-family: var(--font-family);
 }
 
 .input-form {
@@ -63,7 +63,7 @@
   border: none;
   border-radius: 0.5rem;
   font-size: 1.5rem;
-  font-family: 'Jua', sans-serif;
+  font-family: var(--font-family);
   background-color: var(--light-white-color);
   transition: all 300ms linear;
   cursor: pointer;
