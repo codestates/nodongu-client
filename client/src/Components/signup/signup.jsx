@@ -228,7 +228,7 @@ class Signup extends Component {
               />
             </div>
             <>
-              <button className="sign-up-btn">Sign in</button>
+              <button className="sign-up-btn">Sign Up</button>
             </>
           </form>
         </div>

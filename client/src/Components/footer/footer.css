@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 .footer-container {
-  font-family: 'Jua', sans-serif;
+  font-family: var(--font-family);
   border-top: solid 0.5px var(--light-white-color);
 }
 
@@ -70,7 +70,7 @@ footer {
   font-weight: 700;
   border-radius: 1.5rem;
   min-width: 320px;
-  font-family: 'Jua', sans-serif;
+  font-family: var(--font-family);
 }
 
 .newsletter-form-btn {
@@ -84,7 +84,7 @@ footer {
   margin-left: 20px;
   cursor: pointer;
   transition: opacity 0.3s linear;
-  font-family: 'Jua', sans-serif;
+  font-family: var(--font-family);
 }
 
 .newsletter-form-btn:hover {
