@@ -34,6 +34,7 @@
   padding-bottom: 2rem;
   margin-bottom: 0;
   border-bottom: 2px solid var(--dark-pink-color);
+  font-weight: 400;
 }
 
 .popup-user-handling {
@@ -81,4 +82,12 @@
 .fa-user-cog:hover,
 .fa-sign-out-alt:hover {
   color: var(--smoke-pink-color);
+}
+
+.popup-hidden {
+  display: none;
+}
+
+.popup-hidden:active {
+  transition: all 0.3s linear;
 }

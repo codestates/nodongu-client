@@ -13,6 +13,21 @@ class Navbar extends Component {
       email: 'jyhi@gmail.com',
       image: '',
     },
+    isProfileClick: false,
+  };
+
+  handleProfileClick = (e) => {
+    if (e.target.classList[1] === undefined) {
+      e.target.classList.add('user-img-small');
+      this.setState({
+        isProfileClick: true,
+      });
+    } else {
+      e.target.classList.remove('user-img-small');
+      this.setState({
+        isProfileClick: false,
+      });
+    }
   };
 
   render() {
@@ -21,20 +36,22 @@ class Navbar extends Component {
         <nav className="navigation-container-nav">
           <ul className="nav__ul">
             <li className="li_logo">
-              <img src={logo} style={({ width: 55 }, { height: 55 })} />
+              <img src={logo} style={({ width: 60 }, { height: 60 })} />
             </li>
             <li className="li_playlist">PlayList</li>
             <li className="li_mylist">My List</li>
           </ul>
           <img
-            className="user-img user-img-small"
+            ref={this.profileRef}
+            className="user-img"
             src={
               this.state.fakeData.image == false
                 ? `${quokka}`
                 : `${this.state.fakeData.image}`
             }
-          ></img>
-          <Popup />
+            onClick={this.handleProfileClick}
+          />
+          <Popup profileClick={this.state.isProfileClick} />
         </nav>
       </div>
     );
