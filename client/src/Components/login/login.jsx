@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import './login.css';
 import axios from 'axios';
+import { withRouter } from 'react-router';
+import './login.css';
 
 class Login extends Component {
+  state = {
+    isLoading: false,
+  };
+
   formRef = React.createRef();
   inputEmailRef = React.createRef();
   inputPawRef = React.createRef();
@@ -70,11 +75,18 @@ class Login extends Component {
             </div>
             <button className="login-btn">Login</button>
           </form>
-          <span className="sing-up-link">아직 회원이 아니신가요?</span>
+          <span
+            className="sing-up-link"
+            onClick={() => {
+              this.props.history.push('/signup');
+            }}
+          >
+            아직 회원이 아니신가요?
+          </span>
         </div>
       </div>
     );
   }
 }
 
-export default Login;
+export default withRouter(Login);

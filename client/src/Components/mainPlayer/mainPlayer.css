@@ -24,14 +24,12 @@
   min-width: 480px;
   height: 520px;
   padding: 0.5rem 1.4rem;
-  /* background-color: cadetblue; */
   overflow: auto;
 }
 
 .next-track {
   font-size: 1.2rem;
   width: 180px;
-  /* border-bottom: solid 2px red; */
 }
 
 .play-list-ul {
@@ -45,7 +43,6 @@
   font-size: 1.2rem;
   margin-bottom: 1rem;
   align-items: center;
-  cursor: pointer;
   transition: all 0.3s linear;
 }
 
@@ -67,6 +64,7 @@
   width: 38px;
   height: 38px;
   margin-right: 0.8rem;
+  cursor: pointer;
 }
 
 .play-replay-time {
@@ -79,7 +77,6 @@
 }
 
 .play-set-up {
-  /* background-color: khaki; */
   padding: 0 25px;
   width: 1030px;
   margin-top: 3rem;
@@ -131,7 +128,6 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* background-color: tomato; */
 }
 
 .song-info-img {
