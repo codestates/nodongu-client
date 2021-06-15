@@ -9,6 +9,7 @@ import Footer from './Components/footer/footer';
 import EditUserInfo from './Components/editUserInfo/editUserInfo';
 import Loading from './Components/loading/loading';
 import Keyword from './Components/keyword/keyword';
+import MainPlayer from './Components/mainPlayer/mainPlayer';
 
 class App extends Component {
   state = {
@@ -59,6 +60,7 @@ class App extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/keyword" component={Keyword} />
           <Route exact path="/editUserInfo" component={EditUserInfo} />
+          <Route exact path="/mainPlayer" component={MainPlayer} />
         </Switch>
         <Footer />
       </Suspense>
