@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import './popup.css';
 import quokka from '../../Utils/images/quokka.jpg';
 
@@ -20,10 +21,7 @@ class Popup extends Component {
         }`}
         onClick={(e) => {
           if (e.target.classList[0] === 'userinfo-update-btn') {
-            // edituserinfo 로 가게 처리
-            // props로 받은 userInfo도 같이 넘겨줌
-            console.log(e.target.classList);
-            console.log(this.props.userData);
+            this.props.history.push('/edituserinfo');
           } else if (e.target.classList[0] === 'user-logout-btn') {
             console.log(e.target.classList);
             // axios
@@ -31,6 +29,14 @@ class Popup extends Component {
         }}
       >
         <div className="popup-profile">
+          <button
+            className="popup-close-btn"
+            onClick={(e) => {
+              this.props.onClosePopup(e);
+            }}
+          >
+            <i className="fas fa-times"></i>
+          </button>
           <img
             className="popup-user-img"
             src={
@@ -58,4 +64,4 @@ class Popup extends Component {
   }
 }
 
-export default Popup;
+export default withRouter(Popup);

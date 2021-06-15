@@ -23,7 +23,7 @@
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  background-color: var(--middle-pink-color);
+  background-color: var(--middle-light-pink-color);
   -ms-overflow-style: none;
   overflow: auto;
   animation: add-modal 0.4s;
