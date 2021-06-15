@@ -9,6 +9,7 @@ import Footer from './Components/footer/footer';
 import EditUserInfo from './Components/editUserInfo/editUserInfo';
 import Loading from './Components/loading/loading';
 import Keyword from './Components/keyword/keyword';
+import MyList from './Components/myList/myList';
 
 class App extends Component {
   state = {
@@ -52,10 +53,11 @@ class App extends Component {
       <Suspense fallback={<Loading />}>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/keyword" component={Keyword} />
-          <Route exact path="/editUserInfo" component={EditUserInfo} />
+          <Route exact path='/' component={Login} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/keyword' component={Keyword} />
+          <Route exact path='/editUserInfo' component={EditUserInfo} />
+          <Route exact path='/myList' component={MyList} />
         </Switch>
         <Footer />
       </Suspense>
