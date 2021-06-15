@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  animation: popup-modal 0.4s;
 }
 
 .popup-profile {
@@ -22,6 +23,25 @@
 
 .popup-profile > * {
   margin-bottom: 0.8rem;
+}
+
+.popup-close-btn {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  position: relative;
+  top: -25px;
+  right: -115px;
+  cursor: pointer;
+}
+
+.popup-close-btn:hover {
+  color: var(--smoke-pink-color);
+  transition: all 0.3s linear;
+}
+
+.popup-close-btn:active {
+  transform: scale(1.1);
 }
 
 .popup-user-img {
@@ -90,4 +110,15 @@
 
 .popup-hidden:active {
   transition: all 0.3s linear;
+}
+
+@keyframes popup-modal {
+  from {
+    opacity: 0;
+    margin-top: -50px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
 }
