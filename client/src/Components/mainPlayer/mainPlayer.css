@@ -45,6 +45,12 @@
   font-size: 1.2rem;
   margin-bottom: 1rem;
   align-items: center;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.play-list-li:hover {
+  background-color: var(--middle-light-pink-color);
 }
 
 .play-list-left {

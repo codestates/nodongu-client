@@ -16,14 +16,22 @@ class Navbar extends Component {
     isProfileClick: false,
   };
 
-  handleProfileClick = (e) => {
+  profileRef = React.createRef();
+
+  handleOpenPopup = (e) => {
     if (e.target.classList[1] === undefined) {
       e.target.classList.add('user-img-small');
+
       this.setState({
         isProfileClick: true,
       });
-    } else {
-      e.target.classList.remove('user-img-small');
+    }
+  };
+
+  handleClosePopup = (e) => {
+    if (e.target.classList[1] || e.target.parentElement.classList) {
+      this.profileRef.current.classList.remove('user-img-small');
+
       this.setState({
         isProfileClick: false,
       });
@@ -49,10 +57,15 @@ class Navbar extends Component {
                 ? `${quokka}`
                 : `${this.state.fakeData.image}`
             }
-            onClick={this.handleProfileClick}
+            onClick={
+              this.state.isProfileClick
+                ? this.handleClosePopup
+                : this.handleOpenPopup
+            }
           />
           <Popup
             profileClick={this.state.isProfileClick}
+            onClosePopup={this.handleClosePopup}
             userData={this.props.userData}
           />
         </nav>

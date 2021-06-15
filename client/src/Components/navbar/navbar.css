@@ -5,6 +5,7 @@
   font-family: var(--font-family);
   position: fixed;
   top: 0;
+  z-index: 1;
 }
 
 .navigation-container-nav {
