@@ -11,6 +11,7 @@ import Loading from './Components/loading/loading';
 import Keyword from './Components/keyword/keyword';
 import MyList from './Components/myList/myList';
 import MainPlayer from './Components/mainPlayer/mainPlayer';
+import AddPlayer from './Components/addPlayer/addPlayer';
 
 class App extends Component {
   state = {
@@ -73,6 +74,7 @@ class App extends Component {
           <Route exact path="/keyword" component={Keyword} />
           <Route exact path="/editUserInfo" component={EditUserInfo} />
           <Route exact path="/mainPlayer" component={MainPlayer} />
+          <Route exact path="/addPlayer" component={AddPlayer} />
         </Switch>
         <Footer />
       </Suspense>

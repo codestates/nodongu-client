@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 import './mainPlayer.css';
 import albumImage from '../../Utils/images/album-image.png';
+import AddPlayer from '../addPlayer/addPlayer';
 
 class MainPlayer extends Component {
+  state = {
+    isAddPlayerBtnClick: false,
+  };
+
+  handleOpenModal = () => {
+    this.setState({
+      isAddPlayerBtnClick: true,
+    });
+  };
+
+  handleCloseModal = () => {
+    this.setState({
+      isAddPlayerBtnClick: false,
+    });
+  };
+
   render() {
     return (
       <main className="main-player-container">
@@ -21,7 +38,7 @@ class MainPlayer extends Component {
                   <div className="play-list-content">
                     <div className="play-list-content-title">Butter</div>
                     <div className="play-list-content-singer">
-                      방탄소년단(BTS)
+                      {/* 방탄소년단(BTS) */}
                     </div>
                   </div>
                 </div>
@@ -35,7 +52,7 @@ class MainPlayer extends Component {
                   <div className="play-list-content">
                     <div className="play-list-content-title">Butter</div>
                     <div className="play-list-content-singer">
-                      방탄소년단(BTS)
+                      {/* 방탄소년단(BTS) */}
                     </div>
                   </div>
                 </div>
@@ -49,7 +66,7 @@ class MainPlayer extends Component {
                   <div className="play-list-content">
                     <div className="play-list-content-title">Butter</div>
                     <div className="play-list-content-singer">
-                      방탄소년단(BTS)
+                      {/* 방탄소년단(BTS) */}
                     </div>
                   </div>
                 </div>
@@ -63,7 +80,7 @@ class MainPlayer extends Component {
                   <div className="play-list-content">
                     <div className="play-list-content-title">Butter</div>
                     <div className="play-list-content-singer">
-                      방탄소년단(BTS)
+                      {/* 방탄소년단(BTS) */}
                     </div>
                   </div>
                 </div>
@@ -77,7 +94,7 @@ class MainPlayer extends Component {
                   <div className="play-list-content">
                     <div className="play-list-content-title">Butter</div>
                     <div className="play-list-content-singer">
-                      방탄소년단(BTS)
+                      {/* 방탄소년단(BTS) */}
                     </div>
                   </div>
                 </div>
@@ -91,7 +108,7 @@ class MainPlayer extends Component {
                   <div className="play-list-content">
                     <div className="play-list-content-title">Butter</div>
                     <div className="play-list-content-singer">
-                      방탄소년단(BTS)
+                      {/* 방탄소년단(BTS) */}
                     </div>
                   </div>
                 </div>
@@ -105,7 +122,7 @@ class MainPlayer extends Component {
                   <div className="play-list-content">
                     <div className="play-list-content-title">Butter</div>
                     <div className="play-list-content-singer">
-                      방탄소년단(BTS)
+                      {/* 방탄소년단(BTS) */}
                     </div>
                   </div>
                 </div>
@@ -119,7 +136,7 @@ class MainPlayer extends Component {
                   <div className="play-list-content">
                     <div className="play-list-content-title">Butter</div>
                     <div className="play-list-content-singer">
-                      방탄소년단(BTS)
+                      {/* 방탄소년단(BTS) */}
                     </div>
                   </div>
                 </div>
@@ -133,7 +150,7 @@ class MainPlayer extends Component {
                   <div className="play-list-content">
                     <div className="play-list-content-title">Butter</div>
                     <div className="play-list-content-singer">
-                      방탄소년단(BTS)
+                      {/* 방탄소년단(BTS) */}
                     </div>
                   </div>
                 </div>
@@ -147,133 +164,7 @@ class MainPlayer extends Component {
                   <div className="play-list-content">
                     <div className="play-list-content-title">Butter</div>
                     <div className="play-list-content-singer">
-                      방탄소년단(BTS)
-                    </div>
-                  </div>
-                </div>
-                <div className="play-list-right">
-                  <div className="play-replay-time">2:45</div>
-                </div>
-              </li>
-              <li className="play-list-li">
-                <div className="play-list-left">
-                  <img src={albumImage} className="play-list-song-img" />
-                  <div className="play-list-content">
-                    <div className="play-list-content-title">Butter</div>
-                    <div className="play-list-content-singer">
-                      방탄소년단(BTS)
-                    </div>
-                  </div>
-                </div>
-                <div className="play-list-right">
-                  <div className="play-replay-time">2:45</div>
-                </div>
-              </li>
-              <li className="play-list-li">
-                <div className="play-list-left">
-                  <img src={albumImage} className="play-list-song-img" />
-                  <div className="play-list-content">
-                    <div className="play-list-content-title">Butter</div>
-                    <div className="play-list-content-singer">
-                      방탄소년단(BTS)
-                    </div>
-                  </div>
-                </div>
-                <div className="play-list-right">
-                  <div className="play-replay-time">2:45</div>
-                </div>
-              </li>
-              <li className="play-list-li">
-                <div className="play-list-left">
-                  <img src={albumImage} className="play-list-song-img" />
-                  <div className="play-list-content">
-                    <div className="play-list-content-title">Butter</div>
-                    <div className="play-list-content-singer">
-                      방탄소년단(BTS)
-                    </div>
-                  </div>
-                </div>
-                <div className="play-list-right">
-                  <div className="play-replay-time">2:45</div>
-                </div>
-              </li>
-              <li className="play-list-li">
-                <div className="play-list-left">
-                  <img src={albumImage} className="play-list-song-img" />
-                  <div className="play-list-content">
-                    <div className="play-list-content-title">Butter</div>
-                    <div className="play-list-content-singer">
-                      방탄소년단(BTS)
-                    </div>
-                  </div>
-                </div>
-                <div className="play-list-right">
-                  <div className="play-replay-time">2:45</div>
-                </div>
-              </li>
-              <li className="play-list-li">
-                <div className="play-list-left">
-                  <img src={albumImage} className="play-list-song-img" />
-                  <div className="play-list-content">
-                    <div className="play-list-content-title">Butter</div>
-                    <div className="play-list-content-singer">
-                      방탄소년단(BTS)
-                    </div>
-                  </div>
-                </div>
-                <div className="play-list-right">
-                  <div className="play-replay-time">2:45</div>
-                </div>
-              </li>
-              <li className="play-list-li">
-                <div className="play-list-left">
-                  <img src={albumImage} className="play-list-song-img" />
-                  <div className="play-list-content">
-                    <div className="play-list-content-title">Butter</div>
-                    <div className="play-list-content-singer">
-                      방탄소년단(BTS)
-                    </div>
-                  </div>
-                </div>
-                <div className="play-list-right">
-                  <div className="play-replay-time">2:45</div>
-                </div>
-              </li>
-              <li className="play-list-li">
-                <div className="play-list-left">
-                  <img src={albumImage} className="play-list-song-img" />
-                  <div className="play-list-content">
-                    <div className="play-list-content-title">Butter</div>
-                    <div className="play-list-content-singer">
-                      방탄소년단(BTS)
-                    </div>
-                  </div>
-                </div>
-                <div className="play-list-right">
-                  <div className="play-replay-time">2:45</div>
-                </div>
-              </li>
-              <li className="play-list-li">
-                <div className="play-list-left">
-                  <img src={albumImage} className="play-list-song-img" />
-                  <div className="play-list-content">
-                    <div className="play-list-content-title">Butter</div>
-                    <div className="play-list-content-singer">
-                      방탄소년단(BTS)
-                    </div>
-                  </div>
-                </div>
-                <div className="play-list-right">
-                  <div className="play-replay-time">2:45</div>
-                </div>
-              </li>
-              <li className="play-list-li">
-                <div className="play-list-left">
-                  <img src={albumImage} className="play-list-song-img" />
-                  <div className="play-list-content">
-                    <div className="play-list-content-title">Butter</div>
-                    <div className="play-list-content-singer">
-                      방탄소년단(BTS)
+                      {/* 방탄소년단(BTS) */}
                     </div>
                   </div>
                 </div>
@@ -284,7 +175,6 @@ class MainPlayer extends Component {
             </ul>
           </div>
         </div>
-
         <div className="play-set-up">
           <div className="play-range">
             <button className="pre-music-btn">
@@ -308,7 +198,12 @@ class MainPlayer extends Component {
                 </div>
               </div>
               <div className="song-add">
-                <button className="song-add-btn">
+                <button
+                  className="song-add-btn"
+                  onClick={() => {
+                    this.handleOpenModal();
+                  }}
+                >
                   <i className="fas fa-plus"></i>
                 </button>
               </div>
@@ -326,6 +221,10 @@ class MainPlayer extends Component {
             </button>
           </div>
         </div>
+        <AddPlayer
+          isAddBtnClick={this.state.isAddPlayerBtnClick}
+          onCloseAddPlayer={this.handleCloseModal}
+        />
       </main>
     );
   }
