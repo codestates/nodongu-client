@@ -20,12 +20,15 @@ class App extends Component {
   handleSignUp = (userInfo) => {
     console.log(userInfo);
     axios
-      .post(`http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/signup`, {
-        ...userInfo,
-      })
+      .post(
+        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/signup`,
+        {
+          ...userInfo,
+        }
+      )
       .then((response) => {
-        // console.log(response.data);
-        if (response.data.success === true) {
+        console.log(response.data);
+        if (response.data.id) {
           console.log('signup success');
         } else {
           console.log('signup fail');
@@ -34,14 +37,14 @@ class App extends Component {
   };
 
   handleUserInfo = (userId) => {
-    console.log(userId);
     axios
       .post(
-        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/userinfo`,
+        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/userinfo`,
         { userId }
       )
       .then((response) => {
-        if (response.data.success === 'true') {
+        console.log(response.data);
+        if (response.data.success) {
           this.setState({ userInfo: { ...response.data.data } });
         } else {
           this.setState({ userInfo: null });
@@ -56,8 +59,16 @@ class App extends Component {
       <Suspense fallback={<Loading />}>
         <Navbar userData={this.state.userInfo} />
         <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/signup" component={Signup} />
+          <Route
+            exact
+            path="/"
+            render={() => <Login onUserInfo={this.handleUserInfo} />}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={() => <Signup onSignUp={this.handleSignUp} />}
+          />
           <Route exact path="/keyword" component={Keyword} />
           <Route exact path="/editUserInfo" component={EditUserInfo} />
           <Route exact path="/mainPlayer" component={MainPlayer} />
