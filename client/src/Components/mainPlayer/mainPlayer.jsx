@@ -225,6 +225,7 @@ class MainPlayer extends Component {
           isAddBtnClick={this.state.isAddPlayerBtnClick}
           onCloseAddPlayer={this.handleCloseModal}
         />
+        <div id="player">{}</div>
       </main>
     );
   }

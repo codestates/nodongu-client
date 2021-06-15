@@ -8,6 +8,7 @@ class Signup extends Component {
     isNickNameCheck: false,
     isPasswordCheck: false,
     isPasswordConfirm: false,
+    isLoading: false,
   };
 
   formRef = React.createRef();
