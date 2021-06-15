@@ -42,7 +42,7 @@
 .play-list-li {
   display: flex;
   justify-content: space-between;
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
   align-items: center;
 }
@@ -63,6 +63,10 @@
   margin-right: 0.8rem;
 }
 
+.play-replay-time {
+  font-size: 1rem;
+}
+
 .play-list-content-singer,
 .play-replay-time {
   color: var(--dark-gray-color);
@@ -73,9 +77,11 @@
   padding: 0 25px;
   width: 1030px;
   margin-top: 3rem;
+  padding-top: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: solid 1px var(--middle-pink-color);
 }
 
 .main-player-container button {
@@ -149,7 +155,7 @@
 .song-add-btn > .fa-plus {
   width: 2rem;
   height: 2rem;
-  background-color: var(--middle-pink-color);
+  /* background-color: var(--middle-pink-color); */
   padding: 1px;
   border-radius: 50%;
   margin: 0 1.2rem;
