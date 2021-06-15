@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import quokka from '../../../Utils/images/quokka.jpg';
 
 function List(props) {
@@ -7,6 +8,7 @@ function List(props) {
       // 해당 리스트의 뮤직리스트 요청
       // 뮤직리스트 app의 상태 업로드
       // 페이지 이동
+      props.history.push('/mainPlayer');
     }
   };
 
@@ -29,4 +31,4 @@ function List(props) {
   );
 }
 
-export default List;
+export default withRouter(List);
