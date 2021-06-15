@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import axios from 'axios';
 import './signup.css';
+import Loading from '../loading/loading';
 
 class Signup extends Component {
   state = {
@@ -26,7 +28,6 @@ class Signup extends Component {
 
   // 1. email onChange event handler(DB에 등록되어 있는 지 확인 필요)
   onExistEmailCheck = (e) => {
-    // console.log(this.inputEmailRef.current.value);
     // 1. email validation check
     if (this.onValidateEmail(this.inputEmailRef.current.value)) {
       // axios config
@@ -45,8 +46,7 @@ class Signup extends Component {
       console.log(this.onValidateEmail(e.target.value));
       // 2. DB에 email 존재하는 지 확인
       axios(config).then((response) => {
-        console.log('여긴 들어옴?');
-        console.log(response.data);
+        // console.log(response.data);
         // email이 존재하지 않으면 등록되지 않은 경우, state변경, 결과 좋다는 표시(className 추가)
         if (!response.data.result) {
           // state update
@@ -89,7 +89,7 @@ class Signup extends Component {
       this.onNickNameOnlyNumAndEng(this.inputNickNameRef.current.value) &&
       this.onNickNameCheckLen(this.inputNickNameRef.current.value)
     ) {
-      console.log('둘다 true');
+      // console.log('둘다 true');
       this.setState({
         isNickNameCheck: true,
       });
@@ -165,22 +165,47 @@ class Signup extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+
+    this.setState({
+      isLoading: true,
+    });
+
     const email = this.inputEmailRef.current.value;
     const nickName = this.inputNickNameRef.current.value;
     const pwd = this.inputPwdRef.current.value;
     const pwdConfirm = this.inputPwdConfirmRef.current.value;
 
-    this.state.isEmailCheck &&
+    if (
+      this.state.isEmailCheck &&
       this.state.isNickNameCheck &&
       this.state.isPasswordCheck &&
-      this.state.isPasswordConfirm &&
-      this.props.onSignUp({ email: email, nickname: nickName, password: pwd });
+      this.state.isPasswordConfirm
+    ) {
+      const signUpResult = this.props.onSignUp({
+        email: email,
+        nickname: nickName,
+        password: pwd,
+      });
+
+      if (signUpResult) {
+        this.setState({
+          isLoading: false,
+        });
+        this.props.history.push('/login');
+      } else {
+        this.setState({
+          isLoading: false,
+        });
+      }
+    }
 
     this.formRef.current.reset();
   };
 
   render() {
-    return (
+    return this.props.isLoading ? (
+      <Loading />
+    ) : (
       <div className="sign-up-container">
         <div className="sign-up">
           <h1 className="sign-up-title">Sign Up</h1>
@@ -243,4 +268,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);

@@ -34,8 +34,10 @@ class App extends Component {
         console.log(response.data);
         if (response.data.id) {
           console.log('signup success');
+          return true;
         } else {
           console.log('signup fail');
+          return false;
         }
       });
   };
@@ -69,24 +71,24 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path='/'
+            path="/"
             render={() => <Login onUserInfo={this.handleUserInfo} />}
           />
           <Route
             exact
-            path='/signup'
+            path="/signup"
             render={() => <Signup onSignUp={this.handleSignUp} />}
           />
-          <Route exact path='/keyword' render={() => <Keyword />} />
+          <Route exact path="/keyword" render={() => <Keyword />} />
           <Route
             exact
-            path='/editUserInfo'
+            path="/editUserInfo"
             render={() => <EditUserInfo userInfo={this.state.userInfo} />}
           />
-          <Route exact path='/mainPlayer' render={() => <MainPlayer />} />
+          <Route exact path="/mainPlayer" render={() => <MainPlayer />} />
           <Route
             exact
-            path='/myList'
+            path="/myList"
             render={() => (
               <MyList
                 userInfo={this.state.userInfo}
