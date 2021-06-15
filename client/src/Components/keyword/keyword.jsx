@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import axios from 'axios';
 import './keyword.css';
 
@@ -19,27 +19,50 @@ class Keyword extends Component {
     }
   };
 
+  handleKeywordClick = (event) => {
+    if (event.target.classList[0] === 'keyword__btn') {
+      //const keyword = event.target.textContent;
+      const keyword = 'happy';
+      console.log(keyword);
+      let config = {
+        method: 'post',
+        url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/keywordMusic',
+        data: {
+          keyword,
+        },
+        withCredentials: true,
+      };
+      console.log('이제 요청 날림 ㅇㅋ?');
+      axios(config).then((response) => console.log(response.data));
+      console.log('요청완료됨 ㅇㅋ?');
+    }
+  };
+
   render() {
     return (
-      <div className='keyword-container' onClick={this.handleClickKeyword}>
-        <h1 className='keyword__title'>내가 이끌리는 느낌은?</h1>
+      <div className='keyword-container' onClick={this.handleKeywordClick}>
+        <h1 className='keyword__title'>
+          <span>Have you ever thought</span>
+          <br />
+          <span>about how you feel?</span>
+        </h1>
         <section className='keyword__row'>
-          <button className='keyword__btn keyword__btn1'>행복</button>
-          <button className='keyword__btn keyword__btn2'>우울</button>
-          <button className='keyword__btn keyword__btn3'>사랑</button>
-          <button className='keyword__btn keyword__btn4'>이별</button>
+          <button className='keyword__btn keyword__btn1'>Exciting</button>
+          <button className='keyword__btn keyword__btn2'>Gloomy</button>
+          <button className='keyword__btn keyword__btn3'>Adorable</button>
+          <button className='keyword__btn keyword__btn4'>Parting</button>
         </section>
         <section className='keyword__row'>
-          <button className='keyword__btn keyword__btn1'>맑음</button>
-          <button className='keyword__btn keyword__btn2'>흐림</button>
-          <button className='keyword__btn keyword__btn3'>비</button>
-          <button className='keyword__btn keyword__btn4'>눈</button>
+          <button className='keyword__btn keyword__btn1'>Sunny</button>
+          <button className='keyword__btn keyword__btn2'>Cloudy</button>
+          <button className='keyword__btn keyword__btn3'>Rainy</button>
+          <button className='keyword__btn keyword__btn4'>Snowy</button>
         </section>
         <section className='keyword__row'>
-          <button className='keyword__btn keyword__btn1'>봄</button>
-          <button className='keyword__btn keyword__btn2'>여름</button>
-          <button className='keyword__btn keyword__btn3'>가을</button>
-          <button className='keyword__btn keyword__btn4'>겨울</button>
+          <button className='keyword__btn keyword__btn1'>Spring</button>
+          <button className='keyword__btn keyword__btn2'>Summer</button>
+          <button className='keyword__btn keyword__btn3'>Autumn</button>
+          <button className='keyword__btn keyword__btn4'>Winter</button>
         </section>
       </div>
     );

@@ -16,6 +16,8 @@ class App extends Component {
   state = {
     isLoading: null,
     userInfo: null,
+    myList: [],
+    musicList: [],
   };
 
   handleSignUp = (userInfo) => {
@@ -62,17 +64,21 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path="/"
+            path='/'
             render={() => <Login onUserInfo={this.handleUserInfo} />}
           />
           <Route
             exact
-            path="/signup"
+            path='/signup'
             render={() => <Signup onSignUp={this.handleSignUp} />}
           />
-          <Route exact path="/keyword" component={Keyword} />
-          <Route exact path="/editUserInfo" component={EditUserInfo} />
-          <Route exact path="/mainPlayer" component={MainPlayer} />
+          <Route exact path='/keyword' render={() => <Keyword />} />
+          <Route
+            exact
+            path='/editUserInfo'
+            render={() => <EditUserInfo userInfo={this.state.userInfo} />}
+          />
+          <Route exact path='/mainPlayer' render={() => <MainPlayer />} />
         </Switch>
         <Footer />
       </Suspense>
