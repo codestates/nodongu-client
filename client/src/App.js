@@ -14,8 +14,8 @@ import MainPlayer from './Components/mainPlayer/mainPlayer';
 
 class App extends Component {
   state = {
-    isLoading: null,
-    userInfo: null,
+    isLoading: false,
+    userInfo: {},
     myList: [],
     musicList: [],
   };
@@ -57,6 +57,10 @@ class App extends Component {
 
   // logout handler
 
+  updateMyList = (myList) => {
+    this.setState({ myList });
+  };
+
   render() {
     return (
       <Suspense fallback={<Loading />}>
@@ -79,7 +83,16 @@ class App extends Component {
             render={() => <EditUserInfo userInfo={this.state.userInfo} />}
           />
           <Route exact path='/mainPlayer' render={() => <MainPlayer />} />
-          <Route exact path='/myList' render={() => <MyList />} />
+          <Route
+            exact
+            path='/myList'
+            render={() => (
+              <MyList
+                userInfo={this.state.userInfo}
+                updateMyList={this.updateMyList}
+              />
+            )}
+          />
         </Switch>
         <Footer />
       </Suspense>
