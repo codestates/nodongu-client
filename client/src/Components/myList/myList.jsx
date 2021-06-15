@@ -1,55 +1,77 @@
-import React, { Component } from 'react';
-import './myList.css';
+import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 import quokka from '../../Utils/images/quokka.jpg';
+import './myList.css';
+import List from './views/list';
+import axios from 'axios';
 
-class MyList extends Component {
-  render() {
-    return (
-      <section className='list-container'>
-        <input type='radio' name='slide' id='lisde01' checked />
-        <input type='radio' name='slide' id='lisde02' />
-        <input type='radio' name='slide' id='lisde03' />
+const fakeData = [
+  {
+    id: 1,
+    title: 'sampleList',
+    date: '2021 - 06 - 12',
+    thumbnails: [quokka, quokka, quokka, quokka],
+  },
+  {
+    id: 2,
+    title: 'sampleList2',
+    date: '2021 - 06 - 12',
+    thumbnails: [quokka, quokka, quokka, quokka],
+  },
+  {
+    id: 3,
+    title: 'sampleList3',
+    date: '2021 - 06 - 12',
+    thumbnails: [quokka, quokka, quokka],
+  },
+  {
+    id: 4,
+    title: 'sampleList4',
+    date: '2021 - 06 - 12',
+    thumbnails: [quokka, quokka],
+  },
+];
 
-        <div className='slidewrap'>
-          <ul className='slidelist'>
-            <li>
-              <a href=''>
-                <label htmlFor='slide03' className='left'>
-                  <i class='fas fa-caret-left'></i>
-                </label>
-                <img src={quokka} />
-                <label htmlFor='slide02' className='right'>
-                  <i class='fas fa-caret-right'></i>
-                </label>
-              </a>
-            </li>
-            <li>
-              <a href=''>
-                <label htmlFor='slide01' className='left'>
-                  <i class='fas fa-caret-left'></i>
-                </label>
-                <img src={quokka} />
-                <label htmlFor='slide03' className='right'>
-                  <i class='fas fa-caret-right'></i>
-                </label>
-              </a>
-            </li>
-            <li>
-              <a href=''>
-                <label htmlFor='slide02' className='left'>
-                  <i class='fas fa-caret-left'></i>
-                </label>
-                <img src={quokka} />
-                <label htmlFor='slide01' className='right'>
-                  <i class='fas fa-caret-right'></i>
-                </label>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-    );
-  }
+function MyList(props) {
+  const [myList, setMyList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // useEffect(() => {
+  //   if (!props.userInfo.userId) {
+  //     return props.history.push('/');
+  //   }
+  //   const config = {
+  //     method: 'post',
+  //     url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/getMyList',
+  //     withCredentials: true,
+  //     data: {
+  //       userId: props.userInfo.userId,
+  //     },
+  //   };
+
+  //   axios(config).then((response) => console.log(response.data));
+  // }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+  return (
+    <div className='mylist-container'>
+      <h2> Single Item</h2>
+      <Slider {...settings}>
+        {fakeData.map((playlist) => (
+          <List key={playlist.id} playlist={playlist} />
+        ))}
+      </Slider>
+    </div>
+  );
 }
 
-export default MyList;
+export default withRouter(MyList);

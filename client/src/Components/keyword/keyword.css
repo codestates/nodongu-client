@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Caveat:wght@400;700&display=swap');
 
 .keyword-container {
   display: flex;
@@ -7,15 +7,25 @@
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-image: url(../../Utils/images/bg_keyword.jpg);
+  background-image: url(../../Utils/images/keyword_bg/keyword.jpg);
   background-size: cover;
+  background-position: center;
   z-index: -1;
-  font-family: 'Jua', sans-serif;
 }
 
 .keyword__title {
-  font-size: 4em;
-  color: wheat;
+  font-family: 'Amatic SC', cursive;
+  font-size: 5em;
+  margin-bottom: 0.5em;
+  color: var(--dark-yellow-color);
+}
+
+.keyword__title span:first-of-type {
+  margin-right: 2em;
+}
+
+.keyword__title span:last-of-type {
+  margin-left: 2em;
 }
 
 .keyword__row {
@@ -29,16 +39,18 @@
   font-size: 40px;
   border-radius: 10%;
   cursor: pointer;
-  margin: 10px;
+  margin: 1.2rem;
   transition: 0.6s;
   position: relative;
   overflow: hidden;
   z-index: 1;
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
 }
 
 .keyword__btn1,
 .keyword__btn3 {
-  color: var(--light-orange-color);
+  color: var(--dark-yellow-color);
 }
 
 .keyword__btn2,
@@ -53,7 +65,7 @@
 
 .keyword__btn2:hover,
 .keyword__btn4:hover {
-  color: var(--light-orange-color);
+  color: var(--dark-yellow-color);
 }
 
 .keyword__btn::before {
@@ -62,7 +74,7 @@
   left: 0;
   width: 100%;
   height: 0%;
-  background: #ec7357;
+  background: var(--dark-yellow-color);
   /* 배경 뒤로 보내기 */
   z-index: -1;
   transition: 0.7s;
@@ -93,4 +105,45 @@
 .keyword__btn2:hover::before,
 .keyword__btn4:hover::before {
   height: 0%;
+}
+
+/* @media (max-width: 530px) {
+  .keyword-container {
+    margin-top: 5rem;
+  }
+
+  .keyword__title {
+    font-size: 1.5rem;
+  }
+
+  .keyword__btn {
+    width: 30%;
+    font-size: 2rem;
+  }
+} */
+
+@media screen and (max-width: 960px) {
+  .keyword__title {
+    font-size: 4rem;
+  }
+
+  .keyword__btn {
+    width: 40%;
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .keyword-container {
+    margin-top: 5rem;
+  }
+
+  .keyword__title {
+    font-size: 3rem;
+  }
+
+  .keyword__btn {
+    width: 30%;
+    font-size: 2rem;
+  }
 }

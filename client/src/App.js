@@ -15,8 +15,10 @@ import AddPlayer from './Components/addPlayer/addPlayer';
 
 class App extends Component {
   state = {
-    isLoading: null,
-    userInfo: null,
+    isLoading: false,
+    userInfo: {},
+    myList: [],
+    musicList: [],
   };
 
   handleSignUp = (userInfo) => {
@@ -56,6 +58,10 @@ class App extends Component {
 
   // logout handler
 
+  updateMyList = (myList) => {
+    this.setState({ myList });
+  };
+
   render() {
     return (
       <Suspense fallback={<Loading />}>
@@ -63,18 +69,31 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path="/"
+            path='/'
             render={() => <Login onUserInfo={this.handleUserInfo} />}
           />
           <Route
             exact
-            path="/signup"
+            path='/signup'
             render={() => <Signup onSignUp={this.handleSignUp} />}
           />
-          <Route exact path="/keyword" component={Keyword} />
-          <Route exact path="/editUserInfo" component={EditUserInfo} />
-          <Route exact path="/mainPlayer" component={MainPlayer} />
-          <Route exact path="/addPlayer" component={AddPlayer} />
+          <Route exact path='/keyword' render={() => <Keyword />} />
+          <Route
+            exact
+            path='/editUserInfo'
+            render={() => <EditUserInfo userInfo={this.state.userInfo} />}
+          />
+          <Route exact path='/mainPlayer' render={() => <MainPlayer />} />
+          <Route
+            exact
+            path='/myList'
+            render={() => (
+              <MyList
+                userInfo={this.state.userInfo}
+                updateMyList={this.updateMyList}
+              />
+            )}
+          />
         </Switch>
         <Footer />
       </Suspense>
