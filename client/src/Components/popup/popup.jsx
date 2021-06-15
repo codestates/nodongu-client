@@ -18,6 +18,17 @@ class Popup extends Component {
         className={`popup-container ${
           this.props.profileClick ? '' : 'popup-hidden'
         }`}
+        onClick={(e) => {
+          if (e.target.classList[0] === 'userinfo-update-btn') {
+            // edituserinfo 로 가게 처리
+            // props로 받은 userInfo도 같이 넘겨줌
+            console.log(e.target.classList);
+            console.log(this.props.userData);
+          } else if (e.target.classList[0] === 'user-logout-btn') {
+            console.log(e.target.classList);
+            // axios
+          }
+        }}
       >
         <div className="popup-profile">
           <img
@@ -35,11 +46,11 @@ class Popup extends Component {
         <div className="popup-user-handling">
           <button className="popup-user-update">
             <i className="fas fa-user-cog" />
-            <span>My Info Update</span>
+            <span className="userinfo-update-btn">My Info Update</span>
           </button>
           <button className="popup-user-logout">
             <i className="fas fa-sign-out-alt" />
-            <span>Logout</span>
+            <span className="user-logout-btn">Logout</span>
           </button>
         </div>
       </section>

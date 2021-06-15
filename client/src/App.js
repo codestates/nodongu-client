@@ -47,10 +47,13 @@ class App extends Component {
         }
       });
   };
+
+  // logout handler
+
   render() {
     return (
       <Suspense fallback={<Loading />}>
-        <Navbar />
+        <Navbar userData={this.state.userInfo} />
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/signup" component={Signup} />
