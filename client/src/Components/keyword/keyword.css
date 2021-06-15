@@ -122,7 +122,18 @@
   }
 } */
 
-@media (max-width: 767px) {
+@media screen and (max-width: 960px) {
+  .keyword__title {
+    font-size: 4rem;
+  }
+
+  .keyword__btn {
+    width: 40%;
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
   .keyword-container {
     margin-top: 5rem;
   }
@@ -133,17 +144,6 @@
 
   .keyword__btn {
     width: 30%;
-    font-size: 2rem;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1199px) {
-  .keyword__title {
-    font-size: 4rem;
-  }
-
-  .keyword__btn {
-    width: 40%;
     font-size: 2rem;
   }
 }

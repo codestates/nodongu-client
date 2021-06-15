@@ -79,6 +79,7 @@ class App extends Component {
             render={() => <EditUserInfo userInfo={this.state.userInfo} />}
           />
           <Route exact path='/mainPlayer' render={() => <MainPlayer />} />
+          <Route exact path='/myList' render={() => <MyList />} />
         </Switch>
         <Footer />
       </Suspense>
