@@ -17,6 +17,7 @@
   border-radius: 1.5rem;
   overflow: hidden;
   margin-bottom: 3rem;
+  cursor: pointer;
 }
 
 .playlist__image img {
@@ -33,4 +34,9 @@
 
 .playlist__title {
   font-size: 2rem;
+  cursor: pointer;
+}
+
+.playlist__date {
+  cursor: pointer;
 }
