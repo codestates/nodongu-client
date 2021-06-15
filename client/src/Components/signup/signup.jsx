@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { Component } from 'react';
+import axios from 'axios';
 import './signup.css';
 
 class Signup extends Component {
@@ -25,36 +25,45 @@ class Signup extends Component {
 
   // 1. email onChange event handler(DB에 등록되어 있는 지 확인 필요)
   onExistEmailCheck = (e) => {
+    // console.log(this.inputEmailRef.current.value);
     // 1. email validation check
     if (this.onValidateEmail(this.inputEmailRef.current.value)) {
-      // console.log(this.onValidateEmail(e.target.value));
+      // axios config
+      const config = {
+        method: 'post',
+        url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/existEmail',
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: JSON.stringify({
+          email: this.inputEmailRef.current.value,
+        }),
+      };
+
+      console.log(this.onValidateEmail(e.target.value));
       // 2. DB에 email 존재하는 지 확인
-      // axios
-      //   .post(
-      //     `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/existEmail`,
-      //     {
-      //       email: e.target.value,
-      //     }
-      //   )
-      //   .then((response) => {
-      //     // email이 존재하지 않으면 등록되지 않은 경우, state변경, 결과 좋다는 표시(className 추가)
-      //     if (response.data.result) {
-      //       // state update
-      //       this.setState({
-      //         isEmailCheck: true,
-      //       });
-      //     } else {
-      // state변경, 경고 표시(className 추가)
-      //       this.setState({
-      //         isEmailCheck: false,
-      //       });
-      //     }
-      //   });
+      axios(config).then((response) => {
+        console.log('여긴 들어옴?');
+        console.log(response.data);
+        // email이 존재하지 않으면 등록되지 않은 경우, state변경, 결과 좋다는 표시(className 추가)
+        if (!response.data.result) {
+          // state update
+          this.setState({
+            isEmailCheck: true,
+          });
+        } else {
+          // state변경, 경고 표시(className 추가)
+          this.setState({
+            isEmailCheck: false,
+          });
+        }
+      });
     } else {
       // DB에 이미 이메일이 존재하는 경우
-      // this.setState({
-      //   isEmailCheck: false,
-      // });
+      this.setState({
+        isEmailCheck: false,
+      });
     }
   };
 
@@ -80,10 +89,13 @@ class Signup extends Component {
       this.onNickNameCheckLen(this.inputNickNameRef.current.value)
     ) {
       console.log('둘다 true');
+      this.setState({
+        isNickNameCheck: true,
+      });
       // 닉네임 유효성 검사 2가지 모두 통과 시 DB에 이미 존재하는 nickName이 있는지 확인
       // axios
       //   .post(
-      //     `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/existNickName`,
+      //     `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/existNickName`,
       //     {
       //       nickname: this.inputNickNameRef.current.value,
       //     }
@@ -162,13 +174,6 @@ class Signup extends Component {
       this.state.isPasswordCheck &&
       this.state.isPasswordConfirm &&
       this.props.onSignUp({ email: email, nickname: nickName, password: pwd });
-
-    console.log('이메일 존재 여부: ', this.onExistEmailCheck(email));
-    console.log('닉네임 길이 체크: ', this.onNickNameCheckLen(nickName));
-    console.log('닉네임 체크: ', this.onNickNameOnlyNumAndEng(nickName));
-    console.log('닉네임 존재 여부: ', this.onExistNickNameCheck(nickName));
-    console.log('비밀번호 체크: ', this.onPasswordCheck(pwd));
-    console.log('비밀번호 확인: ', this.onPasswordConfirm(pwd, pwdConfirm));
 
     this.formRef.current.reset();
   };
