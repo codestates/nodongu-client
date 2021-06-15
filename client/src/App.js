@@ -9,6 +9,7 @@ import Footer from './Components/footer/footer';
 import EditUserInfo from './Components/editUserInfo/editUserInfo';
 import Loading from './Components/loading/loading';
 import Keyword from './Components/keyword/keyword';
+import MyList from './Components/myList/myList';
 import MainPlayer from './Components/mainPlayer/mainPlayer';
 
 class App extends Component {

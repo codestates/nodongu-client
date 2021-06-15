@@ -48,6 +48,19 @@ class EditUserInfo extends Component {
     });
   };
 
+  handleNicknameCheck = (event) => {
+    console.log(this.nicknameInput.current.value);
+    const config = {
+      method: 'post',
+      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/existNickname',
+      data: {
+        nickname: this.nicknameInput.current.value,
+      },
+      withCredentials: true,
+    };
+    axios(config).then((response) => console.log(response.data));
+  };
+
   // 닉네임 수정버튼 클릭시
   handleEditName = (event) => {
     // 기본 닉네임 span 숨기기
@@ -71,6 +84,12 @@ class EditUserInfo extends Component {
     elList[3].classList.add('hidden');
     // 변경 버튼 활성
     elList[4].classList.remove('hidden');
+  };
+
+  handleEditNameReq = (event) => {
+    axios.post(
+      'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/modify'
+    );
   };
 
   render() {
@@ -106,6 +125,7 @@ class EditUserInfo extends Component {
                   className='nickname__input hidden'
                   type='text'
                   placeholder='변경할 닉네임'
+                  onChange={this.handleNicknameCheck}
                 />
               </h2>
               <div className='nickname__button-container'>
@@ -121,6 +141,7 @@ class EditUserInfo extends Component {
                   ref={this.nicknameEditButton}
                   className='nickname__button nickname__button--submit hidden'
                   type='button'
+                  onClick={this.handleEditNameReq}
                 >
                   변경
                 </button>
