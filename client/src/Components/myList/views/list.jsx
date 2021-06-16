@@ -25,7 +25,9 @@ function List(props) {
         </div>
         <div className='playlist__detail'>
           <span className='playlist__title'>{props.playlist.listTitle}</span>
-          <span className='playlist__date'>{new Date(props.playlist.createdAt).toJSON().slice(0, 10)}</span>
+          <span className='playlist__date'>
+            {new Date(props.playlist.createdAt).toJSON().slice(0, 10)}
+          </span>
         </div>
       </div>
     </div>

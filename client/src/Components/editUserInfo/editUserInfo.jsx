@@ -50,7 +50,7 @@ class EditUserInfo extends Component {
     console.log(this.nicknameInput.current.value);
     const config = {
       method: 'post',
-      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/existNickname',
+      url: '/nod/user/existNickname',
       data: {
         nickname: this.nicknameInput.current.value,
       },

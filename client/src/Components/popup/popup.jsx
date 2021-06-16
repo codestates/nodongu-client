@@ -5,25 +5,16 @@ import quokka from '../../Utils/images/quokka.jpg';
 import axios from 'axios';
 
 class Popup extends Component {
-  state = {
-    fakeData: {
-      userId: 1,
-      nickname: 'jiye-7',
-      email: 'jy522hi@gmail.com',
-      image: '',
-    },
-  };
-
   handleLogout = () => {
     const config = {
       method: 'post',
-      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/logout',
+      url: '/nod/user/signOut',
       withCredentials: true,
-    }
-    axios(config).then(response => {
+    };
+    axios(config).then((response) => {
       console.log(response.data);
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -52,14 +43,14 @@ class Popup extends Component {
           <img
             className='popup-user-img'
             src={
-              !this.state.fakeData.image
+              !this.props.userData.image
                 ? `${quokka}`
-                : `${this.state.fakeData.image}`
+                : `${this.props.userData.image}`
             }
             alt='userProfile'
           ></img>
-          <h2 className='popup-profile-h2'>{this.state.fakeData.nickname}</h2>
-          <h3 className='popup-profile-h3'>{this.state.fakeData.email}</h3>
+          <h2 className='popup-profile-h2'>{this.props.userData.nickname}</h2>
+          <h3 className='popup-profile-h3'>{this.props.userData.email}</h3>
         </div>
 
         <div className='popup-user-handling'>
@@ -67,7 +58,7 @@ class Popup extends Component {
             <i className='fas fa-user-cog' />
             <span className='userinfo-update-btn'>My Info Update</span>
           </button>
-          <button className='popup-user-logout'>
+          <button className='popup-user-logout' onClick={this.handleLogout}>
             <i className='fas fa-sign-out-alt' />
             <span className='user-logout-btn'>Logout</span>
           </button>
