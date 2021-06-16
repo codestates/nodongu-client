@@ -28,10 +28,10 @@ class Login extends Component {
         if (response.data.loginSuccess) {
           console.log('성공 ');
           this.props.onUserInfo(response.data.userId);
+          this.props.history.push('/keyword');
         } else {
         }
       });
-    // this.state.history.push('이동할 엔드포인트');
   };
 
   onSubmit = (e) => {

@@ -11,7 +11,6 @@ import Loading from './Components/loading/loading';
 import Keyword from './Components/keyword/keyword';
 import MyList from './Components/myList/myList';
 import MainPlayer from './Components/mainPlayer/mainPlayer';
-import AddPlayer from './Components/addPlayer/addPlayer';
 
 class App extends Component {
   state = {
@@ -69,24 +68,24 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path='/'
+            path="/"
             render={() => <Login onUserInfo={this.handleUserInfo} />}
           />
           <Route
             exact
-            path='/signup'
+            path="/signup"
             render={() => <Signup onSignUp={this.handleSignUp} />}
           />
-          <Route exact path='/keyword' render={() => <Keyword />} />
+          <Route exact path="/keyword" render={() => <Keyword />} />
           <Route
             exact
-            path='/editUserInfo'
+            path="/editUserInfo"
             render={() => <EditUserInfo userInfo={this.state.userInfo} />}
           />
-          <Route exact path='/mainPlayer' render={() => <MainPlayer />} />
+          <Route exact path="/mainPlayer" render={() => <MainPlayer />} />
           <Route
             exact
-            path='/myList'
+            path="/myList"
             render={() => (
               <MyList
                 userInfo={this.state.userInfo}
