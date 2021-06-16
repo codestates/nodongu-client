@@ -23,10 +23,11 @@
   padding: 0;
 }
 
-.nav__ul li {
+.nav__ul li,
+.nav__ul li > * {
   display: flex;
   justify-content: right;
-  margin-right: 2rem;
+  margin-right: 0.7rem;
   padding: 0rem 0.2rem;
   color: whitesmoke;
   font-size: 1.4rem;

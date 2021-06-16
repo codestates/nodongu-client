@@ -173,7 +173,6 @@ class Signup extends Component {
     const email = this.inputEmailRef.current.value;
     const nickName = this.inputNickNameRef.current.value;
     const pwd = this.inputPwdRef.current.value;
-    const pwdConfirm = this.inputPwdConfirmRef.current.value;
 
     if (
       this.state.isEmailCheck &&
@@ -206,60 +205,60 @@ class Signup extends Component {
     return this.props.isLoading ? (
       <Loading />
     ) : (
-      <div className="sign-up-container">
-        <div className="sign-up">
-          <h1 className="sign-up-title">Sign Up</h1>
+      <div className='sign-up-container'>
+        <div className='sign-up'>
+          <h1 className='sign-up-title'>Sign Up</h1>
           <form
             ref={this.formRef}
-            className="sign-up-form"
+            className='sign-up-form'
             onSubmit={this.onSubmit}
           >
-            <div className="sign-up-input">
-              <label htmlFor="email">Email</label>
+            <div className='sign-up-input'>
+              <label htmlFor='email'>Email</label>
               <input
                 ref={this.inputEmailRef}
-                id="email"
-                type="text"
+                id='email'
+                type='text'
                 onChange={this.onExistEmailCheck}
               />
             </div>
-            <div className="sign-up-input">
-              <label htmlFor="ninkname">Nick Name</label>
+            <div className='sign-up-input'>
+              <label htmlFor='ninkname'>Nick Name</label>
               <input
                 ref={this.inputNickNameRef}
-                id="ninkname"
-                type="text"
+                id='ninkname'
+                type='text'
                 onChange={this.onExistNickNameCheck}
               />
-              <p className="nickname-rule">
+              <p className='nickname-rule'>
                 닉네임 길이는 3글자 이상, 영어 또는 숫자만 가능합니다 :)
               </p>
             </div>
-            <div className="sign-up-input">
-              <label htmlFor="pwd">Password</label>
+            <div className='sign-up-input'>
+              <label htmlFor='pwd'>Password</label>
               <input
                 ref={this.inputPwdRef}
-                id="pwd"
-                type="password"
+                id='pwd'
+                type='password'
                 onChange={this.onPasswordCheck}
               />
-              <p className="pwd-rule">
+              <p className='pwd-rule'>
                 5자 이상 / 알파벳 / 숫자 / 특수문자(@$!%*#?&)는 하나 이상
                 포함해주세요 :)
               </p>
             </div>
-            <div className="sign-up-input">
-              <label htmlFor="pwdConfirm">Pwd Confirm</label>
+            <div className='sign-up-input'>
+              <label htmlFor='pwdConfirm'>Pwd Confirm</label>
               <input
-                className="sign-up-input-tag"
+                className='sign-up-input-tag'
                 ref={this.inputPwdConfirmRef}
-                id="pwdConfirm"
-                type="password"
+                id='pwdConfirm'
+                type='password'
                 onChange={this.onPasswordConfirm}
               />
             </div>
             <>
-              <button className="sign-up-btn">Sign Up</button>
+              <button className='sign-up-btn'>Sign Up</button>
             </>
           </form>
         </div>

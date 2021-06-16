@@ -109,7 +109,7 @@ class EditUserInfo extends Component {
         <div className='edit-card'>
           <div className='edit-card__header'>
             <div className='header__picture'>
-              <img src={image ? image : quokkaImg} alt='profile image' />
+              <img src={image ? image : quokkaImg} alt='profile' />
               <input
                 ref={this.imageValueRef}
                 type='file'
