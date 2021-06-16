@@ -23,14 +23,14 @@ class Keyword extends Component {
       const keyword = event.target.textContent;
       let config = {
         method: 'post',
-        url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/keywordMusic',
+        url: '/nod/keywordMusic',
         data: {
           keyword,
         },
         withCredentials: true,
       };
       axios(config).then((response) => {
-        if(response.data.success) {
+        if (response.data.success) {
           console.log(response.data);
           this.props.updateMyList(response.data.data);
           this.setState({
@@ -76,4 +76,3 @@ class Keyword extends Component {
 }
 
 export default withRouter(Keyword);
-

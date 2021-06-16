@@ -11,41 +11,44 @@ import Loading from './Components/loading/loading';
 import Keyword from './Components/keyword/keyword';
 import MyList from './Components/myList/myList';
 import MainPlayer from './Components/mainPlayer/mainPlayer';
+import Cookies from 'js-cookie';
 
 class App extends Component {
   state = {
     isLoading: false,
-    userInfo: {},
+    userInfo: {
+      id: null,
+      nickname: '',
+      email: '',
+    },
     myList: [],
     musicList: [],
+    refreshToken: Cookies.get('refreshToken'),
   };
 
   logoutUser = () => {
     this.setState({
       userInfo: {},
-    })
-  }
+    });
+  };
 
   updateUserInfo = (userInfo) => {
     this.setState({
       userInfo: userInfo,
-    })
-  }
+    });
+  };
 
   updateMyList = (musicList) => {
     this.setState({
       musicList: musicList,
-    })
-  }
+    });
+  };
 
   handleSignUp = (userInfo) => {
     axios
-      .post(
-        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/signup`,
-        {
-          ...userInfo,
-        }
-      )
+      .post(`/nod/user/signup`, {
+        ...userInfo,
+      })
       .then((response) => {
         if (response.data.id) {
           console.log('signup success');
@@ -56,52 +59,55 @@ class App extends Component {
   };
 
   handleUserInfo = (userId) => {
-    axios
-      .post(
-        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/userinfo`,
-        { userId }
-      )
-      .then((response) => {
-        console.log(response.data);
-        if (response.data.success) {
-          this.setState({ userInfo: { ...response.data.data } });
-        } else {
-          this.setState({ userInfo: null });
-        }
-      });
+    axios.post(`/nod/user/userinfo`, { userId }).then((response) => {
+      console.log(response.data);
+      if (response.data.success) {
+        this.setState({ userInfo: { ...response.data.data } });
+      } else {
+        this.setState({ userInfo: null });
+      }
+    });
   };
 
   // logout handler
 
   updateMyList = (myList) => {
-    this.setState({ musicList : myList });
+    this.setState({ musicList: myList });
   };
 
   render() {
     return (
       <Suspense fallback={<Loading />}>
-        <Navbar userData={this.state.userInfo} logoutUser={this.logoutUser}/>
+        <Navbar userData={this.state.userInfo} logoutUser={this.logoutUser} />
         <Switch>
           <Route
             exact
-            path="/"
+            path='/'
             render={() => <Login onUserInfo={this.handleUserInfo} />}
           />
           <Route
             exact
-            path="/signup"
+            path='/signup'
             render={() => <Signup onSignUp={this.handleSignUp} />}
           />
-          <Route exact path="/keyword" render={() => <Keyword updateMyList={this.updateMyList}/>} />
           <Route
             exact
-            path="/editUserInfo"
+            path='/keyword'
+            render={() => <Keyword updateMyList={this.updateMyList} />}
+          />
+          <Route
+            exact
+            path='/editUserInfo'
             render={() => <EditUserInfo userInfo={this.state.userInfo} />}
           />
-          <Route exact path="/mainPlayer" render={() => <MainPlayer musicList={this.state.musicList} />} />
           <Route
             exact
-            path="/myList"
+            path='/mainPlayer'
+            render={() => <MainPlayer musicList={this.state.musicList} />}
+          />
+          <Route
+            exact
+            path='/myList'
             render={() => (
               <MyList
                 userInfo={this.state.userInfo}
