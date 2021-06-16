@@ -174,8 +174,8 @@ class Signup extends Component {
     });
 
     const email = this.inputEmailRef.current.value;
-    const nickName = this.inputNickNameRef.current.value;
-    const pwd = this.inputPwdRef.current.value;
+    const nickname = this.inputNickNameRef.current.value;
+    const password = this.inputPwdRef.current.value;
 
     if (
       this.state.isEmailCheck &&
@@ -183,25 +183,13 @@ class Signup extends Component {
       this.state.isPasswordCheck &&
       this.state.isPasswordConfirm
     ) {
-      const signUpResult = this.props.onSignUp({
-        email: email,
-        nickname: nickName,
-        password: pwd,
-      });
-
-      if (signUpResult) {
-        this.setState({
-          isLoading: false,
-        });
-        this.props.history.push('/login');
-      } else {
-        this.setState({
-          isLoading: false,
-        });
-      }
+      this.props.onSignUp({ email, nickname, password });
+      this.setState({
+        isLoading: false
+      })
+      this.formRef.current.reset();
+      this.props.history.push('/');
     }
-
-    this.formRef.current.reset();
   };
 
   render() {

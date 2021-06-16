@@ -32,7 +32,7 @@ class Keyword extends Component {
       axios(config).then((response) => {
         if(response.data.success) {
           console.log(response.data);
-          this.props.updateMyList(response.data);
+          this.props.updateMyList(response.data.data);
           this.setState({
             isLoading: false,
           });

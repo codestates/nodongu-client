@@ -7,50 +7,33 @@ import quokka from '../../Utils/images/quokka.jpg';
 import './myList.css';
 import List from './views/list';
 import axios from 'axios';
-
-const fakeData = [
-  {
-    id: 1,
-    title: 'sampleList',
-    date: '2021 - 06 - 12',
-    thumbnails: [quokka, quokka, quokka, quokka],
-  },
-  {
-    id: 2,
-    title: 'sampleList2',
-    date: '2021 - 06 - 12',
-    thumbnails: [quokka, quokka, quokka, quokka],
-  },
-  {
-    id: 3,
-    title: 'sampleList3',
-    date: '2021 - 06 - 12',
-    thumbnails: [quokka, quokka, quokka],
-  },
-  {
-    id: 4,
-    title: 'sampleList4',
-    date: '2021 - 06 - 12',
-    thumbnails: [quokka, quokka],
-  },
-];
+import Loading from '../loading/loading';
 
 function MyList(props) {
   const [isLoading, setIsLoading] = useState(false);
+  const [myList, setMyList] = useState([]);
 
   useEffect(() => {
-    // if (!props.userInfo.userId) {
-    //   return props.history.push('/');
-    // }
-    // const config = {
-    //   method: 'post',
-    //   url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/getMyList',
-    //   withCredentials: true,
-    //   data: {
-    //     userId: props.userInfo.userId,
-    //   },
-    // };
-    // axios(config).then((response) => console.log(response.data));
+    if (!props.userInfo.id) {
+      return props.history.push('/');
+    }
+    setIsLoading(true);
+    console.log('myList 요청 전');
+    const config = {
+      method: 'post',
+      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/getMyList',
+      withCredentials: true,
+      data: {
+        userId: props.userInfo.id,
+      },
+    };
+    console.log('세팅완료');
+    axios(config).then((response) => {
+      console.log(response.data.data)
+      props.updateMyList(response.data.data);
+      setMyList(response.data.data);
+      setIsLoading(false);
+    });
   }, []);
 
   const settings = {
@@ -60,13 +43,15 @@ function MyList(props) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  return (
+  return isLoading ? <Loading /> : (
     <div className='mylist-container'>
       <h2> Single Item</h2>
       <Slider {...settings}>
-        {fakeData.map((playlist) => (
+        {
+         myList.map((playlist) => (
           <List key={playlist.id} playlist={playlist} />
-        ))}
+        )) 
+        }
       </Slider>
     </div>
   );

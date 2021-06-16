@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import quokka from '../../../Utils/images/quokka.jpg';
+import '../myList.css';
 
 function List(props) {
   const handleListClick = (event) => {
@@ -23,8 +24,8 @@ function List(props) {
           <img src={image4 ? image4 : quokka} alt='' />
         </div>
         <div className='playlist__detail'>
-          <span className='playlist__title'>{props.playlist.title}</span>
-          <span className='playlist__date'>{props.playlist.date}</span>
+          <span className='playlist__title'>{props.playlist.listTitle}</span>
+          <span className='playlist__date'>{new Date(props.playlist.createdAt).toJSON().slice(0, 10)}</span>
         </div>
       </div>
     </div>

@@ -29,13 +29,13 @@
   justify-content: right;
   margin-right: 0.7rem;
   padding: 0rem 0.2rem;
-  color: whitesmoke;
+  color: var(--dark-white-color);
   font-size: 1.4rem;
   cursor: pointer;
   transition: all 200ms linear;
 }
 
-.nav__ul li:not(:first-child):hover {
+.nav__ul li:not(:first-child) a:hover {
   color: var(--light-orange-color);
   border-bottom: solid 1px var(--light-orange-color);
 }
@@ -55,4 +55,11 @@
 .user-img-small {
   width: 40px;
   height: 40px;
+}
+
+.navigation-container-nav > a {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  color: var(--dark-white-color);
 }

@@ -16,7 +16,7 @@ class EditUserInfo extends Component {
     this.state = {
       userInfo: {
         ...this.props.userInfo,
-        password: '',
+        password: '********',
       },
     };
   }
