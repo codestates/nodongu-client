@@ -161,12 +161,14 @@ class MainPlayer extends Component {
             </ul>
           </div>
         </div>
-        <div className='play-container'>
-          <div className='play-duration'></div>
-          <div className='play-set-up'>
-            <div className='play-range'>
-              <button className='pre-music-btn'>
-                <i className='fas fa-step-backward'></i>
+        <div className="play-container">
+          <div className="play-duration">
+            <div className="play-duration-bar"></div>
+          </div>
+          <div className="play-set-up">
+            <div className="play-range">
+              <button className="pre-music-btn">
+                <i className="fas fa-step-backward"></i>
               </button>
               <button className='pause-music-btn'>
                 <i className='fas fa-pause'></i>
