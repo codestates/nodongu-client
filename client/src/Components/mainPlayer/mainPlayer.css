@@ -40,7 +40,7 @@
 .play-list-li {
   display: flex;
   justify-content: space-between;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
   align-items: center;
   transition: all 0.3s linear;
@@ -61,20 +61,42 @@
 }
 
 .play-list-song-img {
-  width: 38px;
-  height: 38px;
+  width: 45px;
+  height: 45px;
   margin-right: 0.8rem;
   cursor: pointer;
+  flex: 1;
 }
 
 .play-replay-time {
   font-size: 1rem;
+  margin-left: 0.5rem;
+  flex: 1;
+}
+
+.play-list-content > .play-list-content-title {
+  flex: 8;
 }
 
 .play-list-content-singer,
 .play-replay-time {
   color: var(--dark-gray-color);
 }
+
+.play-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.player-container {
+  color: red;
+  background-color: skyblue;
+}
+
+/* .iframe-player {
+} */
 
 .play-duration {
   width: 100%;
@@ -88,8 +110,8 @@
 
 .play-set-up {
   padding: 0 25px;
-  width: 1030px;
-
+  /* width: 1030px; */
+  width: 100%;
   padding-top: 0.5rem;
   display: flex;
   justify-content: space-between;
@@ -106,7 +128,9 @@
 }
 
 .play-range {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   flex-grow: 2;
 }
@@ -200,4 +224,9 @@
 
 .play-song-setting button *:active {
   transform: scale(1.1);
+}
+
+#iframe {
+  background-color: springgreen;
+  border-radius: 2px solid red;
 }
