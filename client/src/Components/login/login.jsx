@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 import './login.css';
+import Loading from '../loading/loading';
 
 class Login extends Component {
   state = {
@@ -15,6 +16,9 @@ class Login extends Component {
   handleLogin = (email, password) => {
     console.log(email, password);
     // this.props.onUserInfo({ userId: 7 });
+    this.setState({
+      isLoading: true,
+    })
     axios
       .post(
         `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/login`,
@@ -26,11 +30,15 @@ class Login extends Component {
       .then((response) => {
         console.log(response.data);
         if (response.data.loginSuccess) {
-          console.log('성공 ');
           this.props.onUserInfo(response.data.userId);
-          this.props.history.push('/keyword');
-        } else {
+          this.setState({
+            isLoading: false,
+          })
+          return this.props.history.push('/keyword');
         }
+        this.setState({
+            isLoading: false,
+          })
       });
   };
 
@@ -44,7 +52,8 @@ class Login extends Component {
   };
 
   render() {
-    return (
+    return this.state.isLoading ? <Loading />
+    : (
       <div className="login-container">
         <div className="login-form">
           <h1 className="login-form-title">Login</h1>

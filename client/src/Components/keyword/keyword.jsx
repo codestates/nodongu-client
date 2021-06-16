@@ -1,29 +1,26 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import './keyword.css';
+import Loading from '../loading/loading';
 
 axios.defaults.withCredentials = true;
 
 class Keyword extends Component {
-  handleClickKeyword = (event) => {
-    const target = event.target;
-    if (target.classList[0] === 'btn') {
-      axios
-        .post(`${process.env.REACT_APP_API_URL}/nod/music`, {
-          keyword: target.textContent,
-        })
-        .then((response) => {
-          // 수정 예정
-          console.log(response.data);
-        });
-    }
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: false,
+    };
+  }
 
   handleKeywordClick = (event) => {
     if (event.target.classList[0] === 'keyword__btn') {
-      //const keyword = event.target.textContent;
-      const keyword = 'happy';
-      console.log(keyword);
+      this.setState({
+        isLoading: true,
+      });
+      const keyword = event.target.textContent;
       let config = {
         method: 'post',
         url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/keywordMusic',
@@ -32,14 +29,23 @@ class Keyword extends Component {
         },
         withCredentials: true,
       };
-      console.log('이제 요청 날림 ㅇㅋ?');
-      axios(config).then((response) => console.log(response.data));
-      console.log('요청완료됨 ㅇㅋ?');
+      axios(config).then((response) => {
+        if(response.data.success) {
+          console.log(response.data);
+          this.props.updateMyList(response.data);
+          this.setState({
+            isLoading: false,
+          });
+          this.props.history.push('./mainPlayer');
+        }
+      });
     }
   };
 
   render() {
-    return (
+    return this.state.isLoading ? (
+      <Loading />
+    ) : (
       <div className='keyword-container' onClick={this.handleKeywordClick}>
         <h1 className='keyword__title'>
           <span>Have you ever thought</span>
@@ -69,4 +75,5 @@ class Keyword extends Component {
   }
 }
 
-export default Keyword;
+export default withRouter(Keyword);
+
