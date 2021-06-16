@@ -175,52 +175,56 @@ class MainPlayer extends Component {
             </ul>
           </div>
         </div>
-        <div className="play-set-up">
-          <div className="play-range">
-            <button className="pre-music-btn">
-              <i className="fas fa-step-backward"></i>
-            </button>
-            <button className="pause-music-btn">
-              <i className="fas fa-pause"></i>
-            </button>
-            <button className="next-music-btn">
-              <i className="fas fa-step-forward"></i>
-            </button>
-            <span className="music-time">2:34/3:37</span>
-          </div>
-          <div className="play-song-info">
-            <div className="play-song-info-content">
-              <img src={albumImage} className="song-info-img" />
-              <div className="song-info-content">
-                <div className="song-info-title">Butter</div>
-                <div className="song-info-singer">
-                  방탄소년단(BTS) • Butter(Hotter, Sweeter, Cooler) • 2021
+        <div className="play-container">
+          <div className="play-duration"></div>
+          <div className="play-set-up">
+            <div className="play-range">
+              <button className="pre-music-btn">
+                <i className="fas fa-step-backward"></i>
+              </button>
+              <button className="pause-music-btn">
+                <i className="fas fa-pause"></i>
+              </button>
+              <button className="next-music-btn">
+                <i className="fas fa-step-forward"></i>
+              </button>
+              <span className="music-time">2:34/3:37</span>
+            </div>
+            <div className="play-song-info">
+              <div className="play-song-info-content">
+                <img src={albumImage} className="song-info-img" />
+                <div className="song-info-content">
+                  <div className="song-info-title">Butter</div>
+                  <div className="song-info-singer">
+                    방탄소년단(BTS) • Butter(Hotter, Sweeter, Cooler) • 2021
+                  </div>
+                </div>
+                <div className="song-add">
+                  <button
+                    className="song-add-btn"
+                    onClick={() => {
+                      this.handleOpenModal();
+                    }}
+                  >
+                    <i className="fas fa-plus"></i>
+                  </button>
                 </div>
               </div>
-              <div className="song-add">
-                <button
-                  className="song-add-btn"
-                  onClick={() => {
-                    this.handleOpenModal();
-                  }}
-                >
-                  <i className="fas fa-plus"></i>
-                </button>
-              </div>
+            </div>
+            <div className="play-song-setting">
+              <button>
+                <i className="fas fa-volume-up"></i>
+              </button>
+              <button>
+                <img className="fas fa-redo" />
+              </button>
+              <button>
+                <i className="fas fa-random"></i>
+              </button>
             </div>
           </div>
-          <div className="play-song-setting">
-            <button>
-              <i className="fas fa-volume-up"></i>
-            </button>
-            <button>
-              <img className="fas fa-redo" />
-            </button>
-            <button>
-              <i className="fas fa-random"></i>
-            </button>
-          </div>
         </div>
+
         <AddPlayer
           isAddBtnClick={this.state.isAddPlayerBtnClick}
           onCloseAddPlayer={this.handleCloseModal}
