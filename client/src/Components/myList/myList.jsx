@@ -36,24 +36,22 @@ const fakeData = [
 ];
 
 function MyList(props) {
-  const [myList, setMyList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   if (!props.userInfo.userId) {
-  //     return props.history.push('/');
-  //   }
-  //   const config = {
-  //     method: 'post',
-  //     url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/getMyList',
-  //     withCredentials: true,
-  //     data: {
-  //       userId: props.userInfo.userId,
-  //     },
-  //   };
-
-  //   axios(config).then((response) => console.log(response.data));
-  // }, []);
+  useEffect(() => {
+    // if (!props.userInfo.userId) {
+    //   return props.history.push('/');
+    // }
+    // const config = {
+    //   method: 'post',
+    //   url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/getMyList',
+    //   withCredentials: true,
+    //   data: {
+    //     userId: props.userInfo.userId,
+    //   },
+    // };
+    // axios(config).then((response) => console.log(response.data));
+  }, []);
 
   const settings = {
     dots: true,

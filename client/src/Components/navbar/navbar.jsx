@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Popup from '../popup/popup';
 import './navbar.css';
 import logo from '../../Utils/images/logo_3.png';
@@ -40,23 +40,32 @@ class Navbar extends Component {
 
   render() {
     return (
-      <div className="navigation-container">
-        <nav className="navigation-container-nav">
-          <ul className="nav__ul">
-            <li className="li_logo">
-              <img src={logo} style={({ width: 60 }, { height: 60 })} />
+      <div className='navigation-container'>
+        <nav className='navigation-container-nav'>
+          <ul className='nav__ul'>
+            <li className='li_logo'>
+              <img
+                src={logo}
+                style={({ width: 60 }, { height: 60 })}
+                alt='logo'
+              />
             </li>
-            <li className="li_playlist">PlayList</li>
-            <li className="li_mylist">My List</li>
+            <li className='li_playlist'>
+              <Link to='/keyword'>Play List</Link>
+            </li>
+            <li className='li_mylist'>
+              <Link to='/myList'>My List</Link>
+            </li>
           </ul>
           <img
             ref={this.profileRef}
-            className="user-img"
+            className='user-img'
             src={
-              this.state.fakeData.image == false
+              !this.state.fakeData.image
                 ? `${quokka}`
                 : `${this.state.fakeData.image}`
             }
+            alt='userProfile'
             onClick={
               this.state.isProfileClick
                 ? this.handleClosePopup
