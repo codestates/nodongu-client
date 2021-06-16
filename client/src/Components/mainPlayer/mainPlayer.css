@@ -4,11 +4,16 @@
   margin-top: 90px;
   width: 100%;
   font-family: var(--font-family);
-  background-color: var(--play-background-color);
+  background-color: var(--play-background-color); /*rgb(43, 41, 41)*/
   padding: 10rem 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #000;
+}
+
+.main-player-container > * {
+  color: var(--light-white-color); /* 폰트 색 */
 }
 
 .main-play {
@@ -64,7 +69,7 @@
   width: 45px;
   height: 45px;
   margin-right: 0.8rem;
-  cursor: pointer;
+  /* cursor: pointer; */
   flex: 1;
 }
 
@@ -75,12 +80,13 @@
 }
 
 .play-list-content > .play-list-content-title {
+  cursor: pointer;
   flex: 8;
 }
 
 .play-list-content-singer,
 .play-replay-time {
-  color: var(--dark-gray-color);
+  /*color: var(--light-white-color);*/ /* var(--dark-gray-color); */ /* #fff; */
 }
 
 .play-container {
@@ -100,12 +106,12 @@
 
 .play-duration {
   width: 100%;
-  background-color: blueviolet;
-  margin-top: 3rem;
+  background-color: var(--middle-pink-color);
+  margin: 3rem 0;
 }
 
 .play-duration-bar {
-  border: solid 3px var(--middle-pink-color);
+  border-top: solid 3px var(--middle-pink-color);
 }
 
 .play-set-up {
@@ -128,7 +134,6 @@
 }
 
 .play-range {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,7 +148,7 @@
 }
 
 .play-range button *:hover {
-  color: var(--footer-font-color);
+  color: var(--light-white-color); /* var(--footer-font-color); */
 }
 
 .play-range button *:active {
@@ -152,7 +157,7 @@
 
 .music-time {
   font-size: medium;
-  color: var(--dark-gray-color);
+  color: var(--dark-gray-color); /* #fff; */
 }
 
 .play-song-info-content {
@@ -179,7 +184,7 @@
 
 .song-info-singer {
   font-size: small;
-  color: var(--dark-gray-color);
+  color: var(--light-white-color); /* #fff; */ /* 폰트 색 */
   margin-top: 0.2rem;
 }
 
@@ -198,8 +203,12 @@
   cursor: pointer;
 }
 
+.song-add-btn > * {
+  color: var(--light-white-color); /* 폰트 색 */
+}
+
 .song-add-btn > .fa-plus:hover {
-  color: var(--footer-font-color);
+  color: var(--light-white-color); /* var(--footer-font-color); */
 }
 
 .song-add-btn > .fa-plus:active {
@@ -216,17 +225,42 @@
   transition: all 0.3s linear;
   font-size: large;
   cursor: pointer;
+  color: var(--light-white-color); /* 폰트 색 */
 }
 
 .play-song-setting button *:hover {
-  color: var(--footer-font-color);
+  color: var(--light-white-color); /* var(--footer-font-color); */
 }
 
 .play-song-setting button *:active {
   transform: scale(1.1);
 }
 
+.play-range-frame {
+  position: relative;
+}
+
 #iframe {
-  background-color: springgreen;
-  border-radius: 2px solid red;
+}
+
+.iframe-player-hidden {
+  position: absolute;
+  left: 60px;
+  width: 220px;
+  height: 30px;
+  background-color: #000;
+}
+
+@media screen and (max-width: 1390px) {
+  .newsletter-form {
+    flex-wrap: wrap;
+  }
+  .txtb {
+    flex: 1;
+  }
+  .newsletter-form-btn {
+    margin-left: -5px;
+    width: 100%;
+    margin-top: 10px;
+  }
 }
