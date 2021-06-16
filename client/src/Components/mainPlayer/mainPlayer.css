@@ -90,7 +90,7 @@
   padding: 0 25px;
   width: 1030px;
 
-  padding-top: 3rem;
+  padding-top: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -108,7 +108,7 @@
 .play-range {
   display: flex;
   align-items: center;
-  flex-grow: 1;
+  flex-grow: 2;
 }
 
 .play-range button * {
@@ -133,7 +133,7 @@
 
 .play-song-info-content {
   display: flex;
-  flex-grow: 8;
+  flex-grow: 7;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -146,7 +146,7 @@
 }
 
 .song-info-content {
-  margin-right: 4rem;
+  margin-right: 2rem;
 }
 
 .song-info-title {

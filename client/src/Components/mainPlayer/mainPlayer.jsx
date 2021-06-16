@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './mainPlayer.css';
 import albumImage from '../../Utils/images/album-image.png';
 import AddPlayer from '../addPlayer/addPlayer';
-import YouTube from 'react-youtube';
 
 class MainPlayer extends Component {
   state = {
@@ -21,22 +20,8 @@ class MainPlayer extends Component {
     });
   };
 
-  // _onReady(event) {
-  //   // access to player in all event handlers via event.target
-  //   event.target.pauseVideo();
-  // }
-
   render() {
-    // player
-    // const options = {
-    //   width: '300',
-    //   height: '50',
-    //   playerVars: {
-    //     autoplay: 1,
-    //     origin: 'http://localhost:3000',
-    //   },
-    // };
-
+    console.log(this.props.musicList);
     return (
       <main className="main-player-container">
         <div className="main-play">
@@ -182,19 +167,18 @@ class MainPlayer extends Component {
             <div className="play-duration-bar"></div>
           </div>
           <div className="player-container">
-            <div id="player"></div>
-            <iframe
+            {/* <iframe
               style={{
                 position: 'relative',
-                top: 30,
-                left: 50,
+                top: 55,
+                left: 42,
                 width: '300px',
-                height: '50px',
+                height: '30px',
+                opacity: 0.3,
               }}
-              src={`https://www.youtube.com/embed/5gq15OVc5wo`}
+              src={`https://www.youtube.com/embed/ih-vI0LvbZI?autoplay=1&mute=0`}
               frameBorder="0"
-            />
-            {/* <YouTube videoId="5gq15OVc5wo" opts={options} /> */}
+            /> */}
           </div>
           <div className="play-set-up">
             <div className="play-range">
