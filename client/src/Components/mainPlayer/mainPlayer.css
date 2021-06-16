@@ -76,15 +76,24 @@
   color: var(--dark-gray-color);
 }
 
+.play-duration {
+  width: 100%;
+  background-color: blueviolet;
+  margin-top: 3rem;
+}
+
+.play-duration-bar {
+  border: solid 3px var(--middle-pink-color);
+}
+
 .play-set-up {
   padding: 0 25px;
   width: 1030px;
-  margin-top: 3rem;
+
   padding-top: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: solid 1px var(--middle-pink-color);
 }
 
 .main-player-container button {
