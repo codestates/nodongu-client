@@ -98,7 +98,12 @@ class App extends Component {
           <Route
             exact
             path='/editUserInfo'
-            render={() => <EditUserInfo userInfo={this.state.userInfo} />}
+            render={() => (
+              <EditUserInfo
+                userInfo={this.state.userInfo}
+                updateUserInfo={this.updateUserInfo}
+              />
+            )}
           />
           <Route
             exact
