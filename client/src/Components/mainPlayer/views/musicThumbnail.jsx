@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 class MusicThumbnail extends Component {
   render() {
-    // const thumbnailImage = this.props.thumbnailImage;
-
     return (
       <img
         src={this.props.thumbnailImage}
