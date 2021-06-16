@@ -57,7 +57,9 @@ class Navbar extends Component {
               <Link to='/myList'>My List</Link>
             </li>
           </ul>
-          <img
+          {
+            !this.props.userData.id ? <Link to="/"><span className="Login-btn">Login</span></Link> : (
+              <img
             ref={this.profileRef}
             className='user-img'
             src={
@@ -72,10 +74,13 @@ class Navbar extends Component {
                 : this.handleOpenPopup
             }
           />
+            )
+          }
           <Popup
             profileClick={this.state.isProfileClick}
             onClosePopup={this.handleClosePopup}
             userData={this.props.userData}
+            logoutUser={this.props.logoutUser}
           />
         </nav>
       </div>

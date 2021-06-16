@@ -20,6 +20,18 @@ class App extends Component {
     musicList: [],
   };
 
+  logoutUser = () => {
+    this.setState({
+      userInfo: {},
+    })
+  }
+
+  updateUserInfo = (userInfo) => {
+    this.setState({
+      userInfo: userInfo,
+    })
+  }
+
   updateMyList = (musicList) => {
     this.setState({
       musicList: musicList,
@@ -27,7 +39,6 @@ class App extends Component {
   }
 
   handleSignUp = (userInfo) => {
-    console.log(userInfo);
     axios
       .post(
         `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/signup`,
@@ -36,13 +47,10 @@ class App extends Component {
         }
       )
       .then((response) => {
-        console.log(response.data);
         if (response.data.id) {
           console.log('signup success');
-          return true;
         } else {
           console.log('signup fail');
-          return false;
         }
       });
   };
@@ -66,13 +74,13 @@ class App extends Component {
   // logout handler
 
   updateMyList = (myList) => {
-    this.setState({ myList });
+    this.setState({ musicList : myList });
   };
 
   render() {
     return (
       <Suspense fallback={<Loading />}>
-        <Navbar userData={this.state.userInfo} />
+        <Navbar userData={this.state.userInfo} logoutUser={this.logoutUser}/>
         <Switch>
           <Route
             exact

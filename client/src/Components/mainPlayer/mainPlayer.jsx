@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './mainPlayer.css';
 import albumImage from '../../Utils/images/album-image.png';
 import AddPlayer from '../addPlayer/addPlayer';
-import YouTube from 'react-youtube';
 
 class MainPlayer extends Component {
   state = {
@@ -36,7 +35,7 @@ class MainPlayer extends Component {
     //     origin: 'http://localhost:3000',
     //   },
     // };
-
+    console.log(this.props.musicList);
     return (
       <main className="main-player-container">
         <div className="main-play">
