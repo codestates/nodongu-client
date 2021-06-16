@@ -20,6 +20,12 @@ class App extends Component {
     musicList: [],
   };
 
+  updateMyList = (musicList) => {
+    this.setState({
+      musicList: musicList,
+    })
+  }
+
   handleSignUp = (userInfo) => {
     console.log(userInfo);
     axios
@@ -78,13 +84,13 @@ class App extends Component {
             path="/signup"
             render={() => <Signup onSignUp={this.handleSignUp} />}
           />
-          <Route exact path="/keyword" render={() => <Keyword />} />
+          <Route exact path="/keyword" render={() => <Keyword updateMyList={this.updateMyList}/>} />
           <Route
             exact
             path="/editUserInfo"
             render={() => <EditUserInfo userInfo={this.state.userInfo} />}
           />
-          <Route exact path="/mainPlayer" render={() => <MainPlayer />} />
+          <Route exact path="/mainPlayer" render={() => <MainPlayer musicList={this.state.musicList} />} />
           <Route
             exact
             path="/myList"
