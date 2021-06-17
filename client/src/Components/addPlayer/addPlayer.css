@@ -17,7 +17,7 @@
 
 .add-player-container {
   width: 400px;
-  height: 300px;
+  height: 280px;
   border-radius: 10px;
   position: absolute;
   top: 50%;
@@ -51,7 +51,7 @@
 }
 
 .fa-democrat {
-  font-size: 1rem;
+  font-size: 1.3rem;
   margin-right: 0.5rem;
   color: var(--light-orange-color);
 }
@@ -94,7 +94,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 1.2rem;
+  margin-top: 0.7rem;
 }
 
 .new-play-list-btn > * {
@@ -103,9 +103,12 @@
   cursor: pointer;
 }
 
-.new-play-add {
+.new-my-play-list > .new-play-add {
   font-family: var(--font-family);
+  color: var(--dark-pink-color);
   cursor: pointer;
+  margin: 1rem 0;
+  font-size: 1rem;
 }
 
 .new-play-list-btn > *:hover,
@@ -121,6 +124,38 @@
 
 .add-playlist-popup-hidden {
   display: none;
+}
+
+.new-playlist-container-hidden {
+  display: none;
+}
+
+.new-music-input {
+  width: 80%;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 10px;
+  outline: none;
+  color: var(--footer-font-color);
+  font-family: var(--font-family);
+}
+
+.new-music-input-hidden {
+  display: none;
+}
+
+.new-playlist-container > .new-mylist-btn {
+  background-color: var(--light-tomato-color);
+}
+
+.new-playlist-container > .new-mylist-btn:hover {
+  transition: all 0.3s linear;
+}
+
+.new-playlist-container > .new-mylist-btn:active {
+  transform: scale(1.1);
+  color: var(--smoke-pink-color);
 }
 
 @keyframes add-modal {

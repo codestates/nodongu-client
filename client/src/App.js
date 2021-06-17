@@ -26,8 +26,6 @@ class App extends Component {
     },
     myList: [],
     musicList: [],
-    refreshToken: Cookies.get('refreshToken'),
-    keyword: '',
   };
 
   updateKeyword = (keyword) => {
@@ -71,7 +69,9 @@ class App extends Component {
   handleUserInfo = (userId) => {
     const config = {
       method: 'POST',
+
       url: `${process.env.REACT_APP_API_URL}/nod/user/userinfo`,
+
       data: {
         userId,
       },
@@ -105,6 +105,7 @@ class App extends Component {
         <Switch>
           <Route
             exact
+
             path='/'
             render={() => (
               <Login
@@ -133,10 +134,11 @@ class App extends Component {
                 updateKeyword={this.updateKeyword}
               />
             )}
+
           />
           <Route
             exact
-            path='/editUserInfo'
+            path="/editUserInfo"
             render={() => (
               <EditUserInfo
                 userInfo={this.state.userInfo}
@@ -151,13 +153,13 @@ class App extends Component {
               <MainPlayer
                 updateUserInfo={this.updateUserInfo}
                 musicList={this.state.musicList}
-                keyword={this.state.keyword}
+                userId={this.state.userInfo.id}
               />
             )}
           />
           <Route
             exact
-            path='/myList'
+            path="/myList"
             render={() => (
               <MyList
                 updateUserInfo={this.updateUserInfo}
