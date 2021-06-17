@@ -4,6 +4,8 @@ import axios from 'axios';
 import './signup.css';
 import Loading from '../loading/loading';
 
+axios.defaults.withCredentials = true;
+
 class Signup extends Component {
   state = {
     isEmailCheck: false,
@@ -33,7 +35,7 @@ class Signup extends Component {
       // axios config
       const config = {
         method: 'post',
-        url: '/nod/user/existEmail',
+        url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/existEmail',
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
@@ -95,9 +97,12 @@ class Signup extends Component {
       });
       // 닉네임 유효성 검사 2가지 모두 통과 시 DB에 이미 존재하는 nickName이 있는지 확인
       axios
-        .post(`/nod/user/existNickName`, {
-          nickname: this.inputNickNameRef.current.value,
-        })
+        .post(
+          `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/existNickName`,
+          {
+            nickname: this.inputNickNameRef.current.value,
+          }
+        )
         .then((response) => {
           // nickName이 없는 경우, state, className add
           // console.log(response.data.result);

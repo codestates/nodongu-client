@@ -23,7 +23,7 @@ class Keyword extends Component {
       const keyword = event.target.textContent;
       let config = {
         method: 'post',
-        url: '/nod/keywordMusic',
+        url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/keywordMusic',
         data: {
           keyword,
         },
