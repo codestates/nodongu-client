@@ -12,12 +12,13 @@ import Keyword from './Components/keyword/keyword';
 import MyList from './Components/myList/myList';
 import MainPlayer from './Components/mainPlayer/mainPlayer';
 import Cookies from 'js-cookie';
+import dotenv from 'dotenv';
+dotenv.config();
 
 axios.defaults.withCredentials = true;
 
 class App extends Component {
   state = {
-    isLoading: false,
     userInfo: {
       id: null,
       nickname: '',
@@ -26,6 +27,13 @@ class App extends Component {
     myList: [],
     musicList: [],
     refreshToken: Cookies.get('refreshToken'),
+    keyword: '',
+  };
+
+  updateKeyword = (keyword) => {
+    this.setState({
+      keyword,
+    });
   };
 
   logoutUser = () => {
@@ -48,12 +56,9 @@ class App extends Component {
 
   handleSignUp = (userInfo) => {
     axios
-      .post(
-        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/signup`,
-        {
-          ...userInfo,
-        }
-      )
+      .post(`${process.env.REACT_APP_API_URL}/nod/user/signup`, {
+        ...userInfo,
+      })
       .then((response) => {
         if (response.data.id) {
           console.log('signup success');
@@ -66,7 +71,7 @@ class App extends Component {
   handleUserInfo = (userId) => {
     const config = {
       method: 'POST',
-      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/userinfo',
+      url: `${process.env.REACT_APP_API_URL}/nod/user/userinfo`,
       data: {
         userId,
       },
@@ -76,7 +81,13 @@ class App extends Component {
       if (response.data.success) {
         this.setState({ userInfo: { ...response.data.data } });
       } else {
-        this.setState({ userInfo: null });
+        this.setState({
+          userInfo: {
+            id: null,
+            nickname: '',
+            email: '',
+          },
+        });
       }
     });
   };
@@ -119,6 +130,7 @@ class App extends Component {
               <Keyword
                 updateUserInfo={this.updateUserInfo}
                 updateMyList={this.updateMyList}
+                updateKeyword={this.updateKeyword}
               />
             )}
           />
@@ -139,6 +151,7 @@ class App extends Component {
               <MainPlayer
                 updateUserInfo={this.updateUserInfo}
                 musicList={this.state.musicList}
+                keyword={this.state.keyword}
               />
             )}
           />

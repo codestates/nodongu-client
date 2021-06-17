@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './addPlayer.css';
+import dotenv from 'dotenv';
+dotenv.config();
 
 class AddPlayer extends Component {
   render() {

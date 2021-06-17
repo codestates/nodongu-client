@@ -4,28 +4,14 @@ import axios from 'axios';
 import './signup.css';
 import Loading from '../loading/loading';
 import Cookies from 'js-cookie';
+import dotenv from 'dotenv';
+dotenv.config();
 
 axios.defaults.withCredentials = true;
 
 class Signup extends Component {
   constructor(props) {
     super(props);
-    axios
-      .get(
-        'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/auth',
-        {
-          headers: {
-            authorization: Cookies.get('authorization'),
-          },
-        }
-      )
-      .then((response) => {
-        if (response.data.success) {
-          this.props.updateUserInfo(response.data.userInfo);
-          return this.props.history.push('/keyword');
-        }
-      });
-
     this.state = {
       isEmailCheck: false,
       isNickNameCheck: false,
@@ -33,6 +19,19 @@ class Signup extends Component {
       isPasswordConfirm: false,
       isLoading: false,
     };
+
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/nod/user/auth`, {
+        headers: {
+          authorization: Cookies.get('authorization'),
+        },
+      })
+      .then((response) => {
+        if (response.data.success) {
+          this.props.updateUserInfo(response.data.userInfo);
+          return this.props.history.push('/keyword');
+        }
+      });
   }
 
   formRef = React.createRef();
@@ -57,7 +56,7 @@ class Signup extends Component {
       // axios config
       const config = {
         method: 'post',
-        url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/existEmail',
+        url: `${process.env.REACT_APP_API_URL}/nod/user/existEmail`,
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
@@ -118,12 +117,9 @@ class Signup extends Component {
 
       // 닉네임 유효성 검사 2가지 모두 통과 시 DB에 이미 존재하는 nickName이 있는지 확인
       axios
-        .post(
-          `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/existNickName`,
-          {
-            nickname: this.inputNickNameRef.current.value,
-          }
-        )
+        .post(`${process.env.REACT_APP_API_URL}/nod/user/existNickName`, {
+          nickname: this.inputNickNameRef.current.value,
+        })
         .then((response) => {
           // nickName이 없는 경우, state, className add
           if (!response.data.result) {

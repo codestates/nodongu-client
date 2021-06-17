@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Popup from '../popup/popup';
 import './navbar.css';
 import logo from '../../Utils/images/logo_3.png';
-import quokka from '../../Utils/images/quokka.jpg';
+import quokkaImg from '../../Utils/images/quokka.jpg';
 
 class Navbar extends Component {
   state = {
@@ -29,6 +29,11 @@ class Navbar extends Component {
         isProfileClick: false,
       });
     }
+  };
+
+  arrayBufferToBase643 = (data) => {
+    const img = new Buffer.from(data).toString('ascii');
+    return img;
   };
 
   render() {
@@ -60,8 +65,10 @@ class Navbar extends Component {
               className='user-img'
               src={
                 !this.props.userData.image
-                  ? `${quokka}`
-                  : `${this.props.userData.image}`
+                  ? quokkaImg
+                  : this.props.userData.image.data
+                  ? this.arrayBufferToBase643(this.props.userData.image.data)
+                  : this.props.userData.image
               }
               alt='userProfile'
               onClick={

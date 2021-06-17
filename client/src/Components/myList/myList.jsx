@@ -8,6 +8,8 @@ import List from './views/list';
 import axios from 'axios';
 import Loading from '../loading/loading';
 import Cookies from 'js-cookie';
+import dotenv from 'dotenv';
+dotenv.config();
 
 axios.defaults.withCredentials = true;
 
@@ -15,14 +17,11 @@ class MyList extends Component {
   constructor(props) {
     super(props);
     axios
-      .get(
-        'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/auth',
-        {
-          headers: {
-            authorization: Cookies.get('authorization'),
-          },
-        }
-      )
+      .get(`${process.env.REACT_APP_API_URL}/nod/user/auth`, {
+        headers: {
+          authorization: Cookies.get('authorization'),
+        },
+      })
       .then((response) => {
         if (response.data.success) {
           this.props.updateUserInfo(response.data.userInfo);
@@ -42,10 +41,9 @@ class MyList extends Component {
       isLoading: true,
     });
     axios
-      .post(
-        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/getMyList`,
-        { userId: this.props.userInfo.id }
-      )
+      .post(`${process.env.REACT_APP_API_URL}/nod/getMyList`, {
+        userId: this.props.userInfo.id,
+      })
       .then((response) => {
         console.log(response.data.data);
         this.props.updateMyList(response.data.data);
