@@ -134,7 +134,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-grow: 2;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 .play-range button * {
@@ -159,7 +160,7 @@
 
 .play-song-info-content {
   display: flex;
-  flex-grow: 7;
+  flex-grow: 8;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -248,8 +249,18 @@
   background-color: #000;
 }
 
-@media screen and (max-width: 1210px) {
+@media screen and (max-width: 1390px) {
   .main-player-container {
-    min-width: 1210px;
+    flex-wrap: wrap;
+  }
+
+  .txtb {
+    flex: 1;
+  }
+
+  .newsletter-form-btn {
+    margin-left: -5px;
+    width: 100%;
+    margin-top: 10px;
   }
 }

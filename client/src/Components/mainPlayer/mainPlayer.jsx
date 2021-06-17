@@ -37,9 +37,9 @@ class MainPlayer extends Component {
 
   render() {
     return (
-      <main className='main-player-container'>
-        <div className='main-play'>
-          <div className='play-img'>
+      <main className="main-player-container">
+        <div className="main-play">
+          <div className="play-img">
             <MusicThumbnail
               thumbnailImage={
                 this.state.currentMusic.id
@@ -48,9 +48,9 @@ class MainPlayer extends Component {
               }
             />
           </div>
-          <div className='main-play-list'>
-            <p className='next-track'>다음 트랙</p>
-            <ul className='play-list-ul'>
+          <div className="main-play-list">
+            <p className="next-track">다음 트랙</p>
+            <ul className="play-list-ul">
               {this.state.musicList.map((musicList) => {
                 return (
                   <Song
@@ -63,14 +63,14 @@ class MainPlayer extends Component {
             </ul>
           </div>
         </div>
-        <div className='play-container'>
-          <div className='play-duration'>
-            <div className='play-duration-bar'></div>
+        <div className="play-container">
+          <div className="play-duration">
+            <div className="play-duration-bar"></div>
           </div>
-          <div className='play-set-up'>
-            <div className='play-range'>
+          <div className="play-set-up">
+            <div className="play-range">
               <div
-                className='play-range-btn play-range-frame'
+                className="play-range-btn play-range-frame"
                 onClick={this.handleMusicSwitch}
               >
                 <iframe
@@ -87,15 +87,15 @@ class MainPlayer extends Component {
                   frameBorder='0'
                   className='iframe-player'
                 />
-                <div className='iframe-player-hidden'></div>
-                <button className='pre-music-btn'>
-                  <i className='fas fa-step-backward'></i>
+                <div className="iframe-player-hidden"></div>
+                <button className="pre-music-btn">
+                  <i className="fas fa-step-backward"></i>
                 </button>
-                <button className='pause-music-btn'>
-                  <i className='fas fa-pause'></i>
+                <button className="pause-music-btn">
+                  <i className="fas fa-pause"></i>
                 </button>
-                <button className='next-music-btn'>
-                  <i className='fas fa-step-forward'></i>
+                <button className="next-music-btn">
+                  <i className="fas fa-step-forward"></i>
                 </button>
                 <span className='music-time'>2:34/3:37</span>
               </div>
@@ -109,27 +109,27 @@ class MainPlayer extends Component {
                     방탄소년단(BTS) • Butter(Hotter, Sweeter, Cooler) • 2021
                   </div>
                 </div>
-                <div className='song-add'>
+                <div className="song-add">
                   <button
-                    className='song-add-btn'
+                    className="song-add-btn"
                     onClick={() => {
                       this.handleOpenModal();
                     }}
                   >
-                    <i className='fas fa-plus'></i>
+                    <i className="fas fa-plus"></i>
                   </button>
                 </div>
               </div>
             </div>
-            <div className='play-song-setting'>
+            <div className="play-song-setting">
               <button>
-                <i className='fas fa-volume-up'></i>
+                <i className="fas fa-volume-up"></i>
               </button>
               <button>
-                <i className='fas fa-redo'></i>
+                <i className="fas fa-redo"></i>
               </button>
               <button>
-                <i className='fas fa-random'></i>
+                <i className="fas fa-random"></i>
               </button>
             </div>
           </div>
