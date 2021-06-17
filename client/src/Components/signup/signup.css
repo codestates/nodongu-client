@@ -84,3 +84,18 @@
   text-align: right;
   margin-top: -0.3rem;
 }
+
+.exist-nickname-false-hidden {
+  font-size: 0.8rem;
+  color: var(--light-error-font-color);
+  text-align: right;
+  margin: -0.3rem 0 0.3rem 0;
+}
+
+.sign-up-input > .email-value,
+.sign-up-input > .nickname-value,
+.sign-up-input > .pwd-value,
+.sign-up-input > .pwdConfirm-value {
+  color: var(--light-error-font-color);
+  background-color: var(--light-error-background-color);
+}
