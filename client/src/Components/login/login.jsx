@@ -80,28 +80,28 @@ class Login extends Component {
               </label>
               <input
                 ref={this.inputEmailRef}
-                id='email'
-                type='email'
-                placeholder='E-mail address'
-                className='login-form-email-input'
+                id="email"
+                type="email"
+                placeholder="E-mail address"
+                className="login-form-email-input"
               />
             </div>
-            <div className='input-form'>
-              <label htmlFor='password'>
-                <i className='fas fa-key login-icon'></i>
+            <div className="input-form">
+              <label htmlFor="password">
+                <i className="fas fa-key login-icon"></i>
               </label>
               <input
                 ref={this.inputPawRef}
-                id='password'
-                type='password'
-                placeholder='Password'
-                className='login-form-pwd-input'
+                id="password"
+                type="password"
+                placeholder="Password"
+                className="login-form-pwd-input"
               />
             </div>
-            <button className='login-btn'>Login</button>
+            <button className="login-btn">Login</button>
           </form>
           <span
-            className='sing-up-link'
+            className="sing-up-link"
             onClick={() => {
               this.props.history.push('/signup');
             }}

@@ -23,6 +23,8 @@
   --middle-light-pink-color: #ffccbc;
   --play-background-color: #fff9f8;
   --light-pink-color: #ffece9;
+  --light-error-background-color: rgb(248, 166, 166);
+  --light-error-font-color: #a52a2a;
   --font-size--middle: 1.2rem;
   --font-size-small: 1.1rem;
   --font-size-regular: 300;
