@@ -71,9 +71,12 @@ class EditUserInfo extends Component {
         isNickNameCheck: true,
       });
       axios
-        .post(`/nod/user/existNickName`, {
-          nickname: e.target.value,
-        })
+        .post(
+          `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/existNickName`,
+          {
+            nickname: e.target.value,
+          }
+        )
         .then((response) => {
           if (!response.data.result) {
             this.setState({
@@ -96,10 +99,13 @@ class EditUserInfo extends Component {
   handleEditNicknameChange = (event) => {
     if (this.state.isNickNameCheck) {
       axios
-        .post('/nod/user/modNickname', {
-          userId: this.props.userInfo.id,
-          nickname: this.nicknameInput.current.value,
-        })
+        .post(
+          'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/modNickname',
+          {
+            userId: this.props.userInfo.id,
+            nickname: this.nicknameInput.current.value,
+          }
+        )
         .then((response) => {
           if (response.data.success) {
             // 업데이트가 성공 되었다면
@@ -159,10 +165,13 @@ class EditUserInfo extends Component {
     console.log(elList[2].value);
     if (this.state.isPasswordCheck) {
       axios
-        .post('/nod/user/modPassword', {
-          userId: this.props.userInfo.id,
-          password: elList[2].value,
-        })
+        .post(
+          'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/modPassword',
+          {
+            userId: this.props.userInfo.id,
+            password: elList[2].value,
+          }
+        )
         .then((response) => {
           console.log(response.data);
           if (response.data.success) {
@@ -196,7 +205,7 @@ class EditUserInfo extends Component {
   handleDeleteUser = (event) => {
     const config = {
       method: 'post',
-      url: '/nod/user/deleteUser',
+      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/deleteUser',
       data: {
         userId: this.props.userInfo.id,
       },

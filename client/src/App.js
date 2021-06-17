@@ -46,9 +46,12 @@ class App extends Component {
 
   handleSignUp = (userInfo) => {
     axios
-      .post(`/nod/user/signup`, {
-        ...userInfo,
-      })
+      .post(
+        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/signup`,
+        {
+          ...userInfo,
+        }
+      )
       .then((response) => {
         if (response.data.id) {
           console.log('signup success');
@@ -59,14 +62,19 @@ class App extends Component {
   };
 
   handleUserInfo = (userId) => {
-    axios.post(`/nod/user/userinfo`, { userId }).then((response) => {
-      console.log(response.data);
-      if (response.data.success) {
-        this.setState({ userInfo: { ...response.data.data } });
-      } else {
-        this.setState({ userInfo: null });
-      }
-    });
+    axios
+      .post(
+        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/userinfo`,
+        { userId }
+      )
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.success) {
+          this.setState({ userInfo: { ...response.data.data } });
+        } else {
+          this.setState({ userInfo: null });
+        }
+      });
   };
 
   // logout handler
@@ -117,6 +125,7 @@ class App extends Component {
               <MyList
                 userInfo={this.state.userInfo}
                 updateMyList={this.updateMyList}
+                myList={this.state.myList}
               />
             )}
           />

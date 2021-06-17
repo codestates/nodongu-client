@@ -19,22 +19,27 @@ class Login extends Component {
       isLoading: true,
     });
 
-    axios.post('/nod/user/login', { email, password }).then((response) => {
-      console.log(response);
+    axios
+      .post(
+        'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/login',
+        { email, password }
+      )
+      .then((response) => {
+        console.log(response);
 
-      if (response.data.loginSuccess) {
-        this.props.onUserInfo(response.data.userId);
+        if (response.data.loginSuccess) {
+          this.props.onUserInfo(response.data.userId);
+          this.setState({
+            isLoading: false,
+          });
+          console.log('######TOKEN');
+          console.log(Cookies.get('refreshToken'));
+          return this.props.history.push('/keyword');
+        }
         this.setState({
           isLoading: false,
         });
-        console.log('######TOKEN');
-        console.log(Cookies.get('refreshToken'));
-        return this.props.history.push('/keyword');
-      }
-      this.setState({
-        isLoading: false,
       });
-    });
   };
 
   onSubmit = (e) => {
@@ -53,7 +58,12 @@ class Login extends Component {
       <div className='login-container'>
         <div className='login-form'>
           <h1 className='login-form-title'>Login</h1>
-          <form className='form' ref={this.formRef} onSubmit={this.onSubmit}>
+          <form
+            className='form'
+            ref={this.formRef}
+            onSubmit={this.onSubmit}
+            method='POST'
+          >
             <div className='input-form'>
               <label htmlFor='email'>
                 <i className='fas fa-envelope login-icon'></i>
