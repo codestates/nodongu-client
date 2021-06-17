@@ -4,6 +4,8 @@ import './editUserInfo.css';
 import axios from 'axios';
 import quokkaImg from '../../Utils/images/quokka.jpg';
 
+axios.defaults.withCredentials = true;
+
 class EditUserInfo extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +31,6 @@ class EditUserInfo extends Component {
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
-        console.log(reader.result);
         this.setState({
           userInfo: {
             ...this.state.userInfo,

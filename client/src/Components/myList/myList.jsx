@@ -8,6 +8,8 @@ import List from './views/list';
 import axios from 'axios';
 import Loading from '../loading/loading';
 
+axios.defaults.withCredentials = true;
+
 class MyList extends Component {
   state = {
     isLoading: false,

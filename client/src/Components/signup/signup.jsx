@@ -4,6 +4,8 @@ import axios from 'axios';
 import './signup.css';
 import Loading from '../loading/loading';
 
+axios.defaults.withCredentials = true;
+
 class Signup extends Component {
   state = {
     isEmailCheck: false,

@@ -4,6 +4,8 @@ import './popup.css';
 import quokka from '../../Utils/images/quokka.jpg';
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 class Popup extends Component {
   handleLogout = () => {
     const config = {

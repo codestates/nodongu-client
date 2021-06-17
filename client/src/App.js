@@ -13,6 +13,8 @@ import MyList from './Components/myList/myList';
 import MainPlayer from './Components/mainPlayer/mainPlayer';
 import Cookies from 'js-cookie';
 
+axios.defaults.withCredentials = true;
+
 class App extends Component {
   state = {
     isLoading: false,
@@ -62,19 +64,21 @@ class App extends Component {
   };
 
   handleUserInfo = (userId) => {
-    axios
-      .post(
-        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/userinfo`,
-        { userId }
-      )
-      .then((response) => {
-        console.log(response.data);
-        if (response.data.success) {
-          this.setState({ userInfo: { ...response.data.data } });
-        } else {
-          this.setState({ userInfo: null });
-        }
-      });
+    const config = {
+      method: 'POST',
+      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/userinfo',
+      data: {
+        userId,
+      },
+    };
+    axios(config).then((response) => {
+      console.log(response);
+      if (response.data.success) {
+        this.setState({ userInfo: { ...response.data.data } });
+      } else {
+        this.setState({ userInfo: null });
+      }
+    });
   };
 
   // logout handler

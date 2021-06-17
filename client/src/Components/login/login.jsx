@@ -5,7 +5,13 @@ import './login.css';
 import Loading from '../loading/loading';
 import Cookies from 'js-cookie';
 
+axios.defaults.withCredentials = true;
+
 class Login extends Component {
+  componentDidMount() {
+    axios.get('/').then((response) => console.log(response));
+  }
+
   state = {
     isLoading: false,
   };
@@ -19,27 +25,31 @@ class Login extends Component {
       isLoading: true,
     });
 
-    axios
-      .post(
-        'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/login',
-        { email, password }
-      )
-      .then((response) => {
-        console.log(response);
+    const config = {
+      method: 'POST',
+      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/login',
+      data: {
+        email,
+        password,
+      },
+    };
 
-        if (response.data.loginSuccess) {
-          this.props.onUserInfo(response.data.userId);
-          this.setState({
-            isLoading: false,
-          });
-          console.log('######TOKEN');
-          console.log(Cookies.get('refreshToken'));
-          return this.props.history.push('/keyword');
-        }
+    axios(config).then((response) => {
+      console.log(response);
+
+      if (response.data.loginSuccess) {
+        this.props.onUserInfo(response.data.userId);
         this.setState({
           isLoading: false,
         });
+        console.log('######TOKEN');
+        console.log(Cookies.get('refreshToken'));
+        return this.props.history.push('/keyword');
+      }
+      this.setState({
+        isLoading: false,
       });
+    });
   };
 
   onSubmit = (e) => {
