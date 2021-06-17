@@ -7,14 +7,35 @@ import './myList.css';
 import List from './views/list';
 import axios from 'axios';
 import Loading from '../loading/loading';
+import Cookies from 'js-cookie';
 
 axios.defaults.withCredentials = true;
 
 class MyList extends Component {
-  state = {
-    isLoading: false,
-    myList: [],
-  };
+  constructor(props) {
+    super(props);
+    axios
+      .get(
+        'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/auth',
+        {
+          headers: {
+            authorization: Cookies.get('authorization'),
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.success) {
+          this.props.updateUserInfo(response.data.userInfo);
+        } else {
+          return this.props.history.push('/');
+        }
+      });
+
+    this.state = {
+      isLoading: false,
+      myList: [],
+    };
+  }
 
   componentDidMount() {
     this.setState({
