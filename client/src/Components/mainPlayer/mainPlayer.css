@@ -101,9 +101,6 @@
   background-color: skyblue;
 }
 
-/* .iframe-player {
-} */
-
 .play-duration {
   width: 100%;
   background-color: var(--middle-pink-color);
@@ -252,12 +249,14 @@
 }
 
 @media screen and (max-width: 1390px) {
-  .newsletter-form {
+  .main-player-container {
     flex-wrap: wrap;
   }
+
   .txtb {
     flex: 1;
   }
+
   .newsletter-form-btn {
     margin-left: -5px;
     width: 100%;

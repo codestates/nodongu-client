@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './mainPlayer.css';
-import albumImage from '../../Utils/images/album-image.png';
 import AddPlayer from '../addPlayer/addPlayer';
 import Song from './views/song';
 import MusicThumbnail from './views/musicThumbnail';
+import PlayFrame from './views/playFrame';
 
 class MainPlayer extends Component {
   state = {
@@ -73,19 +73,12 @@ class MainPlayer extends Component {
                 className='play-range-btn play-range-frame'
                 onClick={this.handleMusicSwitch}
               >
-                <iframe
-                  id='iframe'
-                  style={{
-                    position: 'absolute',
-                    top: 2,
-                    left: -20,
-                    width: '300px',
-                    height: '28px',
-                    opacity: 1,
-                  }}
-                  src={`https://www.youtube.com/embed/ih-vI0LvbZI?autoplay=1&mute=0`}
-                  frameBorder='0'
-                  className='iframe-player'
+                <PlayFrame
+                  videoId={
+                    this.state.currentMusic.id
+                      ? this.state.currentMusic.id
+                      : this.state.musicList[0].id
+                  }
                 />
                 <div className='iframe-player-hidden'></div>
                 <button className='pre-music-btn'>
@@ -97,16 +90,28 @@ class MainPlayer extends Component {
                 <button className='next-music-btn'>
                   <i className='fas fa-step-forward'></i>
                 </button>
-                <span className='music-time'>2:34/3:37</span>
+                <span className="music-time">
+                  {this.state.currentMusic.duration}
+                </span>
               </div>
             </div>
-            <div className='play-song-info'>
-              <div className='play-song-info-content'>
-                <img src={albumImage} className='song-info-img' alt='album' />
-                <div className='song-info-content'>
-                  <div className='song-info-title'>Butter</div>
-                  <div className='song-info-singer'>
-                    방탄소년단(BTS) • Butter(Hotter, Sweeter, Cooler) • 2021
+            <div className="play-song-info">
+              <div className="play-song-info-content">
+                <img
+                  src={
+                    this.state.currentMusic.id
+                      ? this.state.currentMusic.thumbnail.url
+                      : this.state.musicList[0].thumbnail.url
+                  }
+                  className="song-info-img"
+                  alt="album"
+                />
+                <div className="song-info-content">
+                  <div className="song-info-title">Butter</div>
+                  <div className="song-info-singer">
+                    {this.state.currentMusic.title
+                      ? this.state.currentMusic.title
+                      : this.state.musicList[0].title}
                   </div>
                 </div>
                 <div className='song-add'>

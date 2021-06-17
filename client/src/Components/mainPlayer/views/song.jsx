@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MusicThumbnail from './musicThumbnail';
 
 class Song extends Component {
   state = {
@@ -63,7 +62,7 @@ class Song extends Component {
   };
 
   render() {
-    const { id, title, duration } = this.props.music;
+    const { title } = this.props.music;
     const thumbnail = this.props.music.thumbnail.url;
 
     return (
