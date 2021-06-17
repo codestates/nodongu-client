@@ -1,14 +1,32 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 import './editUserInfo.css';
 import axios from 'axios';
 import quokkaImg from '../../Utils/images/quokka.jpg';
+import Cookies from 'js-cookie';
 
 axios.defaults.withCredentials = true;
 
-class EditUserInfo extends Component {
+class EditUserInfo extends PureComponent {
   constructor(props) {
     super(props);
+
+    axios
+      .get(
+        'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/auth',
+        {
+          headers: {
+            authorization: Cookies.get('authorization'),
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.success) {
+          this.props.updateUserInfo(response.data.userInfo);
+        } else {
+          return this.props.history.push('/');
+        }
+      });
 
     this.imageValueRef = React.createRef();
     this.nicknameRef = React.createRef();
@@ -31,16 +49,28 @@ class EditUserInfo extends Component {
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
-        this.setState({
-          userInfo: {
-            ...this.state.userInfo,
-            image: reader.result,
-          },
-        });
+        // 이미지 변경 요청
+        axios
+          .post(
+            'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/existNickName',
+            {
+              userId: this.props.userInfo.id,
+              image: reader.result,
+            }
+          )
+          .then((response) => {
+            if (response.data.success) {
+              this.setState({
+                userInfo: {
+                  ...this.state.userInfo,
+                  image: reader.result,
+                },
+              });
+            }
+          });
       }
     };
-    reader.readAsDataURL(event.target.files[0]);
-    // 이미지 변경 요청
+    // reader.readAsDataURL(event.target.files[0]);
   };
 
   handleDeleteImage = (event) => {

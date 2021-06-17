@@ -3,17 +3,37 @@ import { withRouter } from 'react-router';
 import axios from 'axios';
 import './signup.css';
 import Loading from '../loading/loading';
+import Cookies from 'js-cookie';
 
 axios.defaults.withCredentials = true;
 
 class Signup extends Component {
-  state = {
-    isEmailCheck: false,
-    isNickNameCheck: false,
-    isPasswordCheck: false,
-    isPasswordConfirm: false,
-    isLoading: false,
-  };
+  constructor(props) {
+    super(props);
+    axios
+      .get(
+        'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/auth',
+        {
+          headers: {
+            authorization: Cookies.get('authorization'),
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.success) {
+          this.props.updateUserInfo(response.data.userInfo);
+          return this.props.history.push('/keyword');
+        }
+      });
+
+    this.state = {
+      isEmailCheck: false,
+      isNickNameCheck: false,
+      isPasswordCheck: false,
+      isPasswordConfirm: false,
+      isLoading: false,
+    };
+  }
 
   formRef = React.createRef();
   inputEmailRef = React.createRef();
@@ -205,64 +225,64 @@ class Signup extends Component {
     return this.props.isLoading ? (
       <Loading />
     ) : (
-      <div className="sign-up-container">
-        <div className="sign-up">
-          <h1 className="sign-up-title">Sign Up</h1>
+      <div className='sign-up-container'>
+        <div className='sign-up'>
+          <h1 className='sign-up-title'>Sign Up</h1>
           <form
             ref={this.formRef}
-            className="sign-up-form"
+            className='sign-up-form'
             onSubmit={this.onSubmit}
           >
-            <div className="sign-up-input">
-              <label htmlFor="email">Email</label>
+            <div className='sign-up-input'>
+              <label htmlFor='email'>Email</label>
               <input
                 ref={this.inputEmailRef}
-                id="email"
-                type="text"
+                id='email'
+                type='text'
                 onChange={this.onExistEmailCheck}
-                className="email-input-box"
+                className='email-input-box'
               />
             </div>
-            <div className="sign-up-input">
-              <label htmlFor="ninkname">Nick Name</label>
+            <div className='sign-up-input'>
+              <label htmlFor='ninkname'>Nick Name</label>
               <input
                 ref={this.inputNickNameRef}
-                id="ninkname"
-                type="text"
+                id='ninkname'
+                type='text'
                 onChange={this.onExistNickNameCheck}
               />
               {/* <p className="exist-nickname exist-nickname-false-hidden">
                 이미 있는 닉네임입니다 :(
               </p> */}
-              <p className="nickname-rule">
+              <p className='nickname-rule'>
                 닉네임 길이는 3글자 이상, 영어 또는 숫자만 가능합니다 :)
               </p>
             </div>
-            <div className="sign-up-input">
-              <label htmlFor="pwd">Password</label>
+            <div className='sign-up-input'>
+              <label htmlFor='pwd'>Password</label>
               <input
                 ref={this.inputPwdRef}
-                id="pwd"
-                type="password"
+                id='pwd'
+                type='password'
                 onChange={this.onPasswordCheck}
               />
-              <p className="pwd-rule">
+              <p className='pwd-rule'>
                 5자 이상 / 알파벳 / 숫자 / 특수문자(@$!%*#?&)는 하나 이상
                 포함해주세요 :)
               </p>
             </div>
-            <div className="sign-up-input">
-              <label htmlFor="pwdConfirm">Pwd Confirm</label>
+            <div className='sign-up-input'>
+              <label htmlFor='pwdConfirm'>Pwd Confirm</label>
               <input
-                className="sign-up-input-tag"
+                className='sign-up-input-tag'
                 ref={this.inputPwdConfirmRef}
-                id="pwdConfirm"
-                type="password"
+                id='pwdConfirm'
+                type='password'
                 onChange={this.onPasswordConfirm}
               />
             </div>
             <>
-              <button className="sign-up-btn">Sign Up</button>
+              <button className='sign-up-btn'>Sign Up</button>
             </>
           </form>
         </div>

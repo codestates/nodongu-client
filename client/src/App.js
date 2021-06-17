@@ -95,17 +95,32 @@ class App extends Component {
           <Route
             exact
             path='/'
-            render={() => <Login onUserInfo={this.handleUserInfo} />}
+            render={() => (
+              <Login
+                updateUserInfo={this.updateUserInfo}
+                onUserInfo={this.handleUserInfo}
+              />
+            )}
           />
           <Route
             exact
             path='/signup'
-            render={() => <Signup onSignUp={this.handleSignUp} />}
+            render={() => (
+              <Signup
+                updateUserInfo={this.updateUserInfo}
+                onSignUp={this.handleSignUp}
+              />
+            )}
           />
           <Route
             exact
             path='/keyword'
-            render={() => <Keyword updateMyList={this.updateMyList} />}
+            render={() => (
+              <Keyword
+                updateUserInfo={this.updateUserInfo}
+                updateMyList={this.updateMyList}
+              />
+            )}
           />
           <Route
             exact
@@ -120,13 +135,19 @@ class App extends Component {
           <Route
             exact
             path='/mainPlayer'
-            render={() => <MainPlayer musicList={this.state.musicList} />}
+            render={() => (
+              <MainPlayer
+                updateUserInfo={this.updateUserInfo}
+                musicList={this.state.musicList}
+              />
+            )}
           />
           <Route
             exact
             path='/myList'
             render={() => (
               <MyList
+                updateUserInfo={this.updateUserInfo}
                 userInfo={this.state.userInfo}
                 updateMyList={this.updateMyList}
                 myList={this.state.myList}

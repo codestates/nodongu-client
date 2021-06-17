@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 import './login.css';
@@ -7,9 +7,29 @@ import Cookies from 'js-cookie';
 
 axios.defaults.withCredentials = true;
 
-class Login extends Component {
-  componentDidMount() {
-    axios.get('/').then((response) => console.log(response));
+class Login extends PureComponent {
+  constructor(props) {
+    super(props);
+    const authorization = Cookies.get('authorization');
+    console.log(authorization);
+    axios
+      .get(
+        'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/auth',
+        {
+          headers: {
+            authorization: authorization ? authorization : '',
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.success) {
+          console.log(response.data.success);
+          console.log(response.data.userInfo);
+          this.props.updateUserInfo(response.data.userInfo);
+          return this.props.history.push('/keyword');
+        }
+        console.log(response.data.success);
+      });
   }
 
   state = {
@@ -35,14 +55,13 @@ class Login extends Component {
     };
 
     axios(config).then((response) => {
-      console.log(response);
-
       if (response.data.loginSuccess) {
+        Cookies.set('authorization', response.headers.authorization);
         this.props.onUserInfo(response.data.userId);
         this.setState({
           isLoading: false,
         });
-        console.log('######TOKEN');
+        // Cookies.set('x_auth', , { expires: 7 });
         console.log(Cookies.get('refreshToken'));
         return this.props.history.push('/keyword');
       }
@@ -80,28 +99,28 @@ class Login extends Component {
               </label>
               <input
                 ref={this.inputEmailRef}
-                id="email"
-                type="email"
-                placeholder="E-mail address"
-                className="login-form-email-input"
+                id='email'
+                type='email'
+                placeholder='E-mail address'
+                className='login-form-email-input'
               />
             </div>
-            <div className="input-form">
-              <label htmlFor="password">
-                <i className="fas fa-key login-icon"></i>
+            <div className='input-form'>
+              <label htmlFor='password'>
+                <i className='fas fa-key login-icon'></i>
               </label>
               <input
                 ref={this.inputPawRef}
-                id="password"
-                type="password"
-                placeholder="Password"
-                className="login-form-pwd-input"
+                id='password'
+                type='password'
+                placeholder='Password'
+                className='login-form-pwd-input'
               />
             </div>
-            <button className="login-btn">Login</button>
+            <button className='login-btn'>Login</button>
           </form>
           <span
-            className="sing-up-link"
+            className='sing-up-link'
             onClick={() => {
               this.props.history.push('/signup');
             }}
