@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './popup.css';
-import quokka from '../../Utils/images/quokka.jpg';
+import quokkaImg from '../../Utils/images/quokka.jpg';
 import axios from 'axios';
+import dotenv from 'dotenv';
+import Cookie from 'js-cookie';
+dotenv.config();
 
 axios.defaults.withCredentials = true;
 
 class Popup extends Component {
   handleLogout = () => {
-    const config = {
-      method: 'post',
-      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/signOut',
-      withCredentials: true,
-    };
-    axios(config).then((response) => {
-      console.log(response.data);
-    });
+    Cookie.remove('authorization');
+    this.props.history.push('/');
+  };
+
+  arrayBufferToBase643 = (data) => {
+    const img = new Buffer.from(data).toString('ascii');
+    return img;
   };
 
   render() {
@@ -47,8 +49,10 @@ class Popup extends Component {
             className='popup-user-img'
             src={
               !this.props.userData.image
-                ? `${quokka}`
-                : `${this.props.userData.image}`
+                ? quokkaImg
+                : this.props.userData.image.data
+                ? this.arrayBufferToBase643(this.props.userData.image.data)
+                : this.props.userData.image
             }
             alt='userProfile'
           ></img>

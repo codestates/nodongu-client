@@ -4,6 +4,11 @@ import './editUserInfo.css';
 import axios from 'axios';
 import quokkaImg from '../../Utils/images/quokka.jpg';
 import Cookies from 'js-cookie';
+import Loading from '../loading/loading';
+import fs from 'fs';
+import { Buffer } from 'buffer';
+import dotenv from 'dotenv';
+dotenv.config();
 
 axios.defaults.withCredentials = true;
 
@@ -11,30 +16,8 @@ class EditUserInfo extends PureComponent {
   constructor(props) {
     super(props);
 
-    axios
-      .get(
-        'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/auth',
-        {
-          headers: {
-            authorization: Cookies.get('authorization'),
-          },
-        }
-      )
-      .then((response) => {
-        if (response.data.success) {
-          this.props.updateUserInfo(response.data.userInfo);
-        } else {
-          return this.props.history.push('/');
-        }
-      });
-
-    this.imageValueRef = React.createRef();
-    this.nicknameRef = React.createRef();
-    this.nicknameInput = React.createRef();
-    this.nicknameButtonRef = React.createRef();
-    this.nicknameEditButton = React.createRef();
-
     this.state = {
+      isLoading: true,
       userInfo: {
         ...this.props.userInfo,
         password: '********',
@@ -42,44 +25,81 @@ class EditUserInfo extends PureComponent {
       isNickNameCheck: false,
       isPasswordCheck: false,
     };
+
+    this.imageValueRef = React.createRef();
+    this.nicknameRef = React.createRef();
+    this.nicknameInput = React.createRef();
+    this.nicknameButtonRef = React.createRef();
+    this.nicknameEditButton = React.createRef();
   }
+
+  componentDidMount() {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/nod/user/auth`, {
+        headers: {
+          authorization: Cookies.get('authorization'),
+        },
+      })
+      .then((response) => {
+        if (response.data.success) {
+          this.props.updateUserInfo(response.data.userInfo);
+          this.setState({
+            isLoading: false,
+          });
+        } else {
+          this.setState({
+            isLoading: false,
+          });
+          return this.props.history.push('/');
+        }
+      });
+  }
+
+  //1. 제가 auth 요청을 통해 토큰을 날려드립니다.
+  //2. 해당 토큰을 디코드합니다.
+  //3. 아이디를 비교 -> 정보를가져와야한다.
+  //4. 응답으로 결과값 조회된 유저정보가
 
   // Image 업데이트 관련
   imageHandler = (event) => {
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
-        // 이미지 변경 요청
         axios
-          .post(
-            'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/existNickName',
-            {
-              userId: this.props.userInfo.id,
-              image: reader.result,
-            }
-          )
+          .post(`${process.env.REACT_APP_API_URL}/nod/user/modImage`, {
+            userId: this.props.userInfo.id,
+            image: reader.result,
+          })
           .then((response) => {
+            console.log(response.data);
             if (response.data.success) {
-              this.setState({
-                userInfo: {
-                  ...this.state.userInfo,
-                  image: reader.result,
-                },
+              this.props.updateUserInfo({
+                ...this.props.userInfo,
+                image: reader.result,
               });
             }
           });
       }
     };
-    // reader.readAsDataURL(event.target.files[0]);
+    reader.readAsDataURL(event.target.files[0]);
   };
 
   handleDeleteImage = (event) => {
-    this.setState({
-      userInfo: {
-        ...this.state.userInfo,
-        image: quokkaImg,
-      },
-    });
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/nod/user/modImage`, {
+        userId: this.props.userInfo.id,
+        image: '',
+      })
+      .then((response) => {
+        console.log('dasdasdad');
+        if (response.data.success) {
+          console.log('asdasdsa');
+          this.props.updateUserInfo({
+            ...this.state.userInfo,
+            image: '',
+          });
+        }
+      });
   };
 
   // nickname 업데이트 관련
@@ -102,12 +122,9 @@ class EditUserInfo extends PureComponent {
         isNickNameCheck: true,
       });
       axios
-        .post(
-          `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/existNickName`,
-          {
-            nickname: e.target.value,
-          }
-        )
+        .post(`${process.env.REACT_APP_API_URL}/nod/user/existNickName`, {
+          nickname: e.target.value,
+        })
         .then((response) => {
           if (!response.data.result) {
             this.setState({
@@ -130,13 +147,10 @@ class EditUserInfo extends PureComponent {
   handleEditNicknameChange = (event) => {
     if (this.state.isNickNameCheck) {
       axios
-        .post(
-          'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/modNickname',
-          {
-            userId: this.props.userInfo.id,
-            nickname: this.nicknameInput.current.value,
-          }
-        )
+        .post(`${process.env.REACT_APP_API_URL}/nod/user/modNickname`, {
+          userId: this.props.userInfo.id,
+          nickname: this.nicknameInput.current.value,
+        })
         .then((response) => {
           if (response.data.success) {
             // 업데이트가 성공 되었다면
@@ -196,13 +210,10 @@ class EditUserInfo extends PureComponent {
     console.log(elList[2].value);
     if (this.state.isPasswordCheck) {
       axios
-        .post(
-          'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/modPassword',
-          {
-            userId: this.props.userInfo.id,
-            password: elList[2].value,
-          }
-        )
+        .post(`${process.env.REACT_APP_API_URL}/nod/user/modPassword`, {
+          userId: this.props.userInfo.id,
+          password: elList[2].value,
+        })
         .then((response) => {
           console.log(response.data);
           if (response.data.success) {
@@ -236,7 +247,7 @@ class EditUserInfo extends PureComponent {
   handleDeleteUser = (event) => {
     const config = {
       method: 'post',
-      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/deleteUser',
+      url: `${process.env.REACT_APP_API_URL}/nod/user/deleteUser`,
       data: {
         userId: this.props.userInfo.id,
       },
@@ -256,14 +267,34 @@ class EditUserInfo extends PureComponent {
     });
   };
 
+  arrayBufferToBase643 = (data) => {
+    const img = new Buffer.from(data).toString('ascii');
+    return img;
+  };
+
   render() {
-    const { image } = this.state.userInfo;
-    return (
+    // const fileContents = new Buffer(this.props.userInfo.image.data, 'base64');
+    // fs.writeFile('userImage', fileContents, (err) => {
+    //   if (err) return console.error(err);
+    //   console.log('file saved to ', 'userImage');
+    // });
+    return this.state.isLoading ? (
+      <Loading />
+    ) : (
       <div className='edit-container'>
         <div className='edit-card'>
           <div className='edit-card__header'>
             <div className='header__picture'>
-              <img src={image ? image : quokkaImg} alt='profile' />
+              <img
+                src={
+                  !this.props.userInfo.image
+                    ? quokkaImg
+                    : this.props.userInfo.image.data
+                    ? this.arrayBufferToBase643(this.props.userInfo.image.data)
+                    : this.props.userInfo.image
+                }
+                alt='profile'
+              />
               <input
                 ref={this.imageValueRef}
                 type='file'
@@ -284,7 +315,7 @@ class EditUserInfo extends PureComponent {
               <h2 className='nickname__nickname'>
                 <span
                   ref={this.nicknameRef}
-                >{`${this.state.userInfo.nickname}님, 어서오세요!`}</span>
+                >{`${this.props.userInfo.nickname}님, 어서오세요!`}</span>
                 <input
                   ref={this.nicknameInput}
                   className='nickname__input hidden'
@@ -318,7 +349,7 @@ class EditUserInfo extends PureComponent {
               <li className='info__email'>
                 <div>
                   <h2>이메일</h2>
-                  <span>{this.state.userInfo.email}</span>
+                  <span>{this.props.userInfo.email}</span>
                 </div>
                 <hr />
               </li>
