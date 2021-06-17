@@ -5,7 +5,13 @@ import './login.css';
 import Loading from '../loading/loading';
 import Cookies from 'js-cookie';
 
+axios.defaults.withCredentials = true;
+
 class Login extends Component {
+  componentDidMount() {
+    axios.get('/').then((response) => console.log(response));
+  }
+
   state = {
     isLoading: false,
   };
@@ -19,7 +25,16 @@ class Login extends Component {
       isLoading: true,
     });
 
-    axios.post('/nod/user/login', { email, password }).then((response) => {
+    const config = {
+      method: 'POST',
+      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/login',
+      data: {
+        email,
+        password,
+      },
+    };
+
+    axios(config).then((response) => {
       console.log(response);
 
       if (response.data.loginSuccess) {
@@ -50,13 +65,18 @@ class Login extends Component {
     return this.state.isLoading ? (
       <Loading />
     ) : (
-      <div className="login-container">
-        <div className="login-form">
-          <h1 className="login-form-title">Login</h1>
-          <form className="form" ref={this.formRef} onSubmit={this.onSubmit}>
-            <div className="input-form ">
-              <label htmlFor="email">
-                <i className="fas fa-envelope login-icon"></i>
+      <div className='login-container'>
+        <div className='login-form'>
+          <h1 className='login-form-title'>Login</h1>
+          <form
+            className='form'
+            ref={this.formRef}
+            onSubmit={this.onSubmit}
+            method='POST'
+          >
+            <div className='input-form'>
+              <label htmlFor='email'>
+                <i className='fas fa-envelope login-icon'></i>
               </label>
               <input
                 ref={this.inputEmailRef}
