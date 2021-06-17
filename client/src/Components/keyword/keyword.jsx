@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import './keyword.css';
 import Loading from '../loading/loading';
+import Cookies from 'js-cookie';
+import dotenv from 'dotenv';
+dotenv.config();
 
 axios.defaults.withCredentials = true;
 
@@ -13,6 +16,28 @@ class Keyword extends Component {
     this.state = {
       isLoading: false,
     };
+
+    this.setState({
+      isLoading: true,
+    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/nod/user/auth`, {
+        headers: {
+          authorization: Cookies.get('authorization'),
+        },
+      })
+      .then((response) => {
+        if (response.data.success) {
+          this.props.updateUserInfo(response.data.userInfo);
+          console.log(response.data.success);
+          console.log(response.data.userInfo);
+          this.setState({
+            isLoading: false,
+          });
+        } else {
+          return this.props.history.push('/');
+        }
+      });
   }
 
   handleKeywordClick = (event) => {
@@ -23,7 +48,7 @@ class Keyword extends Component {
       const keyword = event.target.textContent;
       let config = {
         method: 'post',
-        url: 'http://ec2-54-180-95-187.ap-northeast-2.compute.amazonaws.com/nod/keywordMusic',
+        url: `${process.env.REACT_APP_API_URL}/nod/keywordMusic`,
         data: {
           keyword,
         },

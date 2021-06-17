@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './addPlayer.css';
+import dotenv from 'dotenv';
+dotenv.config();
 
 class AddPlayer extends Component {
   state = {

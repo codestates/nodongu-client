@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './mainPlayer.css';
+import albumImage from '../../Utils/images/album-image.png';
 import AddPlayer from '../addPlayer/addPlayer';
 import Song from './views/song';
 import MusicThumbnail from './views/musicThumbnail';
-import PlayFrame from './views/playFrame';
+import dotenv from 'dotenv';
+dotenv.config();
 
 class MainPlayer extends Component {
   state = {
@@ -53,9 +55,9 @@ class MainPlayer extends Component {
 
   render() {
     return (
-      <main className="main-player-container">
-        <div className="main-play">
-          <div className="play-img">
+      <main className='main-player-container'>
+        <div className='main-play'>
+          <div className='play-img'>
             <MusicThumbnail
               thumbnailImage={
                 this.state.currentMusic.id
@@ -64,9 +66,9 @@ class MainPlayer extends Component {
               }
             />
           </div>
-          <div className="main-play-list">
-            <p className="next-track">다음 트랙</p>
-            <ul className="play-list-ul">
+          <div className='main-play-list'>
+            <p className='next-track'>다음 트랙</p>
+            <ul className='play-list-ul'>
               {this.state.musicList.map((musicList) => {
                 return (
                   <Song
@@ -79,79 +81,74 @@ class MainPlayer extends Component {
             </ul>
           </div>
         </div>
-        <div className="play-container">
-          <div className="play-duration">
-            <div className="play-duration-bar"></div>
+        <div className='play-container'>
+          <div className='play-duration'>
+            <div className='play-duration-bar'></div>
           </div>
-          <div className="play-set-up">
-            <div className="play-range">
+          <div className='play-set-up'>
+            <div className='play-range'>
               <div
-                className="play-range-btn play-range-frame"
+                className='play-range-btn play-range-frame'
                 onClick={this.handleMusicSwitch}
               >
-                <PlayFrame
-                  videoId={
-                    this.state.currentMusic.id
-                      ? this.state.currentMusic.id
-                      : this.state.musicList[0].id
-                  }
+                <iframe
+                  id='iframe'
+                  style={{
+                    position: 'absolute',
+                    top: 2,
+                    left: -20,
+                    width: '300px',
+                    height: '28px',
+                    opacity: 1,
+                  }}
+                  src={`https://www.youtube.com/embed/ih-vI0LvbZI?autoplay=1&mute=0`}
+                  frameBorder='0'
+                  className='iframe-player'
                 />
-                <div className="iframe-player-hidden"></div>
-                <button className="pre-music-btn">
-                  <i className="fas fa-step-backward"></i>
+                <div className='iframe-player-hidden'></div>
+                <button className='pre-music-btn'>
+                  <i className='fas fa-step-backward'></i>
                 </button>
-                <button className="pause-music-btn">
-                  <i className="fas fa-pause"></i>
+                <button className='pause-music-btn'>
+                  <i className='fas fa-pause'></i>
                 </button>
-                <button className="next-music-btn">
-                  <i className="fas fa-step-forward"></i>
+                <button className='next-music-btn'>
+                  <i className='fas fa-step-forward'></i>
                 </button>
-                <span className="music-time">
-                  {this.state.currentMusic.duration}
-                </span>
+                <span className='music-time'>2:34/3:37</span>
               </div>
             </div>
-            <div className="play-song-info">
-              <div className="play-song-info-content">
-                <img
-                  src={
-                    this.state.currentMusic.id
-                      ? this.state.currentMusic.thumbnail.url
-                      : this.state.musicList[0].thumbnail.url
-                  }
-                  className="song-info-img"
-                  alt="album"
-                />
-                <div className="song-info-content">
-                  <div className="song-info-title">Butter</div>
-                  <div className="song-info-singer">
-                    {this.state.currentMusic.title
-                      ? this.state.currentMusic.title
-                      : this.state.musicList[0].title}
+            <div className='play-song-info'>
+              <div className='play-song-info-content'>
+                <img src={albumImage} className='song-info-img' alt='album' />
+                <div className='song-info-content'>
+                  <div className='song-info-title'>Butter</div>
+                  <div className='song-info-singer'>
+                    방탄소년단(BTS) • Butter(Hotter, Sweeter, Cooler) • 2021
                   </div>
                 </div>
-                <div className="song-add">
+                <div className='song-add'>
                   <button
-                    className="song-add-btn"
+                    className='song-add-btn'
                     onClick={() => {
                       this.handleOpenModal();
                       this.handleMyListRequest();
                     }}
                   >
-                    <i className="fas fa-plus"></i>
+                    <i className='fas fa-plus'></i>
                   </button>
                 </div>
               </div>
             </div>
-            <div className="play-song-setting">
+            <div className='play-song-setting'>
               <button>
-                <i className="fas fa-volume-up"></i>
+                <i className='fas fa-volume-up'></i>
               </button>
               <button>
-                <i className="fas fa-redo"></i>
+                <i className='fas fa-redo'></i>
               </button>
               <button>
-                <i className="fas fa-random"></i>
+                <i className='fas fa-random'></i>
               </button>
             </div>
           </div>

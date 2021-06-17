@@ -12,12 +12,13 @@ import Keyword from './Components/keyword/keyword';
 import MyList from './Components/myList/myList';
 import MainPlayer from './Components/mainPlayer/mainPlayer';
 import Cookies from 'js-cookie';
+import dotenv from 'dotenv';
+dotenv.config();
 
 axios.defaults.withCredentials = true;
 
 class App extends Component {
   state = {
-    isLoading: false,
     userInfo: {
       id: null,
       nickname: '',
@@ -25,7 +26,12 @@ class App extends Component {
     },
     myList: [],
     musicList: [],
-    refreshToken: Cookies.get('refreshToken'),
+  };
+
+  updateKeyword = (keyword) => {
+    this.setState({
+      keyword,
+    });
   };
 
   logoutUser = () => {
@@ -48,12 +54,9 @@ class App extends Component {
 
   handleSignUp = (userInfo) => {
     axios
-      .post(
-        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/signup`,
-        {
-          ...userInfo,
-        }
-      )
+      .post(`${process.env.REACT_APP_API_URL}/nod/user/signup`, {
+        ...userInfo,
+      })
       .then((response) => {
         if (response.data.id) {
           console.log('signup success');
@@ -66,7 +69,9 @@ class App extends Component {
   handleUserInfo = (userId) => {
     const config = {
       method: 'POST',
-      url: 'http://ec2-54-180-95-187.ap-northeast-2.compute.amazonaws.com/nod/user/userinfo',
+
+      url: `${process.env.REACT_APP_API_URL}/nod/user/userinfo`,
+
       data: {
         userId,
       },
@@ -76,7 +81,13 @@ class App extends Component {
       if (response.data.success) {
         this.setState({ userInfo: { ...response.data.data } });
       } else {
-        this.setState({ userInfo: null });
+        this.setState({
+          userInfo: {
+            id: null,
+            nickname: '',
+            email: '',
+          },
+        });
       }
     });
   };
@@ -94,18 +105,36 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path="/"
-            render={() => <Login onUserInfo={this.handleUserInfo} />}
+
+            path='/'
+            render={() => (
+              <Login
+                updateUserInfo={this.updateUserInfo}
+                onUserInfo={this.handleUserInfo}
+              />
+            )}
           />
           <Route
             exact
-            path="/signup"
-            render={() => <Signup onSignUp={this.handleSignUp} />}
+            path='/signup'
+            render={() => (
+              <Signup
+                updateUserInfo={this.updateUserInfo}
+                onSignUp={this.handleSignUp}
+              />
+            )}
           />
           <Route
             exact
-            path="/keyword"
-            render={() => <Keyword updateMyList={this.updateMyList} />}
+            path='/keyword'
+            render={() => (
+              <Keyword
+                updateUserInfo={this.updateUserInfo}
+                updateMyList={this.updateMyList}
+                updateKeyword={this.updateKeyword}
+              />
+            )}
+
           />
           <Route
             exact
@@ -119,9 +148,10 @@ class App extends Component {
           />
           <Route
             exact
-            path="/mainPlayer"
+            path='/mainPlayer'
             render={() => (
               <MainPlayer
+                updateUserInfo={this.updateUserInfo}
                 musicList={this.state.musicList}
                 userId={this.state.userInfo.id}
               />
@@ -132,6 +162,7 @@ class App extends Component {
             path="/myList"
             render={() => (
               <MyList
+                updateUserInfo={this.updateUserInfo}
                 userInfo={this.state.userInfo}
                 updateMyList={this.updateMyList}
                 myList={this.state.myList}

@@ -3,16 +3,10 @@ import { Link } from 'react-router-dom';
 import Popup from '../popup/popup';
 import './navbar.css';
 import logo from '../../Utils/images/logo_3.png';
-import quokka from '../../Utils/images/quokka.jpg';
+import quokkaImg from '../../Utils/images/quokka.jpg';
 
 class Navbar extends Component {
   state = {
-    fakeData: {
-      userId: 1,
-      nickname: 'jiye-7',
-      email: 'jyhi@gmail.com',
-      image: '',
-    },
     isProfileClick: false,
   };
 
@@ -31,11 +25,15 @@ class Navbar extends Component {
   handleClosePopup = (e) => {
     if (e.target.classList[1] || e.target.parentElement.classList) {
       this.profileRef.current.classList.remove('user-img-small');
-
       this.setState({
         isProfileClick: false,
       });
     }
+  };
+
+  arrayBufferToBase643 = (data) => {
+    const img = new Buffer.from(data).toString('ascii');
+    return img;
   };
 
   render() {
@@ -57,25 +55,29 @@ class Navbar extends Component {
               <Link to='/myList'>My List</Link>
             </li>
           </ul>
-          {
-            !this.props.userData.id ? <Link to="/"><span className="Login-btn">Login</span></Link> : (
-              <img
-            ref={this.profileRef}
-            className='user-img'
-            src={
-              !this.state.fakeData.image
-                ? `${quokka}`
-                : `${this.state.fakeData.image}`
-            }
-            alt='userProfile'
-            onClick={
-              this.state.isProfileClick
-                ? this.handleClosePopup
-                : this.handleOpenPopup
-            }
-          />
-            )
-          }
+          {!this.props.userData.id ? (
+            <Link to='/'>
+              <span className='Login-btn'>Login</span>
+            </Link>
+          ) : (
+            <img
+              ref={this.profileRef}
+              className='user-img'
+              src={
+                !this.props.userData.image
+                  ? quokkaImg
+                  : this.props.userData.image.data
+                  ? this.arrayBufferToBase643(this.props.userData.image.data)
+                  : this.props.userData.image
+              }
+              alt='userProfile'
+              onClick={
+                this.state.isProfileClick
+                  ? this.handleClosePopup
+                  : this.handleOpenPopup
+              }
+            />
+          )}
           <Popup
             profileClick={this.state.isProfileClick}
             onClosePopup={this.handleClosePopup}
