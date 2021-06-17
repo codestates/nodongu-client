@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './mainPlayer.css';
 import AddPlayer from '../addPlayer/addPlayer';
 import Song from './views/song';
@@ -10,6 +11,7 @@ class MainPlayer extends Component {
     isAddPlayerBtnClick: false,
     musicList: [...this.props.musicList],
     currentMusic: {},
+    myList: [],
   };
 
   handleChangeMusic = (currentMusic) => {
@@ -33,6 +35,20 @@ class MainPlayer extends Component {
   handleMusicSwitch = (e) => {
     console.log('click');
     console.log(e.target);
+  };
+
+  handleMyListRequest = async () => {
+    // post myList
+    let response = await axios.post(
+      'http://ec2-54-180-95-187.ap-northeast-2.compute.amazonaws.com/nod/getMyList',
+      {
+        userId: this.props.userId,
+      }
+    );
+
+    this.setState({
+      myList: [...response.data.data],
+    });
   };
 
   render() {
@@ -119,6 +135,7 @@ class MainPlayer extends Component {
                     className="song-add-btn"
                     onClick={() => {
                       this.handleOpenModal();
+                      this.handleMyListRequest();
                     }}
                   >
                     <i className="fas fa-plus"></i>
@@ -143,6 +160,9 @@ class MainPlayer extends Component {
         <AddPlayer
           isAddBtnClick={this.state.isAddPlayerBtnClick}
           onCloseAddPlayer={this.handleCloseModal}
+          myList={this.state.myList}
+          currentMusic={this.state.currentMusic}
+          userId={this.props.userId}
         />
       </main>
     );

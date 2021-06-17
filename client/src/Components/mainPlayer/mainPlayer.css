@@ -4,7 +4,7 @@
   margin-top: 90px;
   width: 100%;
   font-family: var(--font-family);
-  background-color: var(--play-background-color); /*rgb(43, 41, 41)*/
+  background-color: var(--play-background-color);
   padding: 10rem 10rem;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@
 }
 
 .main-player-container > * {
-  color: var(--light-white-color); /* 폰트 색 */
+  color: var(--light-white-color);
 }
 
 .main-play {
@@ -69,7 +69,6 @@
   width: 45px;
   height: 45px;
   margin-right: 0.8rem;
-  /* cursor: pointer; */
   flex: 1;
 }
 
@@ -113,7 +112,6 @@
 
 .play-set-up {
   padding: 0 25px;
-  /* width: 1030px; */
   width: 100%;
   padding-top: 0.5rem;
   display: flex;
@@ -146,7 +144,7 @@
 }
 
 .play-range button *:hover {
-  color: var(--light-white-color); /* var(--footer-font-color); */
+  color: var(--light-white-color);
 }
 
 .play-range button *:active {
@@ -155,7 +153,7 @@
 
 .music-time {
   font-size: medium;
-  color: var(--dark-gray-color); /* #fff; */
+  color: var(--dark-gray-color);
 }
 
 .play-song-info-content {
@@ -182,7 +180,7 @@
 
 .song-info-singer {
   font-size: small;
-  color: var(--light-white-color); /* #fff; */ /* 폰트 색 */
+  color: var(--light-white-color);
   margin-top: 0.2rem;
 }
 
@@ -193,7 +191,6 @@
 .song-add-btn > .fa-plus {
   width: 2rem;
   height: 2rem;
-  /* background-color: var(--middle-pink-color); */
   padding: 1px;
   border-radius: 50%;
   margin: 0 1.2rem;
@@ -202,11 +199,11 @@
 }
 
 .song-add-btn > * {
-  color: var(--light-white-color); /* 폰트 색 */
+  color: var(--light-white-color);
 }
 
 .song-add-btn > .fa-plus:hover {
-  color: var(--light-white-color); /* var(--footer-font-color); */
+  color: var(--light-white-color);
 }
 
 .song-add-btn > .fa-plus:active {
@@ -223,11 +220,11 @@
   transition: all 0.3s linear;
   font-size: large;
   cursor: pointer;
-  color: var(--light-white-color); /* 폰트 색 */
+  color: var(--light-white-color);
 }
 
 .play-song-setting button *:hover {
-  color: var(--light-white-color); /* var(--footer-font-color); */
+  color: var(--light-white-color);
 }
 
 .play-song-setting button *:active {
@@ -236,9 +233,6 @@
 
 .play-range-frame {
   position: relative;
-}
-
-#iframe {
 }
 
 .iframe-player-hidden {

@@ -66,7 +66,7 @@ class App extends Component {
   handleUserInfo = (userId) => {
     const config = {
       method: 'POST',
-      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/userinfo',
+      url: 'http://ec2-54-180-95-187.ap-northeast-2.compute.amazonaws.com/nod/user/userinfo',
       data: {
         userId,
       },
@@ -94,22 +94,22 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path='/'
+            path="/"
             render={() => <Login onUserInfo={this.handleUserInfo} />}
           />
           <Route
             exact
-            path='/signup'
+            path="/signup"
             render={() => <Signup onSignUp={this.handleSignUp} />}
           />
           <Route
             exact
-            path='/keyword'
+            path="/keyword"
             render={() => <Keyword updateMyList={this.updateMyList} />}
           />
           <Route
             exact
-            path='/editUserInfo'
+            path="/editUserInfo"
             render={() => (
               <EditUserInfo
                 userInfo={this.state.userInfo}
@@ -119,12 +119,17 @@ class App extends Component {
           />
           <Route
             exact
-            path='/mainPlayer'
-            render={() => <MainPlayer musicList={this.state.musicList} />}
+            path="/mainPlayer"
+            render={() => (
+              <MainPlayer
+                musicList={this.state.musicList}
+                userId={this.state.userInfo.id}
+              />
+            )}
           />
           <Route
             exact
-            path='/myList'
+            path="/myList"
             render={() => (
               <MyList
                 userInfo={this.state.userInfo}

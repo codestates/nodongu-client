@@ -29,7 +29,7 @@ class Login extends Component {
 
     const config = {
       method: 'POST',
-      url: 'http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/nod/user/login',
+      url: 'http://ec2-54-180-95-187.ap-northeast-2.compute.amazonaws.com/nod/user/login',
       data: {
         email,
         password,
