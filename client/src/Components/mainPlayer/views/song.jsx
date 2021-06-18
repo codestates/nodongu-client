@@ -63,7 +63,9 @@ class Song extends Component {
 
   render() {
     const { title } = this.props.music;
-    const thumbnail = this.props.music.thumbnail.url;
+    const thumbnail = !this.props.music.thumbnail.url ? this.props.music.thumbnail
+    : this.props.music.thumbnail.url
+    
 
     return (
       <li className="play-list-li">

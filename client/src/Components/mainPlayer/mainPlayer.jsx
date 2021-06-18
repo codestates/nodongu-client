@@ -1,20 +1,55 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import axios from 'axios';
 import './mainPlayer.css';
-import albumImage from '../../Utils/images/album-image.png';
 import AddPlayer from '../addPlayer/addPlayer';
 import Song from './views/song';
 import MusicThumbnail from './views/musicThumbnail';
-import dotenv from 'dotenv';
-dotenv.config();
+import PlayFrame from './views/playFrame';
+import Cookies from 'js-cookie';
+import env from 'react-dotenv';
+import Loading from '../loading/loading'
+import Quakka from '../../Utils/images/quokka.jpg'
 
 class MainPlayer extends Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props.musicList);
+
+  }
   state = {
+    isLoading: false,
     isAddPlayerBtnClick: false,
     musicList: [...this.props.musicList],
     currentMusic: {},
     myList: [],
   };
+
+  componentDidMount() {
+    this.setState({
+      isLoading: true
+    })
+
+    axios
+      .get(`${env.REACT_APP_API_URL}/nod/user/auth`, {
+        headers: {
+          authorization: Cookies.get('authorization'),
+        },
+      })
+      .then((response) => {
+        if (response.data.success) {
+          this.props.updateUserInfo(response.data.userInfo);
+          this.setState({
+            isLoading: false,
+          });
+        } else {
+          this.setState({
+            isLoading: false,
+          });
+          return this.props.history.push('/');
+        }
+      });
+  }
 
   handleChangeMusic = (currentMusic) => {
     this.setState({
@@ -42,113 +77,126 @@ class MainPlayer extends Component {
   handleMyListRequest = async () => {
     // post myList
     let response = await axios.post(
-      'http://ec2-54-180-95-187.ap-northeast-2.compute.amazonaws.com/nod/getMyList',
+      `${env.REACT_APP_API_URL}/nod/getMyList`,
       {
         userId: this.props.userId,
       }
     );
-
-    this.setState({
-      myList: [...response.data.data],
-    });
+    if(response.data.data){
+      this.setState({
+        myList: [...response.data.data],
+      });
+    }
+    
   };
 
   render() {
-    return (
-      <main className='main-player-container'>
-        <div className='main-play'>
-          <div className='play-img'>
+    return this.state.isLoading ? <Loading /> :
+    (
+      <main className="main-player-container">
+        <div className="main-play">
+          <div className="play-img">
             <MusicThumbnail
               thumbnailImage={
-                this.state.currentMusic.id
-                  ? this.state.currentMusic.thumbnail.url
-                  : this.state.musicList[0].thumbnail.url
-              }
+                this.state.currentMusic.id ? 
+                  this.state.currentMusic.thumbnail.url
+                  : (this.state.musicList[0] ? this.state.musicList[0].thumbnail.url
+                  : Quakka)
+                }
+              
             />
           </div>
-          <div className='main-play-list'>
-            <p className='next-track'>다음 트랙</p>
-            <ul className='play-list-ul'>
-              {this.state.musicList.map((musicList) => {
+          <div className="main-play-list">
+            <p className="next-track">다음 트랙</p>
+            <ul className="play-list-ul">
+              {this.state.musicList[0] ? 
+              this.state.musicList.map((musicList) => {
                 return (
                   <Song
                     key={musicList.id}
                     music={musicList}
                     onChangeMusic={this.handleChangeMusic}
                   />
-                );
-              })}
+                )
+              }) : ''}
             </ul>
           </div>
         </div>
-        <div className='play-container'>
-          <div className='play-duration'>
-            <div className='play-duration-bar'></div>
+        <div className="play-container">
+          <div className="play-duration">
+            <div className="play-duration-bar"></div>
           </div>
-          <div className='play-set-up'>
-            <div className='play-range'>
+          <div className="play-set-up">
+            <div className="play-range">
               <div
-                className='play-range-btn play-range-frame'
+                className="play-range-btn play-range-frame"
                 onClick={this.handleMusicSwitch}
               >
-                <iframe
-                  id='iframe'
-                  style={{
-                    position: 'absolute',
-                    top: 2,
-                    left: -20,
-                    width: '300px',
-                    height: '28px',
-                    opacity: 1,
-                  }}
-                  src={`https://www.youtube.com/embed/ih-vI0LvbZI?autoplay=1&mute=0`}
-                  frameBorder='0'
-                  className='iframe-player'
+                <PlayFrame
+                  videoId={
+                    this.state.currentMusic.id
+                      ? this.state.currentMusic.id
+                      : this.state.musicList[0] ? this.state.musicList[0].id
+                      : '5UJ5XKi394U'
+                  }
                 />
-                <div className='iframe-player-hidden'></div>
-                <button className='pre-music-btn'>
-                  <i className='fas fa-step-backward'></i>
+                <div className="iframe-player-hidden"></div>
+                <button className="pre-music-btn">
+                  <i className="fas fa-step-backward"></i>
                 </button>
-                <button className='pause-music-btn'>
-                  <i className='fas fa-pause'></i>
+                <button className="pause-music-btn">
+                  <i className="fas fa-pause"></i>
                 </button>
-                <button className='next-music-btn'>
-                  <i className='fas fa-step-forward'></i>
+                <button className="next-music-btn">
+                  <i className="fas fa-step-forward"></i>
                 </button>
-                <span className='music-time'>2:34/3:37</span>
+                <span className="music-time">
+                  {this.state.currentMusic.duration}
+                </span>
               </div>
             </div>
-            <div className='play-song-info'>
-              <div className='play-song-info-content'>
-                <img src={albumImage} className='song-info-img' alt='album' />
-                <div className='song-info-content'>
-                  <div className='song-info-title'>Butter</div>
-                  <div className='song-info-singer'>
-                    방탄소년단(BTS) • Butter(Hotter, Sweeter, Cooler) • 2021
+            <div className="play-song-info">
+              <div className="play-song-info-content">
+                <img
+                  src={
+                    this.state.currentMusic.id ? 
+                  this.state.currentMusic.thumbnail.url
+                  : this.state.musicList[0] ? this.state.musicList[0].thumbnail.url
+                  : Quakka
+                  }
+                  className="song-info-img"
+                  alt="album"
+                />
+                <div className="song-info-content">
+                  <div className="song-info-singer">
+                    {this.state.currentMusic.title
+                      ? this.state.currentMusic.title
+                      : this.state.musicList[0] ? this.state.musicList[0].title
+                    : `현재 선택된 곡이 없습니다 :(`}
                   </div>
                 </div>
-                <div className='song-add'>
+                <div className="song-add">
                   <button
-                    className='song-add-btn'
-                    onClick={() => {
+                    className="song-add-btn"
+                    onClick={async () => {
+                      await this.handleMyListRequest();
                       this.handleOpenModal();
-                      this.handleMyListRequest();
                     }}
                   >
-                    <i className='fas fa-plus'></i>
+                    <i className="fas fa-plus"></i>
                   </button>
                 </div>
               </div>
             </div>
-            <div className='play-song-setting'>
+            <div className="play-song-setting">
               <button>
-                <i className='fas fa-volume-up'></i>
+                <i className="fas fa-volume-up"></i>
               </button>
               <button>
-                <i className='fas fa-redo'></i>
+                <i className="fas fa-redo"></i>
               </button>
               <button>
-                <i className='fas fa-random'></i>
+                <i className="fas fa-random"></i>
               </button>
             </div>
           </div>
@@ -166,4 +214,4 @@ class MainPlayer extends Component {
   }
 }
 
-export default MainPlayer;
+export default withRouter(MainPlayer);

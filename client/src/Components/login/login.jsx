@@ -4,10 +4,8 @@ import { withRouter } from 'react-router';
 import './login.css';
 import Loading from '../loading/loading';
 import Cookies from 'js-cookie';
-import dotenv from 'dotenv';
-dotenv.config();
+import env from 'react-dotenv';
 
-console.log(process.env.REACT_APP_API_URL);
 
 axios.defaults.withCredentials = true;
 
@@ -15,7 +13,7 @@ class Login extends PureComponent {
   constructor(props) {
     super(props);
     axios
-      .get(`${process.env.REACT_APP_API_URL}/nod/user/auth`, {
+      .get(`${env.REACT_APP_API_URL}/nod/user/auth`, {
         headers: {
           authorization: Cookies.get('authorization'),
         },
@@ -48,7 +46,7 @@ class Login extends PureComponent {
 
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/nod/user/login`, {
+      .post(`${env.REACT_APP_API_URL}/nod/user/login`, {
         email,
         password,
       })

@@ -7,8 +7,7 @@ import Cookies from 'js-cookie';
 import Loading from '../loading/loading';
 import fs from 'fs';
 import { Buffer } from 'buffer';
-import dotenv from 'dotenv';
-dotenv.config();
+import env from "react-dotenv";
 
 axios.defaults.withCredentials = true;
 
@@ -35,7 +34,7 @@ class EditUserInfo extends PureComponent {
 
   componentDidMount() {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/nod/user/auth`, {
+      .get(`${env.REACT_APP_API_URL}/nod/user/auth`, {
         headers: {
           authorization: Cookies.get('authorization'),
         },
@@ -66,7 +65,7 @@ class EditUserInfo extends PureComponent {
     reader.onload = () => {
       if (reader.readyState === 2) {
         axios
-          .post(`${process.env.REACT_APP_API_URL}/nod/user/modImage`, {
+          .post(`${env.REACT_APP_API_URL}/nod/user/modImage`, {
             userId: this.props.userInfo.id,
             image: reader.result,
           })
@@ -86,7 +85,7 @@ class EditUserInfo extends PureComponent {
 
   handleDeleteImage = (event) => {
     axios
-      .post(`${process.env.REACT_APP_API_URL}/nod/user/modImage`, {
+      .post(`${env.REACT_APP_API_URL}/nod/user/modImage`, {
         userId: this.props.userInfo.id,
         image: '',
       })
@@ -122,7 +121,7 @@ class EditUserInfo extends PureComponent {
         isNickNameCheck: true,
       });
       axios
-        .post(`${process.env.REACT_APP_API_URL}/nod/user/existNickName`, {
+        .post(`${env.REACT_APP_API_URL}/nod/user/existNickName`, {
           nickname: e.target.value,
         })
         .then((response) => {
@@ -147,7 +146,7 @@ class EditUserInfo extends PureComponent {
   handleEditNicknameChange = (event) => {
     if (this.state.isNickNameCheck) {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/nod/user/modNickname`, {
+        .post(`${env.REACT_APP_API_URL}/nod/user/modNickname`, {
           userId: this.props.userInfo.id,
           nickname: this.nicknameInput.current.value,
         })
@@ -210,7 +209,7 @@ class EditUserInfo extends PureComponent {
     console.log(elList[2].value);
     if (this.state.isPasswordCheck) {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/nod/user/modPassword`, {
+        .post(`${env.REACT_APP_API_URL}/nod/user/modPassword`, {
           userId: this.props.userInfo.id,
           password: elList[2].value,
         })
@@ -247,7 +246,7 @@ class EditUserInfo extends PureComponent {
   handleDeleteUser = (event) => {
     const config = {
       method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/nod/user/deleteUser`,
+      url: `${env.REACT_APP_API_URL}/nod/user/deleteUser`,
       data: {
         userId: this.props.userInfo.id,
       },

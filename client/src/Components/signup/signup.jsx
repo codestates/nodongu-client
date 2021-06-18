@@ -4,8 +4,7 @@ import axios from 'axios';
 import './signup.css';
 import Loading from '../loading/loading';
 import Cookies from 'js-cookie';
-import dotenv from 'dotenv';
-dotenv.config();
+import env from 'react-dotenv';
 
 axios.defaults.withCredentials = true;
 
@@ -21,7 +20,7 @@ class Signup extends Component {
     };
 
     axios
-      .get(`${process.env.REACT_APP_API_URL}/nod/user/auth`, {
+      .get(`${env.REACT_APP_API_URL}/nod/user/auth`, {
         headers: {
           authorization: Cookies.get('authorization'),
         },
@@ -56,7 +55,7 @@ class Signup extends Component {
       // axios config
       const config = {
         method: 'post',
-        url: `${process.env.REACT_APP_API_URL}/nod/user/existEmail`,
+        url: `${env.REACT_APP_API_URL}/nod/user/existEmail`,
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
@@ -117,7 +116,7 @@ class Signup extends Component {
 
       // 닉네임 유효성 검사 2가지 모두 통과 시 DB에 이미 존재하는 nickName이 있는지 확인
       axios
-        .post(`${process.env.REACT_APP_API_URL}/nod/user/existNickName`, {
+        .post(`${env.REACT_APP_API_URL}/nod/user/existNickName`, {
           nickname: this.inputNickNameRef.current.value,
         })
         .then((response) => {
