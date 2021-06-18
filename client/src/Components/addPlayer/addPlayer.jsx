@@ -63,6 +63,8 @@ class AddPlayer extends Component {
           this.setState({
             isNewAddMusicBtnClick: false,
           });
+          this.newPlayListRef.current.classList.add('new-playlist-container-hidden');
+          this.inputRef.current.value = '';
         }
       })
       .catch((err) => console.log(err));

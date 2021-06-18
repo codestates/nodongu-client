@@ -12,8 +12,7 @@ import Keyword from './Components/keyword/keyword';
 import MyList from './Components/myList/myList';
 import MainPlayer from './Components/mainPlayer/mainPlayer';
 import Cookies from 'js-cookie';
-import dotenv from 'dotenv';
-dotenv.config();
+import env from 'react-dotenv';
 
 axios.defaults.withCredentials = true;
 
@@ -54,7 +53,7 @@ class App extends Component {
 
   handleSignUp = (userInfo) => {
     axios
-      .post(`${process.env.REACT_APP_API_URL}/nod/user/signup`, {
+      .post(`${env.REACT_APP_API_URL}/nod/user/signup`, {
         ...userInfo,
       })
       .then((response) => {
@@ -70,7 +69,7 @@ class App extends Component {
     const config = {
       method: 'POST',
 
-      url: `${process.env.REACT_APP_API_URL}/nod/user/userinfo`,
+      url: `${env.REACT_APP_API_URL}/nod/user/userinfo`,
 
       data: {
         userId,

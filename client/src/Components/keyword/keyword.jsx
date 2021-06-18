@@ -4,24 +4,25 @@ import axios from 'axios';
 import './keyword.css';
 import Loading from '../loading/loading';
 import Cookies from 'js-cookie';
-import dotenv from 'dotenv';
-dotenv.config();
+import env from 'react-dotenv';
+
 
 axios.defaults.withCredentials = true;
 
 class Keyword extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       isLoading: false,
     };
+  }
 
+  componentDidMount() {
     this.setState({
       isLoading: true,
     });
     axios
-      .get(`${process.env.REACT_APP_API_URL}/nod/user/auth`, {
+      .get(`${env.REACT_APP_API_URL}/nod/user/auth`, {
         headers: {
           authorization: Cookies.get('authorization'),
         },
@@ -48,7 +49,7 @@ class Keyword extends Component {
       const keyword = event.target.textContent;
       let config = {
         method: 'post',
-        url: `${process.env.REACT_APP_API_URL}/nod/keywordMusic`,
+        url: `${env.REACT_APP_API_URL}/nod/keywordMusic`,
         data: {
           keyword,
         },
