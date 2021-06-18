@@ -13,21 +13,22 @@ class Footer extends Component {
                 className="logo"
                 src={logo}
                 style={({ width: 40 }, { height: 40 })}
+                alt="logo"
               />
               <div className="social-media">
-                <a href="#">
+                <a href="/">
                   <i className="fab fa-facebook-f"></i>
                 </a>
-                <a href="#">
+                <a href="/">
                   <i className="fab fa-twitter"></i>
                 </a>
-                <a href="#">
+                <a href="/">
                   <i className="fab fa-instagram"></i>
                 </a>
-                <a href="#">
+                <a href="/">
                   <i className="fab fa-youtube"></i>
                 </a>
-                <a href="#">
+                <a href="/">
                   <i className="fab fa-linkedin-in"></i>
                 </a>
               </div>
@@ -44,7 +45,7 @@ class Footer extends Component {
                   placeholder="Enter Your Email :)"
                 />
                 <input
-                  type="submit"
+                  type="button"
                   className="newsletter-form-btn"
                   value="submit"
                 />

@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.add-modal-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.7;
+  animation: add-modal-bg 0.4s;
+}
+
+.add-modal-background-hidden {
+  display: none;
+}
+
+.add-player-container {
+  width: 400px;
+  height: 280px;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: var(--middle-light-pink-color);
+  -ms-overflow-style: none;
+  overflow: auto;
+  animation: add-modal 0.4s;
+}
+
+.add-player-container::-webkit-scrollbar {
+  display: none;
+}
+
+.add-player {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+}
+
+.add-player-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.player-title {
+  width: 200px;
+  color: var(--footer-font-color);
+}
+
+.fa-democrat {
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
+  color: var(--light-orange-color);
+}
+
+.add-player-title > .close-btn {
+  margin-left: 6rem;
+  cursor: pointer;
+}
+
+.add-player-title > .close-btn:hover {
+  transition: all 0.3s linear;
+}
+
+.add-player-title > .close-btn:active {
+  transform: scale(1.1);
+  color: var(--smoke-pink-color);
+}
+
+.my-play-lists {
+  list-style: none;
+}
+
+.my-play-lists > * {
+  margin-bottom: 0.7rem;
+  cursor: pointer;
+}
+
+.my-play-lists > *:hover {
+  transition: all 0.3s linear;
+  color: var(--smoke-pink-color);
+}
+
+.my-play-lists > *:active {
+  transform: scale(1.1);
+  color: var(--smoke-pink-color);
+}
+
+.new-my-play-list {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0.7rem;
+}
+
+.new-play-list-btn > * {
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.new-my-play-list > .new-play-add {
+  font-family: var(--font-family);
+  color: var(--dark-pink-color);
+  cursor: pointer;
+  margin: 1rem 0;
+  font-size: 1rem;
+}
+
+.new-play-list-btn > *:hover,
+.new-my-play-list > .new-play-add:hover {
+  transition: all 0.3s linear;
+}
+
+.new-play-list-btn > *:active,
+.new-my-play-list > .new-play-add:active {
+  transform: scale(1.1);
+  color: var(--smoke-pink-color);
+}
+
+.add-playlist-popup-hidden {
+  display: none;
+}
+
+.new-playlist-container-hidden {
+  display: none;
+}
+
+.new-music-input {
+  width: 80%;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 10px;
+  outline: none;
+  color: var(--footer-font-color);
+  font-family: var(--font-family);
+}
+
+.new-music-input-hidden {
+  display: none;
+}
+
+.new-playlist-container > .new-mylist-btn {
+  background-color: var(--light-tomato-color);
+}
+
+.new-playlist-container > .new-mylist-btn:hover {
+  transition: all 0.3s linear;
+}
+
+.new-playlist-container > .new-mylist-btn:active {
+  transform: scale(1.1);
+  color: var(--smoke-pink-color);
+}
+
+@keyframes add-modal {
+  from {
+    opacity: 0;
+    margin-top: -50px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+
+@keyframes add-modal-bg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.7;
+  }
+}

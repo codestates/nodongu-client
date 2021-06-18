@@ -1,34 +1,74 @@
-import React, { Component } from 'react';
-import './login.css';
+import React, { PureComponent } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router';
+import './login.css';
+import Loading from '../loading/loading';
+import Cookies from 'js-cookie';
+import env from 'react-dotenv';
 
-class Login extends Component {
+
+axios.defaults.withCredentials = true;
+
+class Login extends PureComponent {
+  constructor(props) {
+    super(props);
+    axios
+      .get(`${env.REACT_APP_API_URL}/nod/user/auth`, {
+        headers: {
+          authorization: Cookies.get('authorization'),
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.success) {
+          console.log(response.data.success);
+          console.log(response.data.userInfo);
+          this.props.updateUserInfo(response.data.userInfo);
+          return this.props.history.push('/keyword');
+        }
+      });
+  }
+
+  state = {
+    isLoading: false,
+  };
+
   formRef = React.createRef();
   inputEmailRef = React.createRef();
   inputPawRef = React.createRef();
+  loginEmailErrRef = React.createRef();
+  loginPwdErrRef = React.createRef();
 
   handleLogin = (email, password) => {
-    console.log(email, password);
-    // this.props.onUserInfo({ userId: 7 });
-    // axios
-    //   .post(`http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/login`, {
-    //     email,
-    //     password,
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     if (response.data.success === true) {
-    //       console.log('성공 ');
-    //       this.props.onUserInfo(response.data.userId);
-    //     } else {
-    //       console.log('login fail');
-    //     }
-    //   });
-    // this.state.history.push('이동할 엔드포인트');
+    /*     this.setState({
+      isLoading: true,
+    }); */
+
+
+    axios
+      .post(`${env.REACT_APP_API_URL}/nod/user/login`, {
+        email,
+        password,
+      })
+      .then((response) => {
+        if (response.data.loginSuccess) {
+          Cookies.set('authorization', response.headers.authorization);
+          this.props.onUserInfo(response.data.userId);
+          return this.props.history.push('/keyword');
+        } else if (response.data.message === '존재하지 않는 이메일입니다') {
+          this.loginEmailErrRef.current.classList.remove('login-err-hidden');
+        } else if (response.data.message === '비밀번호가 일치하지 않습니다') {
+          this.loginPwdErrRef.current.classList.remove('login-err-hidden');
+        }
+      });
   };
 
   onSubmit = (e) => {
     e.preventDefault();
+
+    this.loginEmailErrRef.current.classList.add('login-err-hidden');
+    this.loginPwdErrRef.current.classList.add('login-err-hidden');
+
     const email = this.inputEmailRef.current.value;
     const password = this.inputPawRef.current.value;
 
@@ -37,11 +77,18 @@ class Login extends Component {
   };
 
   render() {
-    return (
+    return this.state.isLoading ? (
+      <Loading />
+    ) : (
       <div className='login-container'>
         <div className='login-form'>
           <h1 className='login-form-title'>Login</h1>
-          <form className='form' ref={this.formRef} onSubmit={this.onSubmit}>
+          <form
+            className='form'
+            ref={this.formRef}
+            onSubmit={this.onSubmit}
+            method='POST'
+          >
             <div className='input-form'>
               <label htmlFor='email'>
                 <i className='fas fa-envelope login-icon'></i>
@@ -53,6 +100,14 @@ class Login extends Component {
                 placeholder='E-mail address'
                 className='login-form-email-input'
               />
+            </div>
+            <div className='login-err'>
+              <p
+                ref={this.loginEmailErrRef}
+                className='email-err login-err-hidden'
+              >
+                가입이 안 되어있는 이메일입니다. 가입먼저 해주세요 :)
+              </p>
             </div>
             <div className='input-form'>
               <label htmlFor='password'>
@@ -66,13 +121,29 @@ class Login extends Component {
                 className='login-form-pwd-input'
               />
             </div>
+            <div className='login-err'>
+              <p
+                ref={this.loginPwdErrRef}
+                className='password-err login-err-hidden'
+              >
+                비밀번호가 일치하지 않습니다 :( 비밀번호를 제대로 입력해주세요
+                :)
+              </p>
+            </div>
             <button className='login-btn'>Login</button>
           </form>
-          <span className='sing-up-link'>아직 회원이 아니신가요?</span>
+          <span
+            className='sing-up-link'
+            onClick={() => {
+              this.props.history.push('/signup');
+            }}
+          >
+            아직 회원이 아니신가요?
+          </span>
         </div>
       </div>
     );
   }
 }
 
-export default Login;
+export default withRouter(Login);

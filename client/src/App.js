@@ -9,22 +9,55 @@ import Footer from './Components/footer/footer';
 import EditUserInfo from './Components/editUserInfo/editUserInfo';
 import Loading from './Components/loading/loading';
 import Keyword from './Components/keyword/keyword';
+import MyList from './Components/myList/myList';
+import MainPlayer from './Components/mainPlayer/mainPlayer';
+import Cookies from 'js-cookie';
+import env from 'react-dotenv';
+
+axios.defaults.withCredentials = true;
 
 class App extends Component {
   state = {
-    isLoading: null,
-    userInfo: null,
+    userInfo: {
+      id: null,
+      nickname: '',
+      email: '',
+    },
+    myList: [],
+    musicList: [],
+  };
+
+  updateKeyword = (keyword) => {
+    this.setState({
+      keyword,
+    });
+  };
+
+  logoutUser = () => {
+    this.setState({
+      userInfo: {},
+    });
+  };
+
+  updateUserInfo = (userInfo) => {
+    this.setState({
+      userInfo: userInfo,
+    });
+  };
+
+  updateMyList = (musicList) => {
+    this.setState({
+      musicList: musicList,
+    });
   };
 
   handleSignUp = (userInfo) => {
-    console.log(userInfo);
     axios
-      .post(`http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/signup`, {
+      .post(`${env.REACT_APP_API_URL}/nod/user/signup`, {
         ...userInfo,
       })
       .then((response) => {
-        // console.log(response.data);
-        if (response.data.success === true) {
+        if (response.data.id) {
           console.log('signup success');
         } else {
           console.log('signup fail');
@@ -33,29 +66,108 @@ class App extends Component {
   };
 
   handleUserInfo = (userId) => {
-    console.log(userId);
-    axios
-      .post(
-        `http://ec2-3-133-155-148.us-east-2.compute.amazonaws.com/userinfo`,
-        { userId }
-      )
-      .then((response) => {
-        if (response.data.success === 'true') {
-          this.setState({ userInfo: { ...response.data.data } });
-        } else {
-          this.setState({ userInfo: null });
-        }
-      });
+    const config = {
+      method: 'POST',
+
+      url: `${env.REACT_APP_API_URL}/nod/user/userinfo`,
+
+      data: {
+        userId,
+      },
+    };
+    axios(config).then((response) => {
+      console.log(response);
+      if (response.data.success) {
+        this.setState({ userInfo: { ...response.data.data } });
+      } else {
+        this.setState({
+          userInfo: {
+            id: null,
+            nickname: '',
+            email: '',
+          },
+        });
+      }
+    });
   };
+
+  // logout handler
+
+  updateMyList = (myList) => {
+    this.setState({ musicList: myList });
+  };
+
   render() {
     return (
       <Suspense fallback={<Loading />}>
-        <Navbar />
+        <Navbar userData={this.state.userInfo} logoutUser={this.logoutUser} />
         <Switch>
-          <Route exact path='/' component={Login} />
-          <Route exact path='/signup' component={Signup} />
-          <Route exact path='/keyword' component={Keyword} />
-          <Route exact path='/editUserInfo' component={EditUserInfo} />
+          <Route
+            exact
+
+            path='/'
+            render={() => (
+              <Login
+                updateUserInfo={this.updateUserInfo}
+                onUserInfo={this.handleUserInfo}
+              />
+            )}
+          />
+          <Route
+            exact
+            path='/signup'
+            render={() => (
+              <Signup
+                updateUserInfo={this.updateUserInfo}
+                onSignUp={this.handleSignUp}
+              />
+            )}
+          />
+          <Route
+            exact
+            path='/keyword'
+            render={() => (
+              <Keyword
+                updateUserInfo={this.updateUserInfo}
+                updateMyList={this.updateMyList}
+                updateKeyword={this.updateKeyword}
+              />
+            )}
+
+          />
+          <Route
+            exact
+            path="/editUserInfo"
+            render={() => (
+              <EditUserInfo
+                userInfo={this.state.userInfo}
+                updateUserInfo={this.updateUserInfo}
+              />
+            )}
+          />
+          <Route
+            exact
+            path='/mainPlayer'
+            render={() => (
+              <MainPlayer
+                updateUserInfo={this.updateUserInfo}
+                musicList={this.state.musicList}
+                userId={this.state.userInfo.id}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/myList"
+            render={() => (
+              <MyList
+                updateUserInfo={this.updateUserInfo}
+                userInfo={this.state.userInfo}
+                updateMyList={this.updateMyList}
+                myList={this.state.myList}
+              />
+            )}
+          />
         </Switch>
         <Footer />
       </Suspense>

@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.main-player-container {
+  margin-top: 90px;
+  width: 100%;
+  font-family: var(--font-family);
+  background-color: var(--play-background-color);
+  padding: 10rem 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+}
+
+.main-player-container > * {
+  color: var(--light-white-color);
+}
+
+.main-play {
+  display: flex;
+  justify-content: center;
+}
+
+.play-img {
+  margin-right: 2rem;
+}
+
+.main-play-list {
+  min-width: 480px;
+  height: 520px;
+  padding: 0.5rem 1.4rem;
+  overflow: auto;
+}
+
+.next-track {
+  font-size: 1.2rem;
+  width: 180px;
+}
+
+.play-list-ul {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.play-list-li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  transition: all 0.3s linear;
+}
+
+.play-list-li:hover {
+  background-color: var(--middle-light-pink-color);
+}
+
+.play-list-left {
+  display: flex;
+  align-items: center;
+}
+
+.play-album-img {
+  width: 520px;
+  height: 520px;
+}
+
+.play-list-song-img {
+  width: 45px;
+  height: 45px;
+  margin-right: 0.8rem;
+  flex: 1;
+}
+
+.play-replay-time {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  flex: 1;
+}
+
+.play-list-content > .play-list-content-title {
+  cursor: pointer;
+  flex: 8;
+}
+
+.play-list-content-singer,
+.play-replay-time {
+  /*color: var(--light-white-color);*/ /* var(--dark-gray-color); */ /* #fff; */
+}
+
+.play-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.player-container {
+  color: red;
+  background-color: skyblue;
+}
+
+.play-duration {
+  width: 100%;
+  background-color: var(--middle-pink-color);
+  margin: 3rem 0;
+}
+
+.play-duration-bar {
+  border-top: solid 3px var(--middle-pink-color);
+}
+
+.play-set-up {
+  padding: 0 25px;
+  width: 100%;
+  padding-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-player-container button {
+  border: none;
+  background-color: transparent;
+}
+
+.main-player-container i {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.play-range {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.play-range button * {
+  font-size: 1.5rem;
+  margin-right: 1.2rem;
+  transition: all 0.3s linear;
+  cursor: pointer;
+}
+
+.play-range button *:hover {
+  color: var(--light-white-color);
+}
+
+.play-range button *:active {
+  transform: scale(1.1);
+}
+
+.music-time {
+  font-size: medium;
+  color: var(--dark-gray-color);
+}
+
+.play-song-info-content {
+  display: flex;
+  flex-grow: 8;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.song-info-img {
+  width: 50px;
+  height: 50px;
+  margin: 0 1.5rem;
+}
+
+.song-info-content {
+  margin-right: 2rem;
+}
+
+.song-info-title {
+  font-size: larger;
+}
+
+.song-info-singer {
+  font-size: small;
+  color: var(--light-white-color);
+  margin-top: 0.2rem;
+}
+
+.song-add {
+  margin-right: 2rem;
+}
+
+.song-add-btn > .fa-plus {
+  width: 2rem;
+  height: 2rem;
+  padding: 1px;
+  border-radius: 50%;
+  margin: 0 1.2rem;
+  transition: all 0.3s linear;
+  cursor: pointer;
+}
+
+.song-add-btn > * {
+  color: var(--light-white-color);
+}
+
+.song-add-btn > .fa-plus:hover {
+  color: var(--light-white-color);
+}
+
+.song-add-btn > .fa-plus:active {
+  transform: scale(1.1);
+}
+
+.play-song-setting {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.play-song-setting button * {
+  transition: all 0.3s linear;
+  font-size: large;
+  cursor: pointer;
+  color: var(--light-white-color);
+}
+
+.play-song-setting button *:hover {
+  color: var(--light-white-color);
+}
+
+.play-song-setting button *:active {
+  transform: scale(1.1);
+}
+
+.play-range-frame {
+  position: relative;
+}
+
+.iframe-player-hidden {
+  position: absolute;
+  left: 60px;
+  width: 220px;
+  height: 30px;
+  background-color: #000;
+}
+
+@media screen and (max-width: 1390px) {
+  .main-player-container {
+    flex-wrap: wrap;
+  }
+
+  .txtb {
+    flex: 1;
+  }
+
+  .newsletter-form-btn {
+    margin-left: -5px;
+    width: 100%;
+    margin-top: 10px;
+  }
+}

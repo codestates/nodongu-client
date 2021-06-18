@@ -1,0 +1,42 @@
+.mylist-container {
+  font-family: var(--font-family);
+}
+
+.playlist {
+  height: 94vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.playlist__image {
+  width: 40rem;
+  font-size: 0;
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+.playlist__image img {
+  display: inline-block;
+  width: 50%;
+  border: 1px solid whitesmoke;
+}
+
+.playlist__detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playlist__title {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.playlist__date {
+  cursor: pointer;
+}
