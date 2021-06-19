@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 import Loading from '../loading/loading';
 import fs from 'fs';
 import { Buffer } from 'buffer';
-import env from "react-dotenv";
+import env from 'react-dotenv';
 
 axios.defaults.withCredentials = true;
 
@@ -75,6 +75,7 @@ class EditUserInfo extends PureComponent {
               this.props.updateUserInfo({
                 ...this.props.userInfo,
                 image: reader.result,
+                cd,
               });
             }
           });
@@ -90,9 +91,7 @@ class EditUserInfo extends PureComponent {
         image: '',
       })
       .then((response) => {
-        console.log('dasdasdad');
         if (response.data.success) {
-          console.log('asdasdsa');
           this.props.updateUserInfo({
             ...this.state.userInfo,
             image: '',
